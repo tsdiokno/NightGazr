@@ -189,8 +189,8 @@
         #intro {
 			width: 325px;
 			line-height: 1em;
-			margin-right: 38px;
-			margin-top: 120px;
+			margin-right: 2.375em;
+			margin-top: 40%;
 			font-size: 230%;
 			font-family: arial, sans-serif;
 			font-weight: bold;
@@ -200,25 +200,24 @@
         }
         
         #page-wrap {
-			padding: 30px 0;
+			padding: 1.875em 0;
         }
         
         #page-wrap tr td {
 			vertical-align: top;
-			padding: 20px;
+			padding: 1.8em;
 			background: hsla(0,0%,0%,0.4); 
 			border-bottom: solid #000000 4px;
 			border-top: solid #000000 4px;
         }
         
         .post {
-			width: 600px;
-			margin-right: 38px;
+			width: 37.500em;
         }
         
         .post .content {
 			float: left;
-			margin-right: 8px;
+			margin-right: 0.5em;
 			font-size: 90%;
 			width: 400px;
         }
@@ -303,6 +302,15 @@
 			margin-right: 1.5em;
 		}
 		
+		
+		/*Force full width content on static pages.
+		Yes it's a hack that requires you to 
+		do something for it work.*/
+		
+		div[id$="Zy4yby"] .content {
+			width: 100%;
+		}
+		
         
         /*FOOTER SECTION*/
 		
@@ -311,10 +319,10 @@
 			position: fixed;
 			background: rgba(0,0,0,0.8);
 			width: 100%;
-			bottom: -34.85%;
+			bottom: -36%;
 			height: 40%;
 			font-size: 60%;
-			padding: 10px 10px;
+			padding: 0.625em 0.625em;
 			   -moz-transition: all 0.5s;
 			-webkit-transition: all 0.5s;
 				 -o-transition: all 0.5s;
@@ -433,12 +441,17 @@
 				  {block:Text}
 				  
 				  <article class="post text">
-					<div class="content">
-						{block:Title}
-                        <h2><a href="{Permalink}">{Title}</a></h2>
-                        {/block:Title}
-						{Body}
+					<div id="{ShortURL}">
+						<div class="content">
+							{block:Title}
+							<h2><a href="{Permalink}">{Title}</a></h2>
+							{/block:Title}
+							
+							{Body}
+							
+						</div>
 					</div>
+					{block:Date}
 					<aside>
 						<ul>
 						
@@ -456,9 +469,9 @@
 								
 							{/block:ContentSource}
 							
-							{block:Date}
+							
 							<li>{ShortMonth}. {DayOfMonth}{DayOfMonthSuffix}, {Year}</li>
-							{/block:Date}
+							
 							
 							{block:NoteCount} 
 							<li>{NoteCountWithLabel}</li>
@@ -466,6 +479,7 @@
 							
 						</ul>
 					</aside>
+					{/block:Date}
 					<div class="clear"></div>
 				  </article>
 				  
@@ -487,6 +501,8 @@
 						</div>
 					
 					</div>
+					
+					{block:Date}
 					<aside>
 						<ul>
 						
@@ -504,9 +520,8 @@
 								
 							{/block:ContentSource}
 							
-							{block:Date}
+							
 							<li>{ShortMonth}. {DayOfMonth}{DayOfMonthSuffix}, {Year}</li>
-							{/block:Date}
 							
 							{block:NoteCount} 
 							<li>{NoteCountWithLabel}</li>
@@ -515,6 +530,7 @@
 						</ul>
 						
 					</aside>
+					{/block:Date}
 					<div class="clear"></div>
 				  </article>
 				  
@@ -536,6 +552,8 @@
 						</div>
 					
 					</div>
+					
+					{block:Date}
 					<aside>
 						<ul>
 						
@@ -551,11 +569,9 @@
 								<li>Thanks to <a href="{SourceURL}" title="{SourceTitle}"><strong>{SourceTitle}</strong></a></li>
 								{/block:NoSourceLogo}
 								
-							{/block:ContentSource}
+							{/block:ContentSource}	
 							
-							{block:Date}
 							<li>{ShortMonth}. {DayOfMonth}{DayOfMonthSuffix}, {Year}</li>
-							{/block:Date}
 							
 							{block:NoteCount} 
 							<li>{NoteCountWithLabel}</li>
@@ -564,6 +580,7 @@
 						</ul>
 						
 					</aside>
+					{/block:Date}
 					<div class="clear"></div>
 				  </article>
 				  
@@ -583,6 +600,8 @@
 						</div>
 					
 					</div>
+					
+					{block:Date}
 					<aside>
 						<ul>
 						
@@ -600,9 +619,7 @@
 								
 							{/block:ContentSource}
 							
-							{block:Date}
 							<li>{ShortMonth}. {DayOfMonth}{DayOfMonthSuffix}, {Year}</li>
-							{/block:Date}
 							
 							{block:NoteCount} 
 							<li>{NoteCountWithLabel}</li>
@@ -611,6 +628,7 @@
 						</ul>
 						
 					</aside>
+					{/block:Date}
 					<div class="clear"></div>
 				  </article>
 				  
@@ -626,6 +644,8 @@
 						{block:Source}{Source}{/block:Source}
 					
 					</div>
+					
+					{block:Date}
 					<aside>
 						<ul>
 						
@@ -643,9 +663,7 @@
 								
 							{/block:ContentSource}
 							
-							{block:Date}
 							<li>{ShortMonth}. {DayOfMonth}{DayOfMonthSuffix}, {Year}</li>
-							{/block:Date}
 							
 							{block:NoteCount} 
 							<li>{NoteCountWithLabel}</li>
@@ -654,6 +672,7 @@
 						</ul>
 						
 					</aside>
+					{/block:Date}
 					<div class="clear"></div>
 				  </article>
 				  
@@ -679,6 +698,8 @@
 						</div>
 					
 					</div>
+					
+					{block:Date}
 					<aside>
 						<ul>
 						
@@ -696,9 +717,7 @@
 								
 							{/block:ContentSource}
 							
-							{block:Date}
 							<li>{ShortMonth}. {DayOfMonth}{DayOfMonthSuffix}, {Year}</li>
-							{/block:Date}
 							
 							{block:NoteCount} 
 							<li>{NoteCountWithLabel}</li>
@@ -707,6 +726,7 @@
 						</ul>
 						
 					</aside>
+					{/block:Date}
 					<div class="clear"></div>
 				  </article>
 				  
@@ -733,6 +753,8 @@
 							</ul>
 						
 						</div>
+						
+						{block:Date}
 						<aside>
 							<ul>
 							
@@ -750,9 +772,7 @@
 								
 								{/block:ContentSource}
 								
-								{block:Date}
 								<li>{ShortMonth}. {DayOfMonth}{DayOfMonthSuffix}, {Year}</li>
-								{/block:Date}
 								
 								{block:NoteCount} 
 								<li>{NoteCountWithLabel}</li>
@@ -760,6 +780,7 @@
 								
 							</ul>
 						</aside>
+						{/block:Date}
 						<div class="clear"></div>
 					  </article>
 				  
@@ -779,6 +800,8 @@
 							</div>
 						
 						</div>
+						
+						{block:Date}
 						<aside>
 							<ul>
 							
@@ -794,11 +817,9 @@
 									<li>Thanks to <a href="{SourceURL}" title="{SourceTitle}"><strong>{SourceTitle}</strong></a></li>
 									{/block:NoSourceLogo}
 								
-								{/block:ContentSource}
+								{/block:ContentSource}	
 								
-								{block:Date}
 								<li>{ShortMonth}. {DayOfMonth}{DayOfMonthSuffix}, {Year}</li>
-								{/block:Date}
 								
 								{block:NoteCount} 
 								<li>{NoteCountWithLabel}</li>
@@ -807,6 +828,7 @@
 							</ul>
 							
 						</aside>
+						{/block:Date}
 						<div class="clear"></div>
 					  </article>
 					  
@@ -841,6 +863,8 @@
 							</div>
 							
 						</div>
+						
+						{block:Date}
 						<aside>
 							<ul>
 							
@@ -858,20 +882,19 @@
 								
 								{/block:ContentSource}
 								
-								{block:Date}
+								
 								<li>{ShortMonth}. {DayOfMonth}{DayOfMonthSuffix}, {Year}</li>
-								{/block:Date}
 								
 								{block:PlayCount}
 								<li>{PlayCountWithLabel}</li>
 								{/block:PlayCount}
 								
 								{block:Artist}
-								<li>{Artist}</li>
+								<li>Artist: <strong>{Artist}</strong></li>
 								{/block:Artist}
 								
 								{block:Album}
-								<li>{Album}</li>
+								<li>Album: <strong>{Album}</strong></li>
 								{/block:Album}
 								
 								{block:NoteCount} 
@@ -881,6 +904,7 @@
 							</ul>
 							
 						</aside>
+						{/block:Date}
 						<div class="clear"></div>
 					  </article>
 				  
@@ -900,15 +924,16 @@
 							</div>
 						
 						</div>
+						
+						{block:Date}
 						<aside>
 							<ul>
-							
 								<li>By <a href="{PostAuthorURL}" title="{PostAuthorTitle}"><em>{PostAuthorName}</em></a></li>
 								
 								
-								{block:Date}
+								
 								<li>{ShortMonth}. {DayOfMonth}{DayOfMonthSuffix}, {Year}</li>
-								{/block:Date}
+								
 								
 								<li>Asked by <strong>{Asker}</strong></li>
 								
@@ -921,6 +946,7 @@
 							<div class="caption">{Caption}</div>
 							{/block:Caption}
 						</aside>
+						{/block:Date}
 						<div class="clear"></div>
 					  </article>
 				  
