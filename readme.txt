@@ -14,6 +14,6 @@ Bug reports; and feature and enhancement requests/proposals go to https://code.g
 
 Open for forking. Just do a checkout and commit it to your own repo.
 
-Open for contributions. Project is maintained with SVN.
+Open for contributions. Project is maintained with Git.
 
 Get the latest build at https://code.google.com/p/nightgazr/source/list.
