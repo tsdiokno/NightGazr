@@ -3,7 +3,7 @@
     
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         
-		<title>{Title}</title>
+    	<title>{Title}</title>
 		
         <link rel="shortcut icon" href="{Favicon}">
         <link rel="alternate" type="application/rss+xml" href="{RSS}">
@@ -14,7 +14,6 @@
 		
         <script src="http://static.tumblr.com/7swizo5/fRUmlhyvk/jquery.js"></script>
         <script src="http://static.tumblr.com/7swizo5/e7fmlhzeq/jquery.stellar"></script>
-		
         <script src="http://static.tumblr.com/7swizo5/K4Qmli085/mousewheel.js"></script>
 		
 	   
@@ -95,7 +94,7 @@
         
 		
 		#tumblr_controls {
-			top: .5em !important;
+			top: .6em !important;
 			right: 14% !important;
 			position: fixed !important;
 		}
@@ -119,6 +118,15 @@
 			top: -1.8em;
 			position: relative;
         }
+		
+		header h1 a {
+			text-decoration: none;
+			opacity: 0.8;
+		}
+		
+		header h1 a:hover {
+			opacity: 1.0;
+		}
         
         header form {
 			display: inline;
@@ -159,7 +167,7 @@
         
         nav ul li a {
 			position: relative;
-			top: -1.7em;
+			top: -1.8em;
 			text-decoration: none;
 			padding: 2em 1% 6px 1%;
 			display: inline-block;
@@ -222,12 +230,15 @@
 			font-weight: bold;
 			margin-bottom: 10px;
         }
+		
+		.post .content .body {
+			margin-top: 1em;
+		}
         
         .post aside {
 			width: 170px;
 			float: right;
 			font-size: .8em;
-			word-wrap: break-word;
         }
         
         .post aside ul {
@@ -300,7 +311,7 @@
 			position: fixed;
 			background: rgba(0,0,0,0.8);
 			width: 100%;
-			bottom: -230px;
+			bottom: -34.85%;
 			height: 40%;
 			font-size: 60%;
 			padding: 10px 10px;
@@ -379,7 +390,7 @@
     <div id="viginette"></div>
     
             <header>
-				<h1>{Title}</h1>
+				<h1><a href="/" title="Home">{Title}</a></h1>
 					<nav>				
 												
 						<ul>
@@ -468,6 +479,12 @@
 						<a href ="{LinkURL}" title="{PhotoAlt}">
 							<img src="{PhotoURL-400}" alt="{PhotoAlt}" />
 						</a>
+						
+						<div class="body">
+						{block:Caption}
+						{Caption}
+						{/block:Caption}
+						</div>
 					
 					</div>
 					<aside>
@@ -496,9 +513,7 @@
 							{/block:NoteCount}
 							
 						</ul>
-						{block:Caption}
-						<div class="caption">{Caption}</div>
-						{/block:Caption}
+						
 					</aside>
 					<div class="clear"></div>
 				  </article>
@@ -513,6 +528,12 @@
 						{LinkOpenTag}
 						<img src="{PhotoURL-Panorama}" alt="{PhotoAlt}" />
 						{LinkCloseTag}
+						
+						<div class="body">
+						{block:Caption}
+						{Caption}
+						{/block:Caption}
+						</div>
 					
 					</div>
 					<aside>
@@ -541,9 +562,7 @@
 							{/block:NoteCount}
 							
 						</ul>
-						{block:Caption}
-						<div class="caption">{Caption}</div>
-						{/block:Caption}
+						
 					</aside>
 					<div class="clear"></div>
 				  </article>
@@ -557,6 +576,11 @@
 					
 						{Photoset-400}
 						
+						<div class="body">
+						{block:Caption}
+						{Caption}
+						{/block:Caption}
+						</div>
 					
 					</div>
 					<aside>
@@ -585,9 +609,7 @@
 							{/block:NoteCount}
 							
 						</ul>
-						{block:Caption}
-						<div class="caption">{Caption}</div>
-						{/block:Caption}
+						
 					</aside>
 					<div class="clear"></div>
 				  </article>
@@ -600,6 +622,8 @@
 					<div class="content">
 					
 						<blockquote class="{Length}">{Quote}</blockquote>
+						
+						{block:Source}{Source}{/block:Source}
 					
 					</div>
 					<aside>
@@ -628,9 +652,7 @@
 							{/block:NoteCount}
 							
 						</ul>
-						<div class="caption">
-							{block:Source}{Source}{/block:Source}
-						</div>
+						
 					</aside>
 					<div class="clear"></div>
 				  </article>
@@ -648,7 +670,13 @@
 						
 						{block:Source}{Source}{/block:Source}
 						
-						{URL}
+						&rarr; {URL}
+						
+						<div class="body">
+						{block:Description} 
+						{Description}
+						{/block:Description}
+						</div>
 					
 					</div>
 					<aside>
@@ -677,9 +705,7 @@
 							{/block:NoteCount}
 							
 						</ul>
-						{block:Description} 
-						<div class="caption">{Description}</div>
-						{/block:Description}
+						
 					</aside>
 					<div class="clear"></div>
 				  </article>
@@ -745,6 +771,12 @@
 						<div class="content">
 							
 							{VideoEmbed-400}
+							
+							<div class="body">
+							{block:Caption}
+							{Caption}
+							{/block:Caption}
+							</div>
 						
 						</div>
 						<aside>
@@ -773,9 +805,7 @@
 								{/block:NoteCount}
 								
 							</ul>
-							{block:Caption}
-							<div class="caption">{Caption}</div>
-							{/block:Caption}
+							
 						</aside>
 						<div class="clear"></div>
 					  </article>
@@ -791,6 +821,7 @@
 						<h2>{TrackName}</h2>
 						{/block:TrackName}
 						
+							
 							{block:AudioPlayer}
 							<div class="player">{AudioPlayerGrey}</div>
 							{/block:AudioPlayer}
@@ -802,7 +833,13 @@
 							{block:AlbumArt}
 							<div class="album-art"><img src="{AlbumArtURL}" {block:Album}alt="{Album}"{/block:Album} /></div>
 							{/block:AlbumArt}
-						
+								
+							<div class="body">	
+								{block:Caption}
+								{Caption}
+								{/block:Caption}
+							</div>
+							
 						</div>
 						<aside>
 							<ul>
@@ -842,9 +879,7 @@
 								{/block:NoteCount}
 								
 							</ul>
-							{block:Caption}
-							<div class="caption">{Caption}</div>
-							{/block:Caption}
+							
 						</aside>
 						<div class="clear"></div>
 					  </article>
@@ -858,7 +893,11 @@
 						
 						<h2>{Question}</h2>
 						
-						{Answer}
+							<div class="body">
+							
+								{Answer}
+							
+							</div>
 						
 						</div>
 						<aside>
