@@ -12,6 +12,26 @@
         <meta name="description" content="{MetaDescription}" />
         {/block:Description}
 		
+		<meta name="if:Show Link To Archive" content="1"/>
+		
+		
+		<meta name="if:Full Width Content on Static Pages" content="0"/>
+		<meta name="text:Unique Static Page ShortURL" content=""/>
+		
+		<meta name="if:Enable Custom Ask Label" content="0"/>
+		<meta name="text:Custom Ask Label" content=""/>
+		
+		<meta name="if:Enable Custom Submit Label" content="0"/>
+		<meta name="text:Custom Submit Label" content=""/>
+		
+		<meta name="font:Global" content="Arial, sans-serif"/>
+		<meta name="font:Header" content="Arial, sans-serif"/>
+		
+		<meta name="color:Links" content="#ffffff"/>
+		<meta name="color:Hover" content="#ffffff"/>
+		<meta name="color:Text" content="#ffffff"/>
+		
+		
         <script src="http://static.tumblr.com/7swizo5/fRUmlhyvk/jquery.js"></script>
         <script src="http://static.tumblr.com/7swizo5/e7fmlhzeq/jquery.stellar"></script>
         <script src="http://static.tumblr.com/7swizo5/K4Qmli085/mousewheel.js"></script>
@@ -63,10 +83,10 @@
 
         body {
 			background: #2d2a26;
-			color: #ffffff;
+			color: {color:Text};
 			overfow-x: visible;
 			position: relative;
-			font-family: Arial, sans-serif;
+			font-family: {font:Global};
 			font-size: 100%;
         }
         
@@ -79,9 +99,13 @@
 		}
         
         a {
-			color: #ffffff;
+			color: {color:Links};
 			text-style: underline;
         }
+		
+		a:hover {
+			color: {color:Hover};
+		}
         
         em {
 			font-style: normal;
@@ -95,7 +119,7 @@
 		
 		#tumblr_controls {
 			top: .6em !important;
-			right: 14% !important;
+			right: 13% !important;
 			position: fixed !important;
 		}
 		
@@ -206,7 +230,7 @@
         #page-wrap tr td {
 			vertical-align: top;
 			padding: 1.8em;
-			background: hsla(0,0%,0%,0.4); 
+			background: rgba(0,0,0,0.8); 
 			border-bottom: solid #000000 4px;
 			border-top: solid #000000 4px;
         }
@@ -220,15 +244,26 @@
 			margin-right: 0.5em;
 			font-size: 90%;
 			width: 400px;
+			
         }
+		
+		.post .content p {
+			line-height: 1.3em;
+		}
         
         .post h2 {
 			font-size: 180%;
 			font-weight: 400;
-			font-family: Arial, sans-serif;
-			font-weight: bold;
+			font-family: {font:Header};
+			text-transform: uppercase;
 			margin-bottom: 10px;
         }
+		
+		
+		.post h2 a {
+			text-decoration: none;
+		}
+		
 		
 		.post .content .body {
 			margin-top: 1em;
@@ -303,13 +338,27 @@
 		}
 		
 		
-		/*Force full width content on static pages.
-		Yes it's a hack that requires you to 
-		do something for it work.*/
+		{block:IfFullWidthContentOnStaticPages}
 		
-		div[id$="Zy4yby"] .content {
-			width: 100%;
-		}
+			/*Force full width content on static pages.
+			Yes it's a hack that requires you to 
+			do something for it work.*/
+			
+			
+			.text div[class$="{text:Unique Static Page ShortURL}"] .content {
+				width: 100%;
+			}
+			
+			
+			/*Hide the aside box*/
+			
+			.text div[class$="{text:Unique Static Page ShortURL}"] aside {
+				display: none;
+			}
+			
+		{/block:IfFullWidthContentOnStaticPages}
+		
+
 		
         
         /*FOOTER SECTION*/
@@ -386,6 +435,9 @@
 			z-index: -4;
         }
 
+		/*USER CUSTOM CSS*/
+		
+		{CustomCSS}
         
         </style>
         
@@ -395,7 +447,7 @@
     <div id="sky" data-stellar-background-ratio="0.9"></div>
     <div id="houses" data-stellar-background-ratio="0.8"></div>
     <div id="antenna" data-stellar-ratio="0.08"></div>
-    <div id="viginette"></div>
+
     
             <header>
 				<h1><a href="/" title="Home">{Title}</a></h1>
@@ -409,10 +461,36 @@
                           {/block:HasPages} 
 						  
 						  {block:AskEnabled}
-						  <li><a href="/ask" title="{AskLabel}">{AskLabel}</a></li>
+						  <li><a href="/ask" title="{AskLabel}">
+						  
+						  {block:IfEnableCustomAskLabel}
+							{text:Custom Ask Label}
+						  {/block:IfEnableCustomAskLabel}
+						  
+						  {block:IfNotEnableCustomAskLabel}
+							{AskLabel}
+						  {/block:IfNotEnableCustomAskLabel}
+						  
+						  </a></li>
 						  {/block:AskEnabled}
 						  
+						  {block:SubmissionsEnabled} 
+						  <li><a href="/submit" title="{SubmitLabel}">
+						  
+						  {block:IfEnableCustomSubmitLabel}
+							{text:Custom Submit Label}
+						  {/block:IfEnableCustomSubmitLabel}
+						  
+						  {block:IfNotEnableCustomSubmitLabel}
+							{SubmitLabel}
+						  {block:IfNotEnableCustomSubmitLabel}
+						  
+						  </a></li>
+						  {/block:SubmissionsEnabled}
+						  
+						  {block:IfShowLinkToArchive}
 						  <li><a href="/archive">Archive</a></li>
+						  {/block:IfShowLinkToArchive}
 						  <li><a href="/random">Random</a></li>
 						</ul>
 						
@@ -441,7 +519,7 @@
 				  {block:Text}
 				  
 				  <article class="post text">
-					<div id="{ShortURL}">
+					<div class="{ShortURL}">
 						<div class="content">
 							{block:Title}
 							<h2><a href="{Permalink}">{Title}</a></h2>
@@ -451,7 +529,8 @@
 							
 						</div>
 					</div>
-					{block:Date}
+					
+					<div class="{ShortURL}">
 					<aside>
 						<ul>
 						
@@ -470,7 +549,9 @@
 							{/block:ContentSource}
 							
 							
+							{block:Date}
 							<li>{ShortMonth}. {DayOfMonth}{DayOfMonthSuffix}, {Year}</li>
+							{/block:Date}
 							
 							
 							{block:NoteCount} 
@@ -479,7 +560,7 @@
 							
 						</ul>
 					</aside>
-					{/block:Date}
+					</div>
 					<div class="clear"></div>
 				  </article>
 				  
@@ -502,7 +583,6 @@
 					
 					</div>
 					
-					{block:Date}
 					<aside>
 						<ul>
 						
@@ -520,8 +600,9 @@
 								
 							{/block:ContentSource}
 							
-							
+							{block:Date}
 							<li>{ShortMonth}. {DayOfMonth}{DayOfMonthSuffix}, {Year}</li>
+							{/block:Date}
 							
 							{block:NoteCount} 
 							<li>{NoteCountWithLabel}</li>
@@ -530,7 +611,7 @@
 						</ul>
 						
 					</aside>
-					{/block:Date}
+					
 					<div class="clear"></div>
 				  </article>
 				  
@@ -553,7 +634,7 @@
 					
 					</div>
 					
-					{block:Date}
+					
 					<aside>
 						<ul>
 						
@@ -571,7 +652,9 @@
 								
 							{/block:ContentSource}	
 							
+							{block:Date}
 							<li>{ShortMonth}. {DayOfMonth}{DayOfMonthSuffix}, {Year}</li>
+							{/block:Date}
 							
 							{block:NoteCount} 
 							<li>{NoteCountWithLabel}</li>
@@ -580,7 +663,7 @@
 						</ul>
 						
 					</aside>
-					{/block:Date}
+					
 					<div class="clear"></div>
 				  </article>
 				  
@@ -601,7 +684,7 @@
 					
 					</div>
 					
-					{block:Date}
+					
 					<aside>
 						<ul>
 						
@@ -619,7 +702,9 @@
 								
 							{/block:ContentSource}
 							
+							{block:Date}
 							<li>{ShortMonth}. {DayOfMonth}{DayOfMonthSuffix}, {Year}</li>
+							{/block:Date}
 							
 							{block:NoteCount} 
 							<li>{NoteCountWithLabel}</li>
@@ -628,7 +713,7 @@
 						</ul>
 						
 					</aside>
-					{/block:Date}
+					
 					<div class="clear"></div>
 				  </article>
 				  
@@ -645,7 +730,7 @@
 					
 					</div>
 					
-					{block:Date}
+					
 					<aside>
 						<ul>
 						
@@ -663,7 +748,9 @@
 								
 							{/block:ContentSource}
 							
+							{block:Date}
 							<li>{ShortMonth}. {DayOfMonth}{DayOfMonthSuffix}, {Year}</li>
+							{/block:Date}
 							
 							{block:NoteCount} 
 							<li>{NoteCountWithLabel}</li>
@@ -672,7 +759,7 @@
 						</ul>
 						
 					</aside>
-					{/block:Date}
+					
 					<div class="clear"></div>
 				  </article>
 				  
@@ -699,7 +786,6 @@
 					
 					</div>
 					
-					{block:Date}
 					<aside>
 						<ul>
 						
@@ -717,7 +803,9 @@
 								
 							{/block:ContentSource}
 							
+							{block:Date}
 							<li>{ShortMonth}. {DayOfMonth}{DayOfMonthSuffix}, {Year}</li>
+							{/block:Date}
 							
 							{block:NoteCount} 
 							<li>{NoteCountWithLabel}</li>
@@ -726,7 +814,7 @@
 						</ul>
 						
 					</aside>
-					{/block:Date}
+					
 					<div class="clear"></div>
 				  </article>
 				  
@@ -754,7 +842,6 @@
 						
 						</div>
 						
-						{block:Date}
 						<aside>
 							<ul>
 							
@@ -772,7 +859,9 @@
 								
 								{/block:ContentSource}
 								
+								{block:Date}
 								<li>{ShortMonth}. {DayOfMonth}{DayOfMonthSuffix}, {Year}</li>
+								{/block:Date}
 								
 								{block:NoteCount} 
 								<li>{NoteCountWithLabel}</li>
@@ -780,7 +869,7 @@
 								
 							</ul>
 						</aside>
-						{/block:Date}
+						
 						<div class="clear"></div>
 					  </article>
 				  
@@ -801,7 +890,6 @@
 						
 						</div>
 						
-						{block:Date}
 						<aside>
 							<ul>
 							
@@ -819,7 +907,9 @@
 								
 								{/block:ContentSource}	
 								
+								{block:Date}
 								<li>{ShortMonth}. {DayOfMonth}{DayOfMonthSuffix}, {Year}</li>
+								{/block:Date}
 								
 								{block:NoteCount} 
 								<li>{NoteCountWithLabel}</li>
@@ -828,7 +918,7 @@
 							</ul>
 							
 						</aside>
-						{/block:Date}
+						
 						<div class="clear"></div>
 					  </article>
 					  
@@ -864,7 +954,6 @@
 							
 						</div>
 						
-						{block:Date}
 						<aside>
 							<ul>
 							
@@ -882,8 +971,9 @@
 								
 								{/block:ContentSource}
 								
-								
+								{block:Date}
 								<li>{ShortMonth}. {DayOfMonth}{DayOfMonthSuffix}, {Year}</li>
+								{/block:Date}
 								
 								{block:PlayCount}
 								<li>{PlayCountWithLabel}</li>
@@ -904,7 +994,7 @@
 							</ul>
 							
 						</aside>
-						{/block:Date}
+						
 						<div class="clear"></div>
 					  </article>
 				  
@@ -925,14 +1015,14 @@
 						
 						</div>
 						
-						{block:Date}
 						<aside>
 							<ul>
 								<li>By <a href="{PostAuthorURL}" title="{PostAuthorTitle}"><em>{PostAuthorName}</em></a></li>
 								
 								
-								
+								{block:Date}
 								<li>{ShortMonth}. {DayOfMonth}{DayOfMonthSuffix}, {Year}</li>
+								{/block:Date}
 								
 								
 								<li>Asked by <strong>{Asker}</strong></li>
@@ -946,7 +1036,7 @@
 							<div class="caption">{Caption}</div>
 							{/block:Caption}
 						</aside>
-						{/block:Date}
+						
 						<div class="clear"></div>
 					  </article>
 				  
