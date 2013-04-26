@@ -31,7 +31,7 @@ The start-up developer is Timothy Diokno (find out more about him at http://timm
 GPL v3. Roughly speaking, it gives one the freedom to freely use it, alter or derive from it, and re/distribute it - free and open-source software, in other words. :-D
 
 ## Thanks
-* **Mark Dalgleish** for [mtellar.js](http://markdalgleish.com/projects/stellar.js/demos/) (parallax).
+* **Mark Dalgleish** for [stellar.js](http://markdalgleish.com/projects/stellar.js/demos/) (parallax).
 * **Brandon Aaron** for [mousewheel.js](https://github.com/brandonaaron/jquery-mousewheel) (horizontal mouse scroll).
 * **Chris Coyier (CSS Tricks)** for the [How To Create A Horizontally Scrolling Site](http://css-tricks.com/how-to-create-a-horizontally-scrolling-site/) article.
   
