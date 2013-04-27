@@ -1,7 +1,9 @@
 <html>
     <head>
     
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         
     	<title>{Title}</title>
 		
@@ -14,6 +16,11 @@
 		
 		<meta name="if:Show Link To Archive" content="1"/>
 		
+		<meta name="if:Show Copyright Notice" content="1"/>
+		<meta name="if:Show Footer Tumblr Link" content="1"/>
+		<meta name="if:Show Theme Credits" content="1"/>
+		<meta name="if:Soli Deo Gloria" content="1"/>
+		<meta name="if:Encourage User Browser Upgrade" content="1"/>
 		
 		<meta name="if:Full Width Content on Static Pages" content="0"/>
 		<meta name="text:Unique Static Page ShortURL" content=""/>
@@ -23,6 +30,8 @@
 		
 		<meta name="if:Enable Custom Submit Label" content="0"/>
 		<meta name="text:Custom Submit Label" content=""/>
+		
+		<meta name="text:Custom Footer Text" content=""/>
 		
 		<meta name="font:Global" content="Arial, sans-serif"/>
 		<meta name="font:Header" content="Arial, sans-serif"/>
@@ -300,6 +309,7 @@
 
 		
 		/*QUOTE*/
+		
 		.quote blockquote {
 			font-size: 2em;
 			border-left: solid 3px;
@@ -384,6 +394,21 @@
 		
 		footer:hover {
 		}
+		
+		/*Stop the next lines of text from peeking out when the copyright notice and the Tumblr link isn't visible.*/
+		
+		footer .first-line {
+			display: block;
+			width: 100%;
+			height: 3em;
+		}
+		
+		footer .first-line:after {
+			content: '';
+			display: block;
+			clear: both;
+			margin-bottom: 1em;
+		}
         
         footer #left {
 			display: inline;
@@ -444,6 +469,14 @@
     </head>
      
     <body>
+	
+	{block:IfEncourageUserBrowserUpgrade}
+	<!--[if lt IE 7]>
+		<p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+	<![endif]-->
+	{/block:IfEncourageUserBrowserUpgrade}
+	
+	
     <div id="sky" data-stellar-background-ratio="0.9"></div>
     <div id="houses" data-stellar-background-ratio="0.8"></div>
     <div id="antenna" data-stellar-ratio="0.08"></div>
@@ -1048,16 +1081,29 @@
             </section>
              
             <footer>
-              <p id="left">&copy; {CopyrightYears}, <strong>{Title}</strong> unless otherwise stated or implied.</p>
-              <span>Powered by <a href="http://tumblr.com">Tumblr</a></span>
-              <div class="clear"></div>
-              <p>Credits &amp; Errata</p>
-              <p><strong>Stellar.js</strong> for the parallax effect. 
-              <br/><strong>CSS-Tricks</strong> for the horizontal scrolling.</p>
-              <p>Made with CSS3 and HTML5.</p>
-              <p>Use your browser's latest version for best viewing.</p>
-              <p>This is a custom Tumblr theme handcrafted in the Philippines by yours truly.</p>
-              <p>Soli Deo Gloria</p>
+			
+			<div class="first-line">
+			
+			  {block:IfShowCopyrightNotice}
+				<p id="left">&copy; {CopyrightYears}, <strong>{Title}</strong> unless otherwise stated or implied.</p>
+			  {/block:IfShowCopyrightNotice}
+			  
+			  {block:IfShowFooterTumblrLink}
+				<span>Powered by <a href="http://tumblr.com">Tumblr</a></span>
+			  {/block:IfShowFooterTumblrLink}
+			  
+			</div>
+			  
+			  <p>{text:Custom Footer Text}</p>
+			  
+			  {block:IfShowThemeCredits}
+				<p>Theme handcrafted in Quezon City, Philippines by <a href="htti://timmystream.tumblr.com/">Timothy Diokno.</a></p>
+			  {/block:IfShowThemeCredits}
+			  
+			  {block:IfSoliDeoGloria}
+				<p><strong>Soli Deo Gloria</strong></p>
+			  {/block:IfSoliDeoGloria}
+			  
             </footer>
 			
 			
