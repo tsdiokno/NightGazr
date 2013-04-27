@@ -39,12 +39,14 @@
 		<meta name="color:Links" content="#ffffff"/>
 		<meta name="color:Hover" content="#ffffff"/>
 		<meta name="color:Text" content="#ffffff"/>
+		<meta name="color:Main Site Color" content="#000000"/>
 		
 		
         <script src="http://static.tumblr.com/7swizo5/fRUmlhyvk/jquery.js"></script>
         <script src="http://static.tumblr.com/7swizo5/e7fmlhzeq/jquery.stellar"></script>
         <script src="http://static.tumblr.com/7swizo5/K4Qmli085/mousewheel.js"></script>
-		
+		<script src="
+		http://static.tumblr.com/7swizo5/zsJmlwmu9/transify.js"></script>
 	   
         <script>
         
@@ -63,6 +65,21 @@
 				$("footer").click(function () {
 				  $(this).toggleClass("show");
 				});
+				
+				$('footer').transify({
+					opacityOrig:.3,
+					opacityNew:.7,
+					percentWidth:'100%'
+					});
+				$('header').transify({
+					opacityOrig:.3,
+					opacityNew:.7,
+					percentWidth:'100%'
+					});
+				$('#page-wrap tr td').transify({
+					opacityOrig:.3,
+					opacityNew:.7
+					});
 				
         	});
               
@@ -125,9 +142,11 @@
 			clear: both;
         }
         
+		/*The Tumblr controls shall never move!*/
 		
 		#tumblr_controls {
-			top: .6em !important;
+			margin-top: .6em;
+			top: 0 !important;
 			right: 13% !important;
 			position: fixed !important;
 		}
@@ -135,13 +154,13 @@
         /*HEADER SECTION*/
         
         header {
-			background: rgba(0,0,0,0.6);
+			background: {color:Main Site Color};
 			font-size: .8em;
 			padding: 1em;
 			text-transform: uppercase;
-			position: fixed;
-			width: 100%;
-			height: 3.5em;
+			position: fixed !important;
+			width: 100% !important;
+			height: 3.5em !important;
         }
         
         header h1 {
@@ -220,17 +239,27 @@
         /*CONTENT SECTION*/
         
         #intro {
-			width: 325px;
+			width: 10em;
+			text-align: center;
+			padding-right: 2.375em;
+			margin-top: 2em;
+			font-size: 1.5em;
 			line-height: 1em;
-			margin-right: 2.375em;
-			margin-top: 40%;
-			font-size: 230%;
-			font-family: arial, sans-serif;
+			font-family: {font:Global};
 			font-weight: bold;
 			position: relative;
 			text-transform: uppercase;
-			z-index: -2;
         }
+		
+		#blog-portrait {
+			height: 128px;
+			width: 128px;
+			-webkit-border-radius: 100%;
+					border-radius: 100%;
+			background-clip: padding-box;
+			margin: 0 auto 1em auto;
+			border: solid 4px;
+		}
         
         #page-wrap {
 			padding: 1.875em 0;
@@ -239,7 +268,7 @@
         #page-wrap tr td {
 			vertical-align: top;
 			padding: 1.8em;
-			background: rgba(0,0,0,0.8); 
+			background: {color:Main Site Color}; 
 			border-bottom: solid #000000 4px;
 			border-top: solid #000000 4px;
         }
@@ -375,8 +404,8 @@
 		
         footer {
 			text-transform: uppercase;
-			position: fixed;
-			background: rgba(0,0,0,0.8);
+			position: fixed !important; /* ... becase transify.js messes with positions if it isn't "important"*/
+			background-color: {color:Main Site Color};
 			width: 100%;
 			bottom: -36%;
 			height: 40%;
@@ -539,6 +568,9 @@
             
             
               <article id="intro">
+			  
+				<div id="blog-portrait" style="background-image: url({PortraitURL-128});">
+				</div>
 			  
                 {block:Description}<p>{Description}</p>{/block:Description}
 				
