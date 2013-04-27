@@ -19,6 +19,7 @@
 		<meta name="if:Show Copyright Notice" content="1"/>
 		<meta name="if:Show Footer Tumblr Link" content="1"/>
 		<meta name="if:Show Theme Credits" content="1"/>
+		<meta name="if:Random Link At End Of Posts" content="1"/>
 		<meta name="if:Soli Deo Gloria" content="1"/>
 		<meta name="if:Encourage User Browser Upgrade" content="1"/>
 		
@@ -77,6 +78,10 @@
 					percentWidth:'100%'
 					});
 				$('#page-wrap tr td').transify({
+					opacityOrig:.3,
+					opacityNew:.7
+					});
+				$('nav#pagination ul li a').transify({
 					opacityOrig:.3,
 					opacityNew:.7
 					});
@@ -151,6 +156,10 @@
 			position: fixed !important;
 		}
 		
+		#page-wrap tr td {
+			z-index: 0 !important; /* Transify.js places a z-index value of 10 for some reason. It would block the header bar. This fixes that. */
+		}
+		
         /*HEADER SECTION*/
         
         header {
@@ -203,21 +212,21 @@
         
         /*NAV*/
         
-        nav {
+        nav#main {
 			display: inline;
         }
 		
-		nav ul {
+		nav#main ul {
 			display: inline;
 			position: relative;
 		}
 		
 		
-		nav ul li {
+		nav#main ul li {
 			display: inline;
 		}
         
-        nav ul li a {
+        nav#main ul li a {
 			position: relative;
 			top: -1.8em;
 			text-decoration: none;
@@ -229,7 +238,7 @@
 					transition: all 0.5s;
         }
         
-        nav ul li a:hover {
+        nav#main ul li a:hover {
 			background-color: rgba(255,255,255,0.8);
 			color: #000000;
 			top: -1em;
@@ -258,7 +267,7 @@
 					border-radius: 100%;
 			background-clip: padding-box;
 			margin: 0 auto 1em auto;
-			border: solid 4px;
+			border: solid 6px;
 		}
         
         #page-wrap {
@@ -397,7 +406,25 @@
 			
 		{/block:IfFullWidthContentOnStaticPages}
 		
-
+		
+		/*PAGINATION*/
+		
+		#pagination ul {
+			list-style: none;
+		}
+		
+		#pagination ul li {
+			margin-bottom: .6em;
+		}
+		
+		#pagination ul li a {
+			display: block;
+			padding: 1em;
+			width: 10em !important;
+			text-transform: uppercase;
+			text-decoration: none;
+			background-color: {color:Main Site Color};
+		}
 		
         
         /*FOOTER SECTION*/
@@ -513,7 +540,7 @@
     
             <header>
 				<h1><a href="/" title="Home">{Title}</a></h1>
-					<nav>				
+					<nav id="main">				
 												
 						<ul>
 						  {block:HasPages}
@@ -553,7 +580,7 @@
 						  {block:IfShowLinkToArchive}
 						  <li><a href="/archive">Archive</a></li>
 						  {/block:IfShowLinkToArchive}
-						  <li><a href="/random">Random</a></li>
+
 						</ul>
 						
 					</nav>
@@ -569,8 +596,8 @@
             
               <article id="intro">
 			  
-				<div id="blog-portrait" style="background-image: url({PortraitURL-128});">
-				</div>
+				<a href="/" title="Home"><div id="blog-portrait" style="background-image: url({PortraitURL-128});">
+				</div></a>
 			  
                 {block:Description}<p>{Description}</p>{/block:Description}
 				
@@ -1108,6 +1135,29 @@
 				  {/block:Answer}
 			  
 			  {/block:Posts}
+			  
+			  <nav id="pagination">
+				
+				<ul>
+				{block:Pagination}
+				
+					{block:NextPage}
+					<li><a href="{NextPage}" title="Go To Next Page">Next Page</a></li>
+					{/block:NextPage}
+				
+					{block:PreviousPage}
+					<li><a href="{PreviousPage}" title="Go To Previous Page">Next Page</a></li>
+					{/block:PreviousPage}
+				
+				{/block:Pagination}
+					
+					{block:IfRandomLinkAtEndOfPosts}
+
+					<li><a href="/random" title="Jump To A Random Post!">Random Post</a></li>
+
+					{/block:IfRandomLinkAtEndOfPosts}
+				</ul>
+			  </nav>
               
               
             </section>
