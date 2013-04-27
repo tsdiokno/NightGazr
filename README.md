@@ -34,4 +34,4 @@ GPL v3. Roughly speaking, it gives one the freedom to freely use it, alter or de
 * **Mark Dalgleish** for [stellar.js](http://markdalgleish.com/projects/stellar.js/demos/) (parallax).
 * **Brandon Aaron** for [mousewheel.js](https://github.com/brandonaaron/jquery-mousewheel) (horizontal mouse scroll).
 * **Chris Coyier (CSS Tricks)** for the [How To Create A Horizontally Scrolling Site](http://css-tricks.com/how-to-create-a-horizontally-scrolling-site/) article.
-  
+* **Joren Rapini** for [transify.js](http://jorenrapini.com/blog/css/transify-a-jquery-plugin-to-easily-apply-transparency-opacity-to-an-elements-background).
