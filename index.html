@@ -27,6 +27,8 @@
   <meta name="if:Show Post Date" content="1"/>
   <meta name="if:Show Post Author" content="1"/>
   <meta name="if:Show Post Info" content="1"/>
+  <meta name="if:Show Site Footer" content="1"/>
+  <meta name="if:Show Search Box" content="1"/>
   
   <meta name="if:Full Width Content on Static Pages" content="0"/>
   <meta name="text:Unique Static Page ShortURL" content=""/>
@@ -77,11 +79,14 @@
     
     /* transify.js */
     
+    {block:IfShowSiteFooter}
+    
     $('footer').transify({
      opacityOrig:{text:Site Color Opacity},
      opacityNew:{text:Site Color Hover Opacity},
-     percentWidth:'100%'
      });
+     
+    {/block:IfShowSiteFooter}
      
     $('header').transify({
      opacityOrig:{text:Site Color Opacity},
@@ -166,7 +171,7 @@
    #tumblr_controls {
     margin-top: .6em;
     top: 0 !important;
-    right: 13% !important;
+    {block:IfShowSearchBox} right: 13% !important; {/block:IfShowSearchBox}
     position: fixed !important;
    }
   
@@ -203,12 +208,14 @@
    header h1 a:hover {
     opacity: 1.0;
    }
-        
+   
+   {block:IfShowSearchBox}
+
    header form {
     display: inline;
     float: right;
    }
-        
+
    header form input {
     padding: .1em;
     font-size: .8em;
@@ -221,9 +228,11 @@
             transition: all 0.5s;
    }
    
-        
+   {/block:IfShowSearchBox}
+   
+
    /*NAV*/
-        
+
    nav#main {
     display: inline;
    }
@@ -299,7 +308,12 @@
     float: left;
     margin-right: 0.5em;
     font-size: 90%;
-    width: 400px;
+    {block:IfNotShowPostInfo}
+     width: 100%; 
+    {/block:IfNotShowPostInfo}
+    {block:IfShowPostInfo}
+     width: 400px;
+    {/block:IfShowPostInfo}
    }
   
    .post .content p {
@@ -414,14 +428,6 @@
    
   {/block:IfFullWidthContentOnStaticPages}
   
-  {block:IfNotShowPostInfo}
-  
-   .post .content {
-    width: 100%;
-   }
-  
-  {/block:IfNotShowPostInfo}
-  
   
   /*PAGINATION*/
   
@@ -442,7 +448,8 @@
    background-color: {color:Main Site Color};
   }
   
-        
+  {block:IfShowSiteFooter}
+  
    /*FOOTER SECTION*/
   
    footer {
@@ -489,17 +496,19 @@
     clear: both;
     margin-bottom: 1em;
    }
-        
+
    footer #left {
     display: inline;
     float: left;
    }
-        
+
    footer span {
     display: inline;
     float: right;
    }
-        
+   
+   {/block:IfShowSiteFooter}
+
    /*PARALLAX*/
         
    #antenna {
@@ -612,10 +621,12 @@
      </ul>
       
     </nav>
-     
+    
+   {block:IfShowSearchBox}    
     <form method="get" id="search-form" action="/search">
      <input type="text" name="s" id="s" value"" placeholder="Hit Return Key To Search">
     </form>
+   {block:IfShowSearchBox}  
     
    </header>
    
@@ -1248,7 +1259,8 @@
    </section> <!--#page-wrap-->
    
    
-
+   {block:IfShowSiteFooter}
+   
    <!--FOOTER SECTION-->
    
    <footer>
@@ -1276,6 +1288,8 @@
     {/block:IfSoliDeoGloria}
      
    </footer>
+   
+   {/block:IfShowSiteFooter}
 
 
   </body>
