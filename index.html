@@ -1,1194 +1,1205 @@
 <html>
-    <head>
+ <head>
+ 
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <title>{Title}</title>
+  
+  <link rel="shortcut icon" href="{Favicon}">
+  <link rel="alternate" type="application/rss+xml" href="{RSS}">
+  
+  {block:Description}
+  <meta name="description" content="{MetaDescription}" />
+  {/block:Description}
+  
+  <meta name="if:Show Link To Archive" content="1"/>
+  
+  <meta name="if:Show Copyright Notice" content="1"/>
+  <meta name="if:Show Footer Tumblr Link" content="1"/>
+  <meta name="if:Show Theme Credits" content="1"/>
+  <meta name="if:Random Link At End Of Posts" content="1"/>
+  <meta name="if:Soli Deo Gloria" content="1"/>
+  <meta name="if:Encourage User Browser Upgrade" content="1"/>
+  
+  <meta name="if:Full Width Content on Static Pages" content="0"/>
+  <meta name="text:Unique Static Page ShortURL" content=""/>
+  
+  <meta name="if:Enable Custom Ask Label" content="0"/>
+  <meta name="text:Custom Ask Label" content=""/>
+  
+  <meta name="if:Enable Custom Submit Label" content="0"/>
+  <meta name="text:Custom Submit Label" content=""/>
+  
+  <meta name="text:Custom Footer Text" content=""/>
+  
+  <meta name="font:Global" content="Arial, sans-serif"/>
+  <meta name="font:Header" content="Arial, sans-serif"/>
+  
+  <meta name="color:Links" content="#ffffff"/>
+  <meta name="color:Hover" content="#ffffff"/>
+  <meta name="color:Text" content="#ffffff"/>
+  <meta name="color:Main Site Color" content="#000000"/>
+  
+  
+  <script src="http://static.tumblr.com/7swizo5/fRUmlhyvk/jquery.js"></script>
+  <script src="http://static.tumblr.com/7swizo5/e7fmlhzeq/jquery.stellar"></script>
+  <script src="http://static.tumblr.com/7swizo5/K4Qmli085/mousewheel.js"></script>
+  <script src="http://static.tumblr.com/7swizo5/zsJmlwmu9/transify.js"></script>
     
+  <script>
         
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        
-    	<title>{Title}</title>
-		
-        <link rel="shortcut icon" href="{Favicon}">
-        <link rel="alternate" type="application/rss+xml" href="{RSS}">
-		
-        {block:Description}
-        <meta name="description" content="{MetaDescription}" />
-        {/block:Description}
-		
-		<meta name="if:Show Link To Archive" content="1"/>
-		
-		<meta name="if:Show Copyright Notice" content="1"/>
-		<meta name="if:Show Footer Tumblr Link" content="1"/>
-		<meta name="if:Show Theme Credits" content="1"/>
-		<meta name="if:Random Link At End Of Posts" content="1"/>
-		<meta name="if:Soli Deo Gloria" content="1"/>
-		<meta name="if:Encourage User Browser Upgrade" content="1"/>
-		
-		<meta name="if:Full Width Content on Static Pages" content="0"/>
-		<meta name="text:Unique Static Page ShortURL" content=""/>
-		
-		<meta name="if:Enable Custom Ask Label" content="0"/>
-		<meta name="text:Custom Ask Label" content=""/>
-		
-		<meta name="if:Enable Custom Submit Label" content="0"/>
-		<meta name="text:Custom Submit Label" content=""/>
-		
-		<meta name="text:Custom Footer Text" content=""/>
-		
-		<meta name="font:Global" content="Arial, sans-serif"/>
-		<meta name="font:Header" content="Arial, sans-serif"/>
-		
-		<meta name="color:Links" content="#ffffff"/>
-		<meta name="color:Hover" content="#ffffff"/>
-		<meta name="color:Text" content="#ffffff"/>
-		<meta name="color:Main Site Color" content="#000000"/>
-		
-		
-        <script src="http://static.tumblr.com/7swizo5/fRUmlhyvk/jquery.js"></script>
-        <script src="http://static.tumblr.com/7swizo5/e7fmlhzeq/jquery.stellar"></script>
-        <script src="http://static.tumblr.com/7swizo5/K4Qmli085/mousewheel.js"></script>
-		<script src="
-		http://static.tumblr.com/7swizo5/zsJmlwmu9/transify.js"></script>
-	   
-        <script>
-        
-        	$(function(){
-        		$("#page-wrap").wrapInner("<table cellspacing='30'><tr>");
-        		$(".post").wrap("<td></td>");
-        		$("body").mousewheel(function(event, delta) {
-        			this.scrollLeft -= (delta * 30);
-        			event.preventDefault();
-        		});
-				
-				$.stellar({
-				  verticalScrolling: false
-				}); 
-				
-				$("footer").click(function () {
-				  $(this).toggleClass("show");
-				});
-				
-				$('footer').transify({
-					opacityOrig:.3,
-					opacityNew:.7,
-					percentWidth:'100%'
-					});
-				$('header').transify({
-					opacityOrig:.3,
-					opacityNew:.7,
-					percentWidth:'100%'
-					});
-				$('#page-wrap tr td').transify({
-					opacityOrig:.3,
-					opacityNew:.7
-					});
-				$('nav#pagination ul li a').transify({
-					opacityOrig:.3,
-					opacityNew:.7
-					});
-				
-        	});
-              
-        </script>
-        
-        
-        <!--[if lt IE 9]>
-            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-        <![endif]-->
-        
-        <style type='text/css'>
-        
-        /*RESET*/
-        *{   
-			margin: 0;
-			padding: 0;
-			-webkit-box-sizing: border-box;
-			   -moz-box-sizing: border-box;
-					box-sizing: border-box;
-        }
-         
-        /* HTML5 display-role reset for older browsers */
-        article, aside, details, figcaption, figure, 
-        footer, header, hgroup, menu, nav, section {
-        	display: block;
-        }
+   $(function(){
+   
+    $("#page-wrap").wrapInner("<table cellspacing='30'><tr>");
+    $(".post").wrap("<td></td>");
+    $("body").mousewheel(function(event, delta) {
+     this.scrollLeft -= (delta * 30);
+     event.preventDefault();
+     });
 
-        body {
-			background: #2d2a26;
-			color: {color:Text};
-			overfow-x: visible;
-			position: relative;
-			font-family: {font:Global};
-			font-size: 100%;
-        }
-        
-        p, ul, ol, blockquote {
-			margin-bottom: .8em;
-        }
-		
-		ul, ol {
-			margin-left: 1.5em;
-		}
-        
-        a {
-			color: {color:Links};
-			text-style: underline;
-        }
-		
-		a:hover {
-			color: {color:Hover};
-		}
-        
-        em {
-			font-style: normal;
-			font-weight: bold;
-        }
-        
-        .clear {
-			clear: both;
-        }
-        
-		/*The Tumblr controls shall never move!*/
-		
-		#tumblr_controls {
-			margin-top: .6em;
-			top: 0 !important;
-			right: 13% !important;
-			position: fixed !important;
-		}
-		
-		#page-wrap tr td {
-			z-index: 0 !important; /* Transify.js places a z-index value of 10 for some reason. It would block the header bar. This fixes that. */
-		}
-		
-        /*HEADER SECTION*/
-        
-        header {
-			background: {color:Main Site Color};
-			font-size: .8em;
-			padding: 1em;
-			text-transform: uppercase;
-			position: fixed !important;
-			width: 100% !important;
-			height: 3.5em !important;
-        }
-        
-        header h1 {
-			display: inline;
-			font-size: 1em;
-			margin-right: 1.5%;
-			top: -1.8em;
-			position: relative;
-        }
-		
-		header h1 a {
-			text-decoration: none;
-			opacity: 0.8;
-		}
-		
-		header h1 a:hover {
-			opacity: 1.0;
-		}
-        
-        header form {
-			display: inline;
-			float: right;
-        }
-        
-        header form input {
-			padding: .1em;
-			font-size: .8em;
-			position: fixed;
-			right: .8%;
-			width: 11%;
-			   -moz-transition: all 0.5s;
-			-webkit-transition: all 0.5s;
-				 -o-transition: all 0.5s;
-			transition: all 0.5s;
-        }
-        
-        header form input:focus{
-			width: 15%;
-        }
-        
-        /*NAV*/
-        
-        nav#main {
-			display: inline;
-        }
-		
-		nav#main ul {
-			display: inline;
-			position: relative;
-		}
-		
-		
-		nav#main ul li {
-			display: inline;
-		}
-        
-        nav#main ul li a {
-			position: relative;
-			top: -1.8em;
-			text-decoration: none;
-			padding: 2em 1% 6px 1%;
-			display: inline-block;
-			   -moz-transition: all 0.5s;
-			-webkit-transition: all 0.5s;
-				 -o-transition: all 0.5s;
-					transition: all 0.5s;
-        }
-        
-        nav#main ul li a:hover {
-			background-color: rgba(255,255,255,0.8);
-			color: #000000;
-			top: -1em;
-        }
-        
-        
-        /*CONTENT SECTION*/
-        
-        #intro {
-			width: 10em;
-			text-align: center;
-			padding-right: 2.375em;
-			margin-top: 2em;
-			font-size: 1.5em;
-			line-height: 1em;
-			font-family: {font:Global};
-			font-weight: bold;
-			position: relative;
-			text-transform: uppercase;
-        }
-		
-		#blog-portrait {
-			height: 128px;
-			width: 128px;
-			-webkit-border-radius: 100%;
-					border-radius: 100%;
-			background-clip: padding-box;
-			margin: 0 auto 1em auto;
-			border: solid 6px;
-		}
-        
-        #page-wrap {
-			padding: 1.875em 0;
-        }
-        
-        #page-wrap tr td {
-			vertical-align: top;
-			padding: 1.8em;
-			background: {color:Main Site Color}; 
-			border-bottom: solid #000000 4px;
-			border-top: solid #000000 4px;
-        }
-        
-        .post {
-			width: 37.500em;
-        }
-        
-        .post .content {
-			float: left;
-			margin-right: 0.5em;
-			font-size: 90%;
-			width: 400px;
-			
-        }
-		
-		.post .content p {
-			line-height: 1.3em;
-		}
-        
-        .post h2 {
-			font-size: 180%;
-			font-weight: 400;
-			font-family: {font:Header};
-			text-transform: uppercase;
-			margin-bottom: 10px;
-        }
-		
-		
-		.post h2 a {
-			text-decoration: none;
-		}
-		
-		
-		.post .content .body {
-			margin-top: 1em;
-		}
-        
-        .post aside {
-			width: 170px;
-			float: right;
-			font-size: .8em;
-        }
-        
-        .post aside ul {
-			list-style-type: none;
-			margin: 0;
-        }
-        
-        .post aside ul li {
-			padding-bottom: 10px;
-			margin-bottom: 10px;
-			border-bottom: dotted #ffffff 1px;
-        }
-		
-		/*AUDIO*/
-		
-		.player iframe {
-			width: 100%;
-			height: 5em;
-		}
-		
-		.audio .content img {
-			width: 100%;
-			height: auto;
-		}
-
-		
-		/*QUOTE*/
-		
-		.quote blockquote {
-			font-size: 2em;
-			border-left: solid 3px;
-			padding-left: 1em;
-			font-weight: bold;
-		}
-		
-		/*CHAT*/
-		
-		.chat .content ul {
-			list-style: none;
-			margin: 0 !important;
-		}
-		
-		.chat .content ul li {
-			padding-bottom: 1em;
-			border-bottom: solid 1px;
-			margin-bottom: 1em;
-			position: relative;
-			padding-left: 6em;
-		}
-		
-		.chat .content ul li strong.label {
-			position: absolute;
-			width: 5em;
-			top: 0;
-			left: 0;
-			word-wrap: break-word;
-		}
-		
-		/*TEXT*/
-		
-		.text content ul, aside .caption ul, 
-		.text content ol, aside .caption ol{
-			margin-right: 1.5em;
-		}
-		
-		
-		{block:IfFullWidthContentOnStaticPages}
-		
-			/*Force full width content on static pages.
-			Yes it's a hack that requires you to 
-			do something for it work.*/
-			
-			
-			.text div[class$="{text:Unique Static Page ShortURL}"] .content {
-				width: 100%;
-			}
-			
-			
-			/*Hide the aside box*/
-			
-			.text div[class$="{text:Unique Static Page ShortURL}"] aside {
-				display: none;
-			}
-			
-		{/block:IfFullWidthContentOnStaticPages}
-		
-		
-		/*PAGINATION*/
-		
-		#pagination ul {
-			list-style: none;
-		}
-		
-		#pagination ul li {
-			margin-bottom: .6em;
-		}
-		
-		#pagination ul li a {
-			display: block;
-			padding: 1em;
-			width: 10em !important;
-			text-transform: uppercase;
-			text-decoration: none;
-			background-color: {color:Main Site Color};
-		}
-		
-        
-        /*FOOTER SECTION*/
-		
-        footer {
-			text-transform: uppercase;
-			position: fixed !important; /* ... becase transify.js messes with positions if it isn't "important"*/
-			background-color: {color:Main Site Color};
-			width: 100%;
-			bottom: -36%;
-			height: 40%;
-			font-size: 60%;
-			padding: 0.625em 0.625em;
-			   -moz-transition: all 0.5s;
-			-webkit-transition: all 0.5s;
-				 -o-transition: all 0.5s;
-			transition: all 0.5s;
-        }
-        
-        footer.show {
-			bottom: 0;
-        }
-		
-		footer:hover {
-		}
-		
-		/*Stop the next lines of text from peeking out when the copyright notice and the Tumblr link isn't visible.*/
-		
-		footer .first-line {
-			display: block;
-			width: 100%;
-			height: 3em;
-		}
-		
-		footer .first-line:after {
-			content: '';
-			display: block;
-			clear: both;
-			margin-bottom: 1em;
-		}
-        
-        footer #left {
-			display: inline;
-			float: left;
-        }
-        
-        footer span {
-			display: inline;
-			float: right;
-        }
-        
-        /*PARALLAX*/
-        
-        #antenna  {
-			width: 608px;
-			height: 599px;
-			background: url('http://static.tumblr.com/7swizo5/uSJmlhykd/parallaxantenna2.png') no-repeat;
-			position: fixed;
-			z-index: -1;
-			bottom: 0;
-        }
-        
-        #viginette  {
-			width: 100%;
-			height: 100%;
-			background: url('ParallaxViginette.png') no-repeat;
-			position: fixed;
-			z-index: -2;
-        }
-        
-        #houses  {
-			width: 100%;
-			height: 246px;
-			background: url('http://static.tumblr.com/7swizo5/Zdemlhyqs/parallaxhouses2.png') repeat-x;
-			float: left;
-			position: fixed;
-			z-index: -3;
-			bottom: 0;
-			display: table;
-        }
-        
-        #sky {
-			width: 100%;
-			height: 100%;
-			display: table;
-			float: left;
-			background: url('http://static.tumblr.com/7swizo5/e2Pmlhyt8/parallaxsky2.jpg') repeat-x;
-			position: fixed;
-			z-index: -4;
-        }
-
-		/*USER CUSTOM CSS*/
-		
-		{CustomCSS}
-        
-        </style>
-        
-    </head>
+    
+    $.stellar({ /* stellar.js */
+     verticalScrolling: false
+     }); 
+    
+    $("footer").click(function () {
+     $(this).toggleClass("show");
+     });
+    
+    /* transify.js */
+    
+    $('footer').transify({
+     opacityOrig:.3,
+     opacityNew:.7,
+     percentWidth:'100%'
+     });
      
-    <body>
-	
-	{block:IfEncourageUserBrowserUpgrade}
-	<!--[if lt IE 7]>
-		<p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
-	<![endif]-->
-	{/block:IfEncourageUserBrowserUpgrade}
-	
-	
-    <div id="sky" data-stellar-background-ratio="0.9"></div>
-    <div id="houses" data-stellar-background-ratio="0.8"></div>
-    <div id="antenna" data-stellar-ratio="0.08"></div>
-
+    $('header').transify({
+     opacityOrig:.3,
+     opacityNew:.7,
+     percentWidth:'100%'
+     });
+     
+    $('#page-wrap tr td').transify({
+     opacityOrig:.3,
+     opacityNew:.7
+     });
+     
+    $('nav#pagination ul li a').transify({
+     opacityOrig:.3,
+     opacityNew:.7
+     });
     
-            <header>
-				<h1><a href="/" title="Home">{Title}</a></h1>
-					<nav id="main">				
-												
-						<ul>
-						  {block:HasPages}
-						  {block:Pages}
-						  <li><a href="{URL}" title="{Label}">{Label}</a></li>
-						  {/block:Pages}
-                          {/block:HasPages} 
-						  
-						  {block:AskEnabled}
-						  <li><a href="/ask" title="{AskLabel}">
-						  
-						  {block:IfEnableCustomAskLabel}
-							{text:Custom Ask Label}
-						  {/block:IfEnableCustomAskLabel}
-						  
-						  {block:IfNotEnableCustomAskLabel}
-							{AskLabel}
-						  {/block:IfNotEnableCustomAskLabel}
-						  
-						  </a></li>
-						  {/block:AskEnabled}
-						  
-						  {block:SubmissionsEnabled} 
-						  <li><a href="/submit" title="{SubmitLabel}">
-						  
-						  {block:IfEnableCustomSubmitLabel}
-							{text:Custom Submit Label}
-						  {/block:IfEnableCustomSubmitLabel}
-						  
-						  {block:IfNotEnableCustomSubmitLabel}
-							{SubmitLabel}
-						  {block:IfNotEnableCustomSubmitLabel}
-						  
-						  </a></li>
-						  {/block:SubmissionsEnabled}
-						  
-						  {block:IfShowLinkToArchive}
-						  <li><a href="/archive">Archive</a></li>
-						  {/block:IfShowLinkToArchive}
-
-						</ul>
-						
-					</nav>
-					
-				<form method="get" id="search-form" action="/search">
-					<input type="text" name="s" id="s" value"" placeholder="Hit Return Key To Search">
-				</form>
-				
-            </header>
-             
-            <section id="page-wrap"> 
-            
-            
-              <article id="intro">
-			  
-				<a href="/" title="Home"><div id="blog-portrait" style="background-image: url({PortraitURL-128});">
-				</div></a>
-			  
-                {block:Description}<p>{Description}</p>{/block:Description}
-				
-                <div class="clear"></div>
-				
-              </article>
-			  
-			  {block:Posts}
-            
-				  
-				  {block:Text}
-				  
-				  <article class="post text">
-					<div class="{ShortURL}">
-						<div class="content">
-							{block:Title}
-							<h2><a href="{Permalink}">{Title}</a></h2>
-							{/block:Title}
-							
-							{Body}
-							
-						</div>
-					</div>
-					
-					<div class="{ShortURL}">
-					<aside>
-						<ul>
-						
-							<li>By <a href="{PostAuthorURL}" title="{PostAuthorTitle}"><em>{PostAuthorName}</em></a></li>
-							
-							{block:ContentSource}
-							
-								{block:SourceLogo}
-								<li>Thanks to <a href="{SourceURL}" title="{SourceTitle}"><img src="{BlackLogoURL}" height="{LogoHeight}" width="{LogoWidth}" alt="{SourceTitle}" /></a></li>
-								{/block:SourceLogo}
-							
-								{block:NoSourceLogo}
-								<li>Thanks to <a href="{SourceURL}" title="{SourceTitle}"><strong>{SourceTitle}</strong></a></li>
-								{/block:NoSourceLogo}
-								
-							{/block:ContentSource}
-							
-							
-							{block:Date}
-							<li>{ShortMonth}. {DayOfMonth}{DayOfMonthSuffix}, {Year}</li>
-							{/block:Date}
-							
-							
-							{block:NoteCount} 
-							<li>{NoteCountWithLabel}</li>
-							{/block:NoteCount}
-							
-						</ul>
-					</aside>
-					</div>
-					<div class="clear"></div>
-				  </article>
-				  
-				  {/block:Text}
-				  
-				  {block:Photo}
-				  
-				  <article class="post photo">
-					<div class="content">
-					
-						<a href ="{LinkURL}" title="{PhotoAlt}">
-							<img src="{PhotoURL-400}" alt="{PhotoAlt}" />
-						</a>
-						
-						<div class="body">
-						{block:Caption}
-						{Caption}
-						{/block:Caption}
-						</div>
-					
-					</div>
-					
-					<aside>
-						<ul>
-						
-							<li>By <a href="{PostAuthorURL}" title="{PostAuthorTitle}"><em>{PostAuthorName}</em></a></li>
-							
-							{block:ContentSource}
-							
-								{block:SourceLogo}
-								<li>Thanks to <a href="{SourceURL}" title="{SourceTitle}"><img src="{BlackLogoURL}" height="{LogoHeight}" width="{LogoWidth}" alt="{SourceTitle}" /></a></li>
-								{/block:SourceLogo}
-							
-								{block:NoSourceLogo}
-								<li>Thanks to <a href="{SourceURL}" title="{SourceTitle}"><strong>{SourceTitle}</strong></a></li>
-								{/block:NoSourceLogo}
-								
-							{/block:ContentSource}
-							
-							{block:Date}
-							<li>{ShortMonth}. {DayOfMonth}{DayOfMonthSuffix}, {Year}</li>
-							{/block:Date}
-							
-							{block:NoteCount} 
-							<li>{NoteCountWithLabel}</li>
-							{/block:NoteCount}
-							
-						</ul>
-						
-					</aside>
-					
-					<div class="clear"></div>
-				  </article>
-				  
-				  {/block:Photo}
-				  
-				  {block:Panorama}
-				  
-				  <article class="post panorama">
-					<div class="content">
-					
-						{LinkOpenTag}
-						<img src="{PhotoURL-Panorama}" alt="{PhotoAlt}" />
-						{LinkCloseTag}
-						
-						<div class="body">
-						{block:Caption}
-						{Caption}
-						{/block:Caption}
-						</div>
-					
-					</div>
-					
-					
-					<aside>
-						<ul>
-						
-							<li>By <a href="{PostAuthorURL}" title="{PostAuthorTitle}"><em>{PostAuthorName}</em></a></li>
-							
-							{block:ContentSource}
-							
-								{block:SourceLogo}
-								<li>Thanks to <a href="{SourceURL}" title="{SourceTitle}"><img src="{BlackLogoURL}" height="{LogoHeight}" width="{LogoWidth}" alt="{SourceTitle}" /></a></li>
-								{/block:SourceLogo}
-							
-								{block:NoSourceLogo}
-								<li>Thanks to <a href="{SourceURL}" title="{SourceTitle}"><strong>{SourceTitle}</strong></a></li>
-								{/block:NoSourceLogo}
-								
-							{/block:ContentSource}	
-							
-							{block:Date}
-							<li>{ShortMonth}. {DayOfMonth}{DayOfMonthSuffix}, {Year}</li>
-							{/block:Date}
-							
-							{block:NoteCount} 
-							<li>{NoteCountWithLabel}</li>
-							{/block:NoteCount}
-							
-						</ul>
-						
-					</aside>
-					
-					<div class="clear"></div>
-				  </article>
-				  
-				  {/block:Panorama}
-				  
-				  {block:Photoset}
-				  
-				  <article class="post photoset">
-					<div class="content">
-					
-						{Photoset-400}
-						
-						<div class="body">
-						{block:Caption}
-						{Caption}
-						{/block:Caption}
-						</div>
-					
-					</div>
-					
-					
-					<aside>
-						<ul>
-						
-							<li>By <a href="{PostAuthorURL}" title="{PostAuthorTitle}"><em>{PostAuthorName}</em></a></li>
-							
-							{block:ContentSource}
-							
-								{block:SourceLogo}
-								<li>Thanks to <a href="{SourceURL}" title="{SourceTitle}"><img src="{BlackLogoURL}" height="{LogoHeight}" width="{LogoWidth}" alt="{SourceTitle}" /></a></li>
-								{/block:SourceLogo}
-							
-								{block:NoSourceLogo}
-								<li>Thanks to <a href="{SourceURL}" title="{SourceTitle}"><strong>{SourceTitle}</strong></a></li>
-								{/block:NoSourceLogo}
-								
-							{/block:ContentSource}
-							
-							{block:Date}
-							<li>{ShortMonth}. {DayOfMonth}{DayOfMonthSuffix}, {Year}</li>
-							{/block:Date}
-							
-							{block:NoteCount} 
-							<li>{NoteCountWithLabel}</li>
-							{/block:NoteCount}
-							
-						</ul>
-						
-					</aside>
-					
-					<div class="clear"></div>
-				  </article>
-				  
-				  {/block:Photoset}
-				  
-				  {block:Quote}
-				  
-				  <article class="post quote">
-					<div class="content">
-					
-						<blockquote class="{Length}">{Quote}</blockquote>
-						
-						{block:Source}{Source}{/block:Source}
-					
-					</div>
-					
-					
-					<aside>
-						<ul>
-						
-							<li>By <a href="{PostAuthorURL}" title="{PostAuthorTitle}"><em>{PostAuthorName}</em></a></li>
-							
-							{block:ContentSource}
-							
-								{block:SourceLogo}
-								<li>Thanks to <a href="{SourceURL}" title="{SourceTitle}"><img src="{BlackLogoURL}" height="{LogoHeight}" width="{LogoWidth}" alt="{SourceTitle}" /></a></li>
-								{/block:SourceLogo}
-							
-								{block:NoSourceLogo}
-								<li>Thanks to <a href="{SourceURL}" title="{SourceTitle}"><strong>{SourceTitle}</strong></a></li>
-								{/block:NoSourceLogo}
-								
-							{/block:ContentSource}
-							
-							{block:Date}
-							<li>{ShortMonth}. {DayOfMonth}{DayOfMonthSuffix}, {Year}</li>
-							{/block:Date}
-							
-							{block:NoteCount} 
-							<li>{NoteCountWithLabel}</li>
-							{/block:NoteCount}
-							
-						</ul>
-						
-					</aside>
-					
-					<div class="clear"></div>
-				  </article>
-				  
-				  {/block:Quote}
-				  
-				  
-				  
-				  {block:Link}
-				  
-				  <article class="post link">
-					<div class="content">
-					
-						<h2><a href="{URL}" title="{URL}">{Name}</a></h2>
-						
-						{block:Source}{Source}{/block:Source}
-						
-						&rarr; {URL}
-						
-						<div class="body">
-						{block:Description} 
-						{Description}
-						{/block:Description}
-						</div>
-					
-					</div>
-					
-					<aside>
-						<ul>
-						
-							<li>By <a href="{PostAuthorURL}" title="{PostAuthorTitle}"><em>{PostAuthorName}</em></a></li>
-							
-							{block:ContentSource}
-							
-								{block:SourceLogo}
-								<li>Thanks to <a href="{SourceURL}" title="{SourceTitle}"><img src="{BlackLogoURL}" height="{LogoHeight}" width="{LogoWidth}" alt="{SourceTitle}" /></a></li>
-								{/block:SourceLogo}
-							
-								{block:NoSourceLogo}
-								<li>Thanks to <a href="{SourceURL}" title="{SourceTitle}"><strong>{SourceTitle}</strong></a></li>
-								{/block:NoSourceLogo}
-								
-							{/block:ContentSource}
-							
-							{block:Date}
-							<li>{ShortMonth}. {DayOfMonth}{DayOfMonthSuffix}, {Year}</li>
-							{/block:Date}
-							
-							{block:NoteCount} 
-							<li>{NoteCountWithLabel}</li>
-							{/block:NoteCount}
-							
-						</ul>
-						
-					</aside>
-					
-					<div class="clear"></div>
-				  </article>
-				  
-				  {/block:Link}
-				  
-					
-				  
-				  {block:Chat}
-				  
-					  <article class="post chat">
-						<div class="content">
-						
-							{block:Title}
-							<h2>{Title}</h2>
-							{/block:Title}
-							
-							<ul>
-								{block:Lines}
-								<li class="{Alt}">
-								{block:Label}<strong class="label">{Label}</strong>{/block:Label}
-								{Line}
-								</li>
-								{/block:Lines}
-							</ul>
-						
-						</div>
-						
-						<aside>
-							<ul>
-							
-								<li>By <a href="{PostAuthorURL}" title="{PostAuthorTitle}"><em>{PostAuthorName}</em></a></li>
-								
-								{block:ContentSource}
-							
-									{block:SourceLogo}
-									<li>Thanks to <a href="{SourceURL}" title="{SourceTitle}"><img src="{BlackLogoURL}" height="{LogoHeight}" width="{LogoWidth}" alt="{SourceTitle}" /></a></li>
-									{/block:SourceLogo}
-								
-									{block:NoSourceLogo}
-									<li>Thanks to <a href="{SourceURL}" title="{SourceTitle}"><strong>{SourceTitle}</strong></a></li>
-									{/block:NoSourceLogo}
-								
-								{/block:ContentSource}
-								
-								{block:Date}
-								<li>{ShortMonth}. {DayOfMonth}{DayOfMonthSuffix}, {Year}</li>
-								{/block:Date}
-								
-								{block:NoteCount} 
-								<li>{NoteCountWithLabel}</li>
-								{/block:NoteCount}
-								
-							</ul>
-						</aside>
-						
-						<div class="clear"></div>
-					  </article>
-				  
-				  {/block:Chat}
-				  
-				  {block:Video}
-				  
-					<article class="post video">
-						<div class="content">
-							
-							{VideoEmbed-400}
-							
-							<div class="body">
-							{block:Caption}
-							{Caption}
-							{/block:Caption}
-							</div>
-						
-						</div>
-						
-						<aside>
-							<ul>
-							
-								<li>By <a href="{PostAuthorURL}" title="{PostAuthorTitle}"><em>{PostAuthorName}</em></a></li>
-								
-								{block:ContentSource}
-							
-									{block:SourceLogo}
-									<li>Thanks to <a href="{SourceURL}" title="{SourceTitle}"><img src="{BlackLogoURL}" height="{LogoHeight}" width="{LogoWidth}" alt="{SourceTitle}" /></a></li>
-									{/block:SourceLogo}
-								
-									{block:NoSourceLogo}
-									<li>Thanks to <a href="{SourceURL}" title="{SourceTitle}"><strong>{SourceTitle}</strong></a></li>
-									{/block:NoSourceLogo}
-								
-								{/block:ContentSource}	
-								
-								{block:Date}
-								<li>{ShortMonth}. {DayOfMonth}{DayOfMonthSuffix}, {Year}</li>
-								{/block:Date}
-								
-								{block:NoteCount} 
-								<li>{NoteCountWithLabel}</li>
-								{/block:NoteCount}
-								
-							</ul>
-							
-						</aside>
-						
-						<div class="clear"></div>
-					  </article>
-					  
-				  {/block:Video}
-				  
-				  {block:Audio}
-				  
-					<article class="post audio">
-						<div class="content">
-						
-						{block:TrackName}
-						<h2>{TrackName}</h2>
-						{/block:TrackName}
-						
-							
-							{block:AudioPlayer}
-							<div class="player">{AudioPlayerGrey}</div>
-							{/block:AudioPlayer}
-							
-							{block:AudioEmbed} 
-							<div class="player">{AudioEmbed-500}</div>
-							{/block:AudioEmbed}
-						
-							{block:AlbumArt}
-							<div class="album-art"><img src="{AlbumArtURL}" {block:Album}alt="{Album}"{/block:Album} /></div>
-							{/block:AlbumArt}
-								
-							<div class="body">	
-								{block:Caption}
-								{Caption}
-								{/block:Caption}
-							</div>
-							
-						</div>
-						
-						<aside>
-							<ul>
-							
-								<li>By <a href="{PostAuthorURL}" title="{PostAuthorTitle}"><em>{PostAuthorName}</em></a></li>
-								
-								{block:ContentSource}
-							
-									{block:SourceLogo}
-									<li>Thanks to <a href="{SourceURL}" title="{SourceTitle}"><img src="{BlackLogoURL}" height="{LogoHeight}" width="{LogoWidth}" alt="{SourceTitle}" /></a></li>
-									{/block:SourceLogo}
-								
-									{block:NoSourceLogo}
-									<li>Thanks to <a href="{SourceURL}" title="{SourceTitle}"><strong>{SourceTitle}</strong></a></li>
-									{/block:NoSourceLogo}
-								
-								{/block:ContentSource}
-								
-								{block:Date}
-								<li>{ShortMonth}. {DayOfMonth}{DayOfMonthSuffix}, {Year}</li>
-								{/block:Date}
-								
-								{block:PlayCount}
-								<li>{PlayCountWithLabel}</li>
-								{/block:PlayCount}
-								
-								{block:Artist}
-								<li>Artist: <strong>{Artist}</strong></li>
-								{/block:Artist}
-								
-								{block:Album}
-								<li>Album: <strong>{Album}</strong></li>
-								{/block:Album}
-								
-								{block:NoteCount} 
-								<li>{NoteCountWithLabel}</li>
-								{/block:NoteCount}
-								
-							</ul>
-							
-						</aside>
-						
-						<div class="clear"></div>
-					  </article>
-				  
-				  {/block:Audio}
-				  
-				  {block:Answer}
-				  
-					<article class="post answer">
-						<div class="content">
-						
-						<h2>{Question}</h2>
-						
-							<div class="body">
-							
-								{Answer}
-							
-							</div>
-						
-						</div>
-						
-						<aside>
-							<ul>
-								<li>By <a href="{PostAuthorURL}" title="{PostAuthorTitle}"><em>{PostAuthorName}</em></a></li>
-								
-								
-								{block:Date}
-								<li>{ShortMonth}. {DayOfMonth}{DayOfMonthSuffix}, {Year}</li>
-								{/block:Date}
-								
-								
-								<li>Asked by <strong>{Asker}</strong></li>
-								
-								{block:NoteCount} 
-								<li>{NoteCountWithLabel}</li>
-								{/block:NoteCount}
-								
-							</ul>
-							{block:Caption}
-							<div class="caption">{Caption}</div>
-							{/block:Caption}
-						</aside>
-						
-						<div class="clear"></div>
-					  </article>
-				  
-				  {/block:Answer}
-			  
-			  {/block:Posts}
-			  
-			  <nav id="pagination">
-				
-				<ul>
-				{block:Pagination}
-				
-					{block:NextPage}
-					<li><a href="{NextPage}" title="Go To Next Page">Next Page</a></li>
-					{/block:NextPage}
-				
-					{block:PreviousPage}
-					<li><a href="{PreviousPage}" title="Go To Previous Page">Next Page</a></li>
-					{/block:PreviousPage}
-				
-				{/block:Pagination}
-					
-					{block:IfRandomLinkAtEndOfPosts}
-
-					<li><a href="/random" title="Jump To A Random Post!">Random Post</a></li>
-
-					{/block:IfRandomLinkAtEndOfPosts}
-				</ul>
-			  </nav>
+   });
               
-              
-            </section>
-             
-            <footer>
-			
-			<div class="first-line">
-			
-			  {block:IfShowCopyrightNotice}
-				<p id="left">&copy; {CopyrightYears}, <strong>{Title}</strong> unless otherwise stated or implied.</p>
-			  {/block:IfShowCopyrightNotice}
-			  
-			  {block:IfShowFooterTumblrLink}
-				<span>Powered by <a href="http://tumblr.com">Tumblr</a></span>
-			  {/block:IfShowFooterTumblrLink}
-			  
-			</div>
-			  
-			  <p>{text:Custom Footer Text}</p>
-			  
-			  {block:IfShowThemeCredits}
-				<p>Theme handcrafted in Quezon City, Philippines by <a href="htti://timmystream.tumblr.com/">Timothy Diokno.</a></p>
-			  {/block:IfShowThemeCredits}
-			  
-			  {block:IfSoliDeoGloria}
-				<p><strong>Soli Deo Gloria</strong></p>
-			  {/block:IfSoliDeoGloria}
-			  
-            </footer>
-			
-			
+   </script>
+        
+        
+   <!--[if lt IE 9]>
+   <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+   <![endif]-->
+        
+   <style type='text/css'>
+        
+   /*RESET*/
+   
+   * {   
+   margin: 0;
+   padding: 0;
+   -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+           box-sizing: border-box;
+   }
+  
+   /* HTML5 display-role reset for older browsers */
+   article, aside, details, figcaption, figure, 
+   footer, header, hgroup, menu, nav, section {
+    display: block;
+   }
 
-    </body>
+   body {
+    background: #2d2a26;
+    color: {color:Text};
+    overfow-x: visible;
+    position: relative;
+    font-family: {font:Global};
+    font-size: 100%;
+   }
+        
+   p, ul, ol, blockquote {
+    margin-bottom: .8em;
+   }
+  
+   ul, ol {
+    margin-left: 1.5em;
+   }
+        
+   a {
+    color: {color:Links};
+    text-style: underline;
+   }
+  
+   a:hover {
+    color: {color:Hover};
+   }
+        
+   em {
+    font-style: normal;
+    font-weight: bold;
+   }
+        
+   .clear {
+    clear: both;
+   }
+        
+   /*The Tumblr controls shall never move!*/
+  
+   #tumblr_controls {
+    margin-top: .6em;
+    top: 0 !important;
+    right: 13% !important;
+    position: fixed !important;
+   }
+  
+   #page-wrap tr td, #pagination a {
+    z-index: 0 !important; /* Transify.js places a z-index value of 10 for some reason. It would block the header bar. This fixes that. */
+   }
+   
+  
+   /*HEADER SECTION*/
+        
+   header {
+    background: {color:Main Site Color};
+    font-size: .8em;
+    padding: 1em;
+    text-transform: uppercase;
+    position: fixed !important;
+    width: 100% !important;
+    height: 3.5em !important;
+   }
+        
+   header h1 {
+    display: inline;
+    font-size: 1em;
+    margin-right: 1.5%;
+    top: -1.8em;
+    position: relative;
+   }
+  
+   header h1 a {
+    text-decoration: none;
+    opacity: 0.8;
+   }
+  
+   header h1 a:hover {
+    opacity: 1.0;
+   }
+        
+   header form {
+    display: inline;
+    float: right;
+   }
+        
+   header form input {
+    padding: .1em;
+    font-size: .8em;
+    position: fixed;
+    right: .8%;
+    width: 11%;
+       -moz-transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+         -o-transition: all 0.5s;
+            transition: all 0.5s;
+   }
+   
+        
+   /*NAV*/
+        
+   nav#main {
+    display: inline;
+   }
+  
+   nav#main ul {
+    display: inline;
+    position: relative;
+   }
+  
+   nav#main ul li {
+    display: inline;
+   }
+        
+   nav#main ul li a {
+    position: relative;
+    top: -1.8em;
+    text-decoration: none;
+    padding: 2em 1% 6px 1%;
+    display: inline-block;
+       -moz-transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+         -o-transition: all 0.5s;
+            transition: all 0.5s;
+   }
+        
+   nav#main ul li a:hover {
+    background-color: rgba(255,255,255,0.8);
+    color: #000000;
+    top: -1em;
+   }
+        
+        
+   /*CONTENT SECTION*/
+        
+   #intro {
+    width: 10em;
+    text-align: center;
+    padding-right: 2.375em;
+    margin-top: 2em;
+    font-size: 1.5em;
+    line-height: 1em;
+    font-family: {font:Global};
+    font-weight: bold;
+    position: relative;
+    text-transform: uppercase;
+   }
+  
+   #blog-portrait {
+    height: 128px;
+    width: 128px;
+    -webkit-border-radius: 100%;
+            border-radius: 100%;
+    background-clip: padding-box;
+    margin: 0 auto 1em auto;
+    border: solid 6px;
+   }
+        
+   #page-wrap {
+    padding: 1.875em 0;
+   }
+        
+   #page-wrap tr td {
+    vertical-align: top;
+    padding: 1.8em;
+    background: {color:Main Site Color}; 
+   }
+        
+   .post {
+    width: 37.500em;
+   }
+        
+   .post .content {
+    float: left;
+    margin-right: 0.5em;
+    font-size: 90%;
+    width: 400px;
+   }
+  
+   .post .content p {
+    line-height: 1.3em;
+   }
+        
+   .post h2 {
+    font-size: 180%;
+    font-weight: 400;
+    font-family: {font:Header};
+    text-transform: uppercase;
+    margin-bottom: 10px;
+   }
+  
+  
+   .post h2 a {
+    text-decoration: none;
+   }
+  
+  
+   .post .content .body {
+    margin-top: 1em;
+   }
+        
+   .post aside {
+    width: 170px;
+    float: right;
+    font-size: .8em;
+   }
+        
+   .post aside ul {
+    list-style-type: none;
+    margin: 0;
+   }
+        
+   .post aside ul li {
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    border-bottom: dotted #ffffff 1px;
+   }
+  
+   /*AUDIO*/
+   
+   .player iframe {
+    width: 100%;
+    height: 5em;
+   }
+   
+   .audio .content img {
+    width: 100%;
+    height: auto;
+   }
+
+   
+   /*QUOTE*/
+   
+   .quote blockquote {
+    font-size: 2em;
+    border-left: solid 3px;
+    padding-left: 1em;
+    font-weight: bold;
+   }
+  
+   /*CHAT*/
+   
+   .chat .content ul {
+    list-style: none;
+    margin: 0 !important;
+   }
+   
+   .chat .content ul li {
+    padding-bottom: 1em;
+    border-bottom: solid 1px;
+    margin-bottom: 1em;
+    position: relative;
+    padding-left: 6em;
+   }
+   
+   .chat .content ul li strong.label {
+    position: absolute;
+    width: 5em;
+    top: 0;
+    left: 0;
+    word-wrap: break-word;
+   }
+  
+   /*TEXT*/
+   
+   .text content ul, aside .caption ul, 
+   .text content ol, aside .caption ol{
+    margin-right: 1.5em;
+   }
+  
+  
+  {block:IfFullWidthContentOnStaticPages}
+  
+   /*
+   Force full width content on static pages.
+   Yes it's a hack that requires you to 
+   do something for it work.
+   */
+   
+   .text div[class$="{text:Unique Static Page ShortURL}"] .content {
+    width: 100%;
+   }
+   
+   /* Hide the aside box */
+   
+   .text div[class$="{text:Unique Static Page ShortURL}"] aside {
+    display: none;
+   }
+   
+  {/block:IfFullWidthContentOnStaticPages}
+  
+  
+  /*PAGINATION*/
+  
+  #pagination ul {
+   list-style: none;
+  }
+  
+  #pagination ul li {
+   margin-bottom: .6em;
+  }
+  
+  #pagination ul li a {
+   display: block;
+   padding: 1em;
+   width: 10em !important;
+   text-transform: uppercase;
+   text-decoration: none;
+   background-color: {color:Main Site Color};
+  }
+  
+        
+   /*FOOTER SECTION*/
+  
+   footer {
+    text-transform: uppercase;
+    position: fixed !important; /* ... becase transify.js messes with positions if it isn't "important" */
+    background-color: {color:Main Site Color};
+    width: 100%;
+    bottom: 0;
+    height: 3em;
+    font-size: 60%;
+    padding: 0.625em 0.625em;
+       -moz-transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+         -o-transition: all 0.5s;
+            transition: all 0.5s;
+   }
+   
+   footer .transify {
+    height: 100% !important;
+   }
+        
+   footer.show {
+    height: 45% !important;
+   }
+   
+   footer.show .transify {
+    height: 100% !important;
+   }
+  
+   footer:hover {
+   }
+  
+   /*Stop the next lines of text from peeking out when the copyright notice and the Tumblr link isn't visible.*/
+   
+   footer .first-line {
+    display: block;
+    width: 100%;
+    height: 3em;
+   }
+   
+   footer .first-line:after {
+    content: '';
+    display: block;
+    clear: both;
+    margin-bottom: 1em;
+   }
+        
+   footer #left {
+    display: inline;
+    float: left;
+   }
+        
+   footer span {
+    display: inline;
+    float: right;
+   }
+        
+   /*PARALLAX*/
+        
+   #antenna {
+    width: 608px;
+    height: 599px;
+    background: url('http://static.tumblr.com/7swizo5/uSJmlhykd/parallaxantenna2.png') no-repeat;
+    position: fixed;
+    z-index: -1;
+    bottom: 0;
+   }
+        
+   #houses {
+    width: 100%;
+    height: 246px;
+    background: url('http://static.tumblr.com/7swizo5/Zdemlhyqs/parallaxhouses2.png') repeat-x;
+    float: left;
+    position: fixed;
+    z-index: -3;
+    bottom: 0;
+    display: table;
+   }
+        
+   #sky {
+    width: 100%;
+    height: 100%;
+    display: table;
+    float: left;
+    background: url('http://static.tumblr.com/7swizo5/e2Pmlhyt8/parallaxsky2.jpg') repeat-x;
+    position: fixed;
+    z-index: -4;
+   }
+
+   /*USER CUSTOM CSS*/
+   
+   {CustomCSS}
+        
+   </style>
+        
+ </head>
+     
+ <body>
+ 
+  {block:IfEncourageUserBrowserUpgrade}
+  
+  <!--[if lt IE 7]>
+   <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+  <![endif]-->
+  
+  {/block:IfEncourageUserBrowserUpgrade}
+
+  <!--begin Stellar.js (parallax) elements-->
+  
+  <div id="sky" data-stellar-background-ratio="0.9"></div>
+  <div id="houses" data-stellar-background-ratio="0.8"></div>
+  <div id="antenna" data-stellar-ratio="0.08"></div>
+  
+  <!--end Stellar.js (parallax) elements-->
+ 
+  <!--HEADER SECTION-->
+  
+  <header>
+  
+   <h1><a href="/" title="Home">{Title}</a></h1>
+   
+    <nav id="main">				
+            
+     <ul>
+      {block:HasPages}
+       {block:Pages}
+        <li><a href="{URL}" title="{Label}">{Label}</a></li>
+       {/block:Pages}
+      {/block:HasPages} 
+        
+      {block:AskEnabled}
+       <li>
+        <a href="/ask" title="{AskLabel}">
+        
+        {block:IfEnableCustomAskLabel}
+         {text:Custom Ask Label}
+        {/block:IfEnableCustomAskLabel}
+        
+        {block:IfNotEnableCustomAskLabel}
+         {AskLabel}
+        {/block:IfNotEnableCustomAskLabel}
+        
+        </a>
+       </li>
+      {/block:AskEnabled}
+        
+      {block:SubmissionsEnabled} 
+       <li>
+        <a href="/submit" title="{SubmitLabel}">
+        
+         {block:IfEnableCustomSubmitLabel}
+         {text:Custom Submit Label}
+         {/block:IfEnableCustomSubmitLabel}
+          
+         {block:IfNotEnableCustomSubmitLabel}
+          {SubmitLabel}
+         {block:IfNotEnableCustomSubmitLabel}
+        
+        </a>
+       </li>
+       {/block:SubmissionsEnabled}
+        
+       {block:IfShowLinkToArchive}
+        <li><a href="/archive">Archive</a></li>
+       {/block:IfShowLinkToArchive}
+
+     </ul>
+      
+    </nav>
+     
+    <form method="get" id="search-form" action="/search">
+     <input type="text" name="s" id="s" value"" placeholder="Hit Return Key To Search">
+    </form>
+    
+   </header>
+   
+   <!--BEGIN MAIN SECTION-->
+
+   <section id="page-wrap"> 
+
+   <article id="intro">
+     
+    <a href="/" title="Home">
+     <div id="blog-portrait" style="background-image: url({PortraitURL-128});"></div>
+    </a>
+      
+    {block:Description}
+     <p>{Description}</p>
+    {/block:Description}
+     
+    <div class="clear"></div>
+    
+   </article>
+
+   {block:Posts}
+
+   {block:Text} <!--BEGIN TEXT POSTS-->
+
+   <article class="post text">
+    <div class="{ShortURL}">
+     <div class="content">
+      {block:Title}
+       <h2><a href="{Permalink}">{Title}</a></h2>
+      {/block:Title}
+
+      {Body}
+
+     </div>
+    </div>
+
+    <div class="{ShortURL}">
+     <aside>
+      <ul>
+
+      <li>By <a href="{PostAuthorURL}" title="{PostAuthorTitle}"><em>{PostAuthorName}</em></a></li>
+
+       {block:ContentSource}
+       
+        {block:SourceLogo}
+        <li>Thanks to <a href="{SourceURL}" title="{SourceTitle}"><img src="{BlackLogoURL}" height="{LogoHeight}" width="{LogoWidth}" alt="{SourceTitle}" /></a></li>
+        {/block:SourceLogo}
+       
+        {block:NoSourceLogo}
+        <li>Thanks to <a href="{SourceURL}" title="{SourceTitle}"><strong>{SourceTitle}</strong></a></li>
+        {/block:NoSourceLogo}
+        
+       {/block:ContentSource}
+       
+       {block:Date}
+       <li>{ShortMonth}. {DayOfMonth}{DayOfMonthSuffix}, {Year}</li>
+       {/block:Date}
+       
+       {block:NoteCount} 
+       <li>{NoteCountWithLabel}</li>
+       {/block:NoteCount}
+       
+      </ul>
+     </aside>
+    </div>
+    <div class="clear"></div>
+   </article>
+      
+   <!--END TEXT POSTS--> {/block:Text}
+
+   
+   {block:Photo} <!--BEGIN PHOTO POSTS-->
+      
+   <article class="post photo">
+    <div class="content">
+     
+     <a href ="{LinkURL}" title="{PhotoAlt}">
+      <img src="{PhotoURL-400}" alt="{PhotoAlt}" />
+     </a>
+      
+     <div class="body">
+      {block:Caption}
+      {Caption}
+      {/block:Caption}
+     </div>
+     
+    </div>
+     
+    <aside>
+     <ul>
+      
+      <li>By <a href="{PostAuthorURL}" title="{PostAuthorTitle}"><em>{PostAuthorName}</em></a></li>
+      
+      {block:ContentSource}
+      
+       {block:SourceLogo}
+       <li>Thanks to <a href="{SourceURL}" title="{SourceTitle}"><img src="{BlackLogoURL}" height="{LogoHeight}" width="{LogoWidth}" alt="{SourceTitle}" /></a></li>
+       {/block:SourceLogo}
+      
+       {block:NoSourceLogo}
+       <li>Thanks to <a href="{SourceURL}" title="{SourceTitle}"><strong>{SourceTitle}</strong></a></li>
+       {/block:NoSourceLogo}
+
+      {/block:ContentSource}
+      
+      {block:Date}
+      <li>{ShortMonth}. {DayOfMonth}{DayOfMonthSuffix}, {Year}</li>
+      {/block:Date}
+
+      {block:NoteCount} 
+      <li>{NoteCountWithLabel}</li>
+      {/block:NoteCount}
+
+     </ul>
+
+    </aside>
+
+    <div class="clear"></div>
+   </article>
+
+   <!--END PHOTO POSTS--> {/block:Photo}
+   
+
+   {block:Panorama} <!--BEGIN PANORAMA POSTS-->
+
+   <article class="post panorama">
+    <div class="content">
+
+    {LinkOpenTag}
+     <img src="{PhotoURL-Panorama}" alt="{PhotoAlt}" />
+    {LinkCloseTag}
+
+    <div class="body">
+     {block:Caption}
+      {Caption}
+     {/block:Caption}
+    </div>
+
+    </div>
+
+    <aside>
+     <ul>
+
+      <li>By <a href="{PostAuthorURL}" title="{PostAuthorTitle}"><em>{PostAuthorName}</em></a></li>
+
+       {block:ContentSource}
+
+        {block:SourceLogo}
+        <li>Thanks to <a href="{SourceURL}" title="{SourceTitle}"><img src="{BlackLogoURL}" height="{LogoHeight}" width="{LogoWidth}" alt="{SourceTitle}" /></a></li>
+        {/block:SourceLogo}
+       
+        {block:NoSourceLogo}
+        <li>Thanks to <a href="{SourceURL}" title="{SourceTitle}"><strong>{SourceTitle}</strong></a></li>
+        {/block:NoSourceLogo}
+        
+       {/block:ContentSource}	
+       
+       {block:Date}
+       <li>{ShortMonth}. {DayOfMonth}{DayOfMonthSuffix}, {Year}</li>
+       {/block:Date}
+       
+       {block:NoteCount} 
+       <li>{NoteCountWithLabel}</li>
+       {/block:NoteCount}
+       
+      </ul>
+      
+     </aside>
+     
+     <div class="clear"></div>
+     </article>
+      
+   <!--END PANORAMA POSTS-->{/block:Panorama}
+      
+     {block:Photoset}<!--BEGIN PHOTOSET POSTS-->
+      
+     <article class="post photoset">
+     <div class="content">
+     
+      {Photoset-400}
+      
+      <div class="body">
+      {block:Caption}
+      {Caption}
+      {/block:Caption}
+      </div>
+     
+     </div>
+     
+     <aside>
+      <ul>
+      
+       <li>By <a href="{PostAuthorURL}" title="{PostAuthorTitle}"><em>{PostAuthorName}</em></a></li>
+       
+       {block:ContentSource}
+
+        {block:SourceLogo}
+        <li>Thanks to <a href="{SourceURL}" title="{SourceTitle}"><img src="{BlackLogoURL}" height="{LogoHeight}" width="{LogoWidth}" alt="{SourceTitle}" /></a></li>
+        {/block:SourceLogo}
+       
+        {block:NoSourceLogo}
+        <li>Thanks to <a href="{SourceURL}" title="{SourceTitle}"><strong>{SourceTitle}</strong></a></li>
+        {/block:NoSourceLogo}
+        
+       {/block:ContentSource}
+       
+       {block:Date}
+       <li>{ShortMonth}. {DayOfMonth}{DayOfMonthSuffix}, {Year}</li>
+       {/block:Date}
+       
+       {block:NoteCount} 
+       <li>{NoteCountWithLabel}</li>
+       {/block:NoteCount}
+       
+      </ul>
+      
+     </aside>
+     
+     <div class="clear"></div>
+     </article>
+      
+     <!--END PHOTOSET POSTS-->{/block:Photoset}
+      
+     {block:Quote}<!--BEGIN QUOTE POSTS-->
+      
+     <article class="post quote">
+     <div class="content">
+     
+      <blockquote class="{Length}">{Quote}</blockquote>
+      
+      {block:Source}{Source}{/block:Source}
+     
+     </div>
+     
+     
+     <aside>
+      <ul>
+      
+       <li>By <a href="{PostAuthorURL}" title="{PostAuthorTitle}"><em>{PostAuthorName}</em></a></li>
+       
+       {block:ContentSource}
+       
+        {block:SourceLogo}
+        <li>Thanks to <a href="{SourceURL}" title="{SourceTitle}"><img src="{BlackLogoURL}" height="{LogoHeight}" width="{LogoWidth}" alt="{SourceTitle}" /></a></li>
+        {/block:SourceLogo}
+       
+        {block:NoSourceLogo}
+        <li>Thanks to <a href="{SourceURL}" title="{SourceTitle}"><strong>{SourceTitle}</strong></a></li>
+        {/block:NoSourceLogo}
+        
+       {/block:ContentSource}
+       
+       {block:Date}
+       <li>{ShortMonth}. {DayOfMonth}{DayOfMonthSuffix}, {Year}</li>
+       {/block:Date}
+       
+       {block:NoteCount} 
+       <li>{NoteCountWithLabel}</li>
+       {/block:NoteCount}
+       
+      </ul>
+      
+     </aside>
+     
+     <div class="clear"></div>
+     </article>
+      
+     <!--END QUOTE POSTS-->{/block:Quote}
+      
+      
+     {block:Link}<!--BEGIN LINK POSTS-->
+      
+     <article class="post link">
+     <div class="content">
+     
+      <h2><a href="{URL}" title="{URL}">{Name}</a></h2>
+      
+      {block:Source}{Source}{/block:Source}
+      
+      &rarr; {URL}
+      
+      <div class="body">
+      {block:Description} 
+      {Description}
+      {/block:Description}
+      </div>
+     
+     </div>
+     
+     <aside>
+      <ul>
+      
+       <li>By <a href="{PostAuthorURL}" title="{PostAuthorTitle}"><em>{PostAuthorName}</em></a></li>
+       
+       {block:ContentSource}
+       
+        {block:SourceLogo}
+        <li>Thanks to <a href="{SourceURL}" title="{SourceTitle}"><img src="{BlackLogoURL}" height="{LogoHeight}" width="{LogoWidth}" alt="{SourceTitle}" /></a></li>
+        {/block:SourceLogo}
+       
+        {block:NoSourceLogo}
+        <li>Thanks to <a href="{SourceURL}" title="{SourceTitle}"><strong>{SourceTitle}</strong></a></li>
+        {/block:NoSourceLogo}
+        
+       {/block:ContentSource}
+       
+       {block:Date}
+       <li>{ShortMonth}. {DayOfMonth}{DayOfMonthSuffix}, {Year}</li>
+       {/block:Date}
+       
+       {block:NoteCount} 
+       <li>{NoteCountWithLabel}</li>
+       {/block:NoteCount}
+       
+      </ul>
+      
+     </aside>
+     
+     <div class="clear"></div>
+     </article>
+      
+     <!--END LINK POSTS-->{/block:Link}
+      
+     {block:Chat}<!--BEGIN CHAT POSTS-->
+      
+     <article class="post chat">
+      <div class="content">
+      
+       {block:Title}
+       <h2>{Title}</h2>
+       {/block:Title}
+       
+       <ul>
+        {block:Lines}
+        <li class="{Alt}">
+        {block:Label}<strong class="label">{Label}</strong>{/block:Label}
+        {Line}
+        </li>
+        {/block:Lines}
+       </ul>
+      
+      </div>
+      
+      <aside>
+       <ul>
+       
+        <li>By <a href="{PostAuthorURL}" title="{PostAuthorTitle}"><em>{PostAuthorName}</em></a></li>
+        
+        {block:ContentSource}
+       
+         {block:SourceLogo}
+         <li>Thanks to <a href="{SourceURL}" title="{SourceTitle}"><img src="{BlackLogoURL}" height="{LogoHeight}" width="{LogoWidth}" alt="{SourceTitle}" /></a></li>
+         {/block:SourceLogo}
+        
+         {block:NoSourceLogo}
+         <li>Thanks to <a href="{SourceURL}" title="{SourceTitle}"><strong>{SourceTitle}</strong></a></li>
+         {/block:NoSourceLogo}
+        
+        {/block:ContentSource}
+        
+        {block:Date}
+        <li>{ShortMonth}. {DayOfMonth}{DayOfMonthSuffix}, {Year}</li>
+        {/block:Date}
+        
+        {block:NoteCount} 
+        <li>{NoteCountWithLabel}</li>
+        {/block:NoteCount}
+        
+       </ul>
+      </aside>
+      
+      <div class="clear"></div>
+     </article>
+      
+     <!--END CHAT POSTS-->{/block:Chat}
+      
+     {block:Video}<!--BEGIN VIDEO POSTS-->
+      
+     <article class="post video">
+      <div class="content">
+       
+       {VideoEmbed-400}
+       
+       <div class="body">
+       {block:Caption}
+       {Caption}
+       {/block:Caption}
+       </div>
+      
+      </div>
+      
+      <aside>
+       <ul>
+       
+        <li>By <a href="{PostAuthorURL}" title="{PostAuthorTitle}"><em>{PostAuthorName}</em></a></li>
+        
+        {block:ContentSource}
+       
+         {block:SourceLogo}
+         <li>Thanks to <a href="{SourceURL}" title="{SourceTitle}"><img src="{BlackLogoURL}" height="{LogoHeight}" width="{LogoWidth}" alt="{SourceTitle}" /></a></li>
+         {/block:SourceLogo}
+        
+         {block:NoSourceLogo}
+         <li>Thanks to <a href="{SourceURL}" title="{SourceTitle}"><strong>{SourceTitle}</strong></a></li>
+         {/block:NoSourceLogo}
+        
+        {/block:ContentSource}	
+        
+        {block:Date}
+        <li>{ShortMonth}. {DayOfMonth}{DayOfMonthSuffix}, {Year}</li>
+        {/block:Date}
+        
+        {block:NoteCount} 
+        <li>{NoteCountWithLabel}</li>
+        {/block:NoteCount}
+        
+       </ul>
+       
+      </aside>
+      
+      <div class="clear"></div>
+     </article>
+       
+     <!--END VIDEO POSTS-->{/block:Video}
+      
+     {block:Audio}<!--BEGIN AUDIO POSTS-->
+      
+     <article class="post audio">
+      <div class="content">
+      
+      {block:TrackName}
+      <h2>{TrackName}</h2>
+      {/block:TrackName}
+      
+       
+       {block:AudioPlayer}
+       <div class="player">{AudioPlayerGrey}</div>
+       {/block:AudioPlayer}
+       
+       {block:AudioEmbed} 
+       <div class="player">{AudioEmbed-500}</div>
+       {/block:AudioEmbed}
+      
+       {block:AlbumArt}
+       <div class="album-art"><img src="{AlbumArtURL}" {block:Album}alt="{Album}"{/block:Album} /></div>
+       {/block:AlbumArt}
+        
+       <div class="body">	
+        {block:Caption}
+        {Caption}
+        {/block:Caption}
+       </div>
+       
+      </div>
+      
+      <aside>
+       <ul>
+       
+        <li>By <a href="{PostAuthorURL}" title="{PostAuthorTitle}"><em>{PostAuthorName}</em></a></li>
+        
+        {block:ContentSource}
+       
+         {block:SourceLogo}
+         <li>Thanks to <a href="{SourceURL}" title="{SourceTitle}"><img src="{BlackLogoURL}" height="{LogoHeight}" width="{LogoWidth}" alt="{SourceTitle}" /></a></li>
+         {/block:SourceLogo}
+        
+         {block:NoSourceLogo}
+         <li>Thanks to <a href="{SourceURL}" title="{SourceTitle}"><strong>{SourceTitle}</strong></a></li>
+         {/block:NoSourceLogo}
+        
+        {/block:ContentSource}
+        
+        {block:Date}
+        <li>{ShortMonth}. {DayOfMonth}{DayOfMonthSuffix}, {Year}</li>
+        {/block:Date}
+        
+        {block:PlayCount}
+        <li>{PlayCountWithLabel}</li>
+        {/block:PlayCount}
+        
+        {block:Artist}
+        <li>Artist: <strong>{Artist}</strong></li>
+        {/block:Artist}
+        
+        {block:Album}
+        <li>Album: <strong>{Album}</strong></li>
+        {/block:Album}
+        
+        {block:NoteCount} 
+        <li>{NoteCountWithLabel}</li>
+        {/block:NoteCount}
+        
+       </ul>
+       
+      </aside>
+      
+      <div class="clear"></div>
+     </article>
+      
+     <!--END AUDIO POSTS-->{/block:Audio}
+      
+     {block:Answer}<!--BEGIN ANSWER POSTS-->
+      
+     <article class="post answer">
+      <div class="content">
+      
+      <h2>{Question}</h2>
+      
+       <div class="body">
+       
+        {Answer}
+       
+       </div>
+      
+      </div>
+      
+      <aside>
+       <ul>
+        <li>By <a href="{PostAuthorURL}" title="{PostAuthorTitle}"><em>{PostAuthorName}</em></a></li>
+        
+        
+        {block:Date}
+        <li>{ShortMonth}. {DayOfMonth}{DayOfMonthSuffix}, {Year}</li>
+        {/block:Date}
+        
+        
+        <li>Asked by <strong>{Asker}</strong></li>
+        
+        {block:NoteCount} 
+        <li>{NoteCountWithLabel}</li>
+        {/block:NoteCount}
+        
+       </ul>
+       {block:Caption}
+       <div class="caption">{Caption}</div>
+       {/block:Caption}
+      </aside>
+      
+      <div class="clear"></div>
+       </article>
+
+      <!--END ANSWER POSTS--> {/block:Answer}
+
+     {/block:Posts}
+
+    <nav id="pagination">
+     <ul>
+      {block:Pagination}
+      
+       {block:NextPage}
+       <li><a href="{NextPage}" title="Go To Next Page">Next Page</a></li>
+       {/block:NextPage}
+      
+       {block:PreviousPage}
+       <li><a href="{PreviousPage}" title="Go To Previous Page">Next Page</a></li>
+       {/block:PreviousPage}
+      
+      {/block:Pagination}
+       
+      {block:IfRandomLinkAtEndOfPosts}
+       <li><a href="/random" title="Jump To A Random Post!">Random Post</a></li>
+      {/block:IfRandomLinkAtEndOfPosts}
+      
+     </ul>
+    </nav>
+
+
+   </section> <!--#page-wrap-->
+   
+   
+
+   <!--FOOTER SECTION-->
+   
+   <footer>
+   
+    <div class="first-line">
+
+    {block:IfShowCopyrightNotice}
+     <p id="left">&copy; {CopyrightYears}, <strong>{Title}</strong> unless otherwise stated or implied.</p>
+      {/block:IfShowCopyrightNotice}
+      
+      {block:IfShowFooterTumblrLink}
+     <span>Powered by <a href="http://tumblr.com">Tumblr</a></span>
+      {/block:IfShowFooterTumblrLink}
+      
+    </div>
+      
+    <p>{text:Custom Footer Text}</p>
+     
+    {block:IfShowThemeCredits}
+     <p>Theme handcrafted in Quezon City, Philippines by <a href="htti://timmystream.tumblr.com/">Timothy Diokno.</a></p>
+    {/block:IfShowThemeCredits}
+     
+    {block:IfSoliDeoGloria}
+     <p><strong>Soli Deo Gloria</strong></p>
+    {/block:IfSoliDeoGloria}
+     
+   </footer>
+
+
+  </body>
 </html>
