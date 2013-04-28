@@ -1,4 +1,7 @@
-<html>
+<html> 
+
+<!--Tumblr places the doctype-->
+
  <head>
  
   <meta charset="utf-8">
@@ -21,6 +24,9 @@
   <meta name="if:Random Link At End Of Posts" content="1"/>
   <meta name="if:Soli Deo Gloria" content="1"/>
   <meta name="if:Encourage User Browser Upgrade" content="1"/>
+  <meta name="if:Show Post Date" content="1"/>
+  <meta name="if:Show Post Author" content="1"/>
+  <meta name="if:Show Post Info" content="1"/>
   
   <meta name="if:Full Width Content on Static Pages" content="0"/>
   <meta name="text:Unique Static Page ShortURL" content=""/>
@@ -32,6 +38,8 @@
   <meta name="text:Custom Submit Label" content=""/>
   
   <meta name="text:Custom Footer Text" content=""/>
+  <meta name="text:Site Color Opacity" content=".3"/>
+  <meta name="text:Site Color Hover Opacity" content=".7"/>
   
   <meta name="font:Global" content="Arial, sans-serif"/>
   <meta name="font:Header" content="Arial, sans-serif"/>
@@ -70,25 +78,25 @@
     /* transify.js */
     
     $('footer').transify({
-     opacityOrig:.3,
-     opacityNew:.7,
+     opacityOrig:{text:Site Color Opacity},
+     opacityNew:{text:Site Color Hover Opacity},
      percentWidth:'100%'
      });
      
     $('header').transify({
-     opacityOrig:.3,
-     opacityNew:.7,
+     opacityOrig:{text:Site Color Opacity},
+     opacityNew:{text:Site Color Hover Opacity},
      percentWidth:'100%'
      });
      
     $('#page-wrap tr td').transify({
-     opacityOrig:.3,
-     opacityNew:.7
+     opacityOrig:{text:Site Color Opacity},
+     opacityNew:{text:Site Color Hover Opacity}
      });
      
     $('nav#pagination ul li a').transify({
-     opacityOrig:.3,
-     opacityNew:.7
+     opacityOrig:{text:Site Color Opacity},
+     opacityNew:{text:Site Color Hover Opacity}
      });
     
    });
@@ -406,6 +414,14 @@
    
   {/block:IfFullWidthContentOnStaticPages}
   
+  {block:IfNotShowPostInfo}
+  
+   .post .content {
+    width: 100%;
+   }
+  
+  {/block:IfNotShowPostInfo}
+  
   
   /*PAGINATION*/
   
@@ -548,7 +564,7 @@
   
    <h1><a href="/" title="Home">{Title}</a></h1>
    
-    <nav id="main">				
+    <nav id="main">    			
             
      <ul>
       {block:HasPages}
@@ -636,12 +652,15 @@
 
      </div>
     </div>
-
+    
+    {block:IfShowPostInfo}
     <div class="{ShortURL}">
      <aside>
       <ul>
 
-      <li>By <a href="{PostAuthorURL}" title="{PostAuthorTitle}"><em>{PostAuthorName}</em></a></li>
+       {block:IfShowPostAuthor}
+       <li>By <a href="{PostAuthorURL}" title="{PostAuthorTitle}"><em>{PostAuthorName}</em></a></li>
+       {/block:IfShowPostAuthor}
 
        {block:ContentSource}
        
@@ -655,17 +674,21 @@
         
        {/block:ContentSource}
        
+       {block:IfShowPostDate}
        {block:Date}
        <li>{ShortMonth}. {DayOfMonth}{DayOfMonthSuffix}, {Year}</li>
        {/block:Date}
+       {/block:IfShowPostDate}
        
        {block:NoteCount} 
        <li>{NoteCountWithLabel}</li>
        {/block:NoteCount}
        
       </ul>
-     </aside>
+     </aside> 
     </div>
+    {/block:IfShowPostInfo}
+    
     <div class="clear"></div>
    </article>
       
@@ -688,11 +711,14 @@
      </div>
      
     </div>
-     
+    
+   {block:IfShowPostInfo}    
     <aside>
      <ul>
       
+      {block:IfShowPostAuthor}
       <li>By <a href="{PostAuthorURL}" title="{PostAuthorTitle}"><em>{PostAuthorName}</em></a></li>
+      {/block:IfShowPostAuthor}
       
       {block:ContentSource}
       
@@ -706,9 +732,11 @@
 
       {/block:ContentSource}
       
-      {block:Date}
-      <li>{ShortMonth}. {DayOfMonth}{DayOfMonthSuffix}, {Year}</li>
-      {/block:Date}
+       {block:IfShowPostDate}
+       {block:Date}
+       <li>{ShortMonth}. {DayOfMonth}{DayOfMonthSuffix}, {Year}</li>
+       {/block:Date}
+       {/block:IfShowPostDate}
 
       {block:NoteCount} 
       <li>{NoteCountWithLabel}</li>
@@ -717,6 +745,7 @@
      </ul>
 
     </aside>
+    {/block:IfShowPostInfo}
 
     <div class="clear"></div>
    </article>
@@ -741,10 +770,13 @@
 
     </div>
 
+    {block:IfShowPostInfo}
     <aside>
      <ul>
 
-      <li>By <a href="{PostAuthorURL}" title="{PostAuthorTitle}"><em>{PostAuthorName}</em></a></li>
+       {block:IfShowPostAuthor}
+       <li>By <a href="{PostAuthorURL}" title="{PostAuthorTitle}"><em>{PostAuthorName}</em></a></li>
+       {/block:IfShowPostAuthor}
 
        {block:ContentSource}
 
@@ -758,9 +790,11 @@
         
        {/block:ContentSource}	
        
+       {block:IfShowPostDate}
        {block:Date}
        <li>{ShortMonth}. {DayOfMonth}{DayOfMonthSuffix}, {Year}</li>
        {/block:Date}
+       {/block:IfShowPostDate}
        
        {block:NoteCount} 
        <li>{NoteCountWithLabel}</li>
@@ -769,6 +803,7 @@
       </ul>
       
      </aside>
+     {/block:IfShowPostInfo}
      
      <div class="clear"></div>
      </article>
@@ -790,10 +825,13 @@
      
      </div>
      
+     {block:IfShowPostInfo}
      <aside>
       <ul>
       
+       {block:IfShowPostAuthor}
        <li>By <a href="{PostAuthorURL}" title="{PostAuthorTitle}"><em>{PostAuthorName}</em></a></li>
+       {/block:IfShowPostAuthor}
        
        {block:ContentSource}
 
@@ -807,9 +845,11 @@
         
        {/block:ContentSource}
        
+       {block:IfShowPostDate}
        {block:Date}
        <li>{ShortMonth}. {DayOfMonth}{DayOfMonthSuffix}, {Year}</li>
        {/block:Date}
+       {/block:IfShowPostDate}
        
        {block:NoteCount} 
        <li>{NoteCountWithLabel}</li>
@@ -818,6 +858,7 @@
       </ul>
       
      </aside>
+     {/block:IfShowPostInfo}
      
      <div class="clear"></div>
      </article>
@@ -836,11 +877,14 @@
      </div>
      
      
+     {block:IfShowPostInfo}
      <aside>
       <ul>
       
+       {block:IfShowPostAuthor}
        <li>By <a href="{PostAuthorURL}" title="{PostAuthorTitle}"><em>{PostAuthorName}</em></a></li>
-       
+       {/block:IfShowPostAuthor}
+      
        {block:ContentSource}
        
         {block:SourceLogo}
@@ -853,17 +897,19 @@
         
        {/block:ContentSource}
        
+       {block:IfShowPostDate}
        {block:Date}
        <li>{ShortMonth}. {DayOfMonth}{DayOfMonthSuffix}, {Year}</li>
        {/block:Date}
+       {/block:IfShowPostDate}
        
        {block:NoteCount} 
        <li>{NoteCountWithLabel}</li>
        {/block:NoteCount}
        
       </ul>
-      
      </aside>
+     {/block:IfShowPostInfo}
      
      <div class="clear"></div>
      </article>
@@ -890,10 +936,13 @@
      
      </div>
      
+     {block:IfShowPostInfo}
      <aside>
       <ul>
       
+       {block:IfShowPostAuthor}
        <li>By <a href="{PostAuthorURL}" title="{PostAuthorTitle}"><em>{PostAuthorName}</em></a></li>
+       {/block:IfShowPostAuthor}
        
        {block:ContentSource}
        
@@ -907,9 +956,11 @@
         
        {/block:ContentSource}
        
+       {block:IfShowPostDate}
        {block:Date}
        <li>{ShortMonth}. {DayOfMonth}{DayOfMonthSuffix}, {Year}</li>
        {/block:Date}
+       {/block:IfShowPostDate}
        
        {block:NoteCount} 
        <li>{NoteCountWithLabel}</li>
@@ -918,6 +969,7 @@
       </ul>
       
      </aside>
+     {/block:IfShowPostInfo}
      
      <div class="clear"></div>
      </article>
@@ -944,10 +996,13 @@
       
       </div>
       
+      {block:IfShowPostInfo}
       <aside>
        <ul>
        
+        {block:IfShowPostAuthor}
         <li>By <a href="{PostAuthorURL}" title="{PostAuthorTitle}"><em>{PostAuthorName}</em></a></li>
+        {/block:IfShowPostAuthor}
         
         {block:ContentSource}
        
@@ -961,9 +1016,11 @@
         
         {/block:ContentSource}
         
+        {block:IfShowPostDate}
         {block:Date}
         <li>{ShortMonth}. {DayOfMonth}{DayOfMonthSuffix}, {Year}</li>
         {/block:Date}
+        {/block:IfShowPostDate}
         
         {block:NoteCount} 
         <li>{NoteCountWithLabel}</li>
@@ -971,6 +1028,7 @@
         
        </ul>
       </aside>
+      {/block:IfShowPostInfo}
       
       <div class="clear"></div>
      </article>
@@ -992,10 +1050,13 @@
       
       </div>
       
+      {block:IfShowPostInfo}
       <aside>
        <ul>
        
+        {block:IfShowPostAuthor}
         <li>By <a href="{PostAuthorURL}" title="{PostAuthorTitle}"><em>{PostAuthorName}</em></a></li>
+        {/block:IfShowPostAuthor}
         
         {block:ContentSource}
        
@@ -1009,9 +1070,11 @@
         
         {/block:ContentSource}	
         
+        {block:IfShowPostDate}
         {block:Date}
         <li>{ShortMonth}. {DayOfMonth}{DayOfMonthSuffix}, {Year}</li>
         {/block:Date}
+        {/block:IfShowPostDate}
         
         {block:NoteCount} 
         <li>{NoteCountWithLabel}</li>
@@ -1020,6 +1083,7 @@
        </ul>
        
       </aside>
+      {/block:IfShowPostInfo}
       
       <div class="clear"></div>
      </article>
@@ -1056,10 +1120,13 @@
        
       </div>
       
+      {block:IfShowPostInfo}
       <aside>
        <ul>
        
+        {block:IfShowPostAuthor}
         <li>By <a href="{PostAuthorURL}" title="{PostAuthorTitle}"><em>{PostAuthorName}</em></a></li>
+        {/block:IfShowPostAuthor}
         
         {block:ContentSource}
        
@@ -1073,9 +1140,11 @@
         
         {/block:ContentSource}
         
+        {block:IfShowPostDate}
         {block:Date}
         <li>{ShortMonth}. {DayOfMonth}{DayOfMonthSuffix}, {Year}</li>
         {/block:Date}
+        {/block:IfShowPostDate}
         
         {block:PlayCount}
         <li>{PlayCountWithLabel}</li>
@@ -1096,6 +1165,7 @@
        </ul>
        
       </aside>
+      {block:IfShowPostInfo}
       
       <div class="clear"></div>
      </article>
@@ -1117,14 +1187,19 @@
       
       </div>
       
+      {block:IfShowPostInfo}
       <aside>
        <ul>
+       
+        {block:IfShowPostAuthor}
         <li>By <a href="{PostAuthorURL}" title="{PostAuthorTitle}"><em>{PostAuthorName}</em></a></li>
+        {/block:IfShowPostAuthor}
         
-        
+        {block:IfShowPostDate}
         {block:Date}
         <li>{ShortMonth}. {DayOfMonth}{DayOfMonthSuffix}, {Year}</li>
         {/block:Date}
+        {/block:IfShowPostDate}
         
         
         <li>Asked by <strong>{Asker}</strong></li>
@@ -1137,10 +1212,12 @@
        {block:Caption}
        <div class="caption">{Caption}</div>
        {/block:Caption}
+       
       </aside>
+      {block:IfShowPostInfo}
       
       <div class="clear"></div>
-       </article>
+     </article>
 
       <!--END ANSWER POSTS--> {/block:Answer}
 
