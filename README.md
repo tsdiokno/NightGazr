@@ -16,10 +16,13 @@ See the theme alive and kicking at http://nightgazr.tumblr.com _(note: actual de
 * Also scrolls vertically if it has to.
 * Has a neat parallax effect on the background.
 * Makes use of CSS3 transitions.
+* An almost-ridiculous amount of user-configurable options.
 
 ### The not-so-main stuff...
 * Adaptive/Fluid to an extent.
 * Basic wiki documentation.
+* Clean code.
+* User-customizable CSS.
 
 ## Why NightGazr!?
 It has an evening Manila skyline parallax background and a predominantly dark pallete out-of-the-box. Since it scrolls horizontally, it adds to that horizon-gazing concept making one (hopefully) feel like gazing at an evening horizon.
