@@ -61,6 +61,8 @@ SOLI DEO GLORIA
   <meta name="if:Show Post Info" content="1"/>
   <meta name="if:Show Site Footer" content="1"/>
   <meta name="if:Show Search Box" content="1"/>
+  <meta name="if:Show Blog Portrait" content="1"/>
+  <meta name="if:Custom Blog Logo" content="0"/>
   
   <meta name="if:Full Width Content on Static Pages" content="0"/>
   <meta name="text:Unique Static Page ShortURL" content=""/>
@@ -83,6 +85,14 @@ SOLI DEO GLORIA
   <meta name="color:Text" content="#ffffff"/>
   <meta name="color:Main Site Color" content="#000000"/>
   
+  <meta name="image:BG Layer 1" content="http://static.tumblr.com/7swizo5/yRTmm09yg/parallaxhouses2des.png"/>
+  
+  <meta name="image:BG Layer 2" content="http://static.tumblr.com/7swizo5/Cyjmm09zy/parallaxsky2des.jpg"/>
+  <meta name="image:Custom Blog Logo" content=""/>
+  
+  <!--
+  These scripts are up here so that they'll load first as these are pretty important features that NightGazr! just can't afford to let your browser miss in the first seconds of page load.
+  -->
   
   <script src="http://static.tumblr.com/7swizo5/fRUmlhyvk/jquery.js"></script>
   <script src="http://static.tumblr.com/7swizo5/e7fmlhzeq/jquery.stellar"></script>
@@ -95,6 +105,9 @@ SOLI DEO GLORIA
    
     $("#page-wrap").wrapInner("<table cellspacing='30'><tr>");
     $(".post").wrap("<td></td>");
+    
+    /* mousewheel.js */
+    
     $("body").mousewheel(function(event, delta) {
      this.scrollLeft -= (delta * 30);
      event.preventDefault();
@@ -116,6 +129,7 @@ SOLI DEO GLORIA
     $('footer').transify({
      opacityOrig:{text:Site Color Opacity},
      opacityNew:{text:Site Color Hover Opacity},
+     percentWidth:'100%'
      });
      
     {/block:IfShowSiteFooter}
@@ -312,6 +326,8 @@ SOLI DEO GLORIA
     text-transform: uppercase;
    }
   
+   {block:IfShowBlogPortrait}
+   
    #blog-portrait {
     height: 128px;
     width: 128px;
@@ -321,6 +337,24 @@ SOLI DEO GLORIA
     margin: 0 auto 1em auto;
     border: solid 6px;
    }
+   
+   {/block:IfShowBlogPortrait}
+   
+   {block:IfNotShowBlogPortrait}
+   {block:IfCustomBlogLogo}
+   
+   #blog-portrait {
+    height: 128px;
+    width: 128px;
+    -webkit-border-radius: 100%;
+            border-radius: 100%;
+    background-clip: padding-box;
+    margin: 0 auto 1em auto;
+    border: solid 6px;
+   }
+   
+   {/block:IfCustomBlogLogo}
+   {/block:IfNotShowBlogPortrait}
         
    #page-wrap {
     padding: 1.875em 0;
@@ -542,40 +576,30 @@ SOLI DEO GLORIA
    {/block:IfShowSiteFooter}
 
    /*PARALLAX*/
-        
-   #antenna {
-    width: 608px;
-    height: 599px;
-    background: url('http://static.tumblr.com/7swizo5/uSJmlhykd/parallaxantenna2.png') no-repeat;
-    position: fixed;
-    z-index: -1;
-    bottom: 0;
+
+   .layer-1 {
+    background: url('{image:BG Layer 1}') bottom repeat-x;
    }
         
-   #houses {
-    width: 100%;
-    height: 246px;
-    background: url('http://static.tumblr.com/7swizo5/Zdemlhyqs/parallaxhouses2.png') repeat-x;
-    float: left;
-    position: fixed;
-    z-index: -3;
-    bottom: 0;
-    display: table;
+   .layer-2 {
+    background: url('{image:BG Layer 2}') bottom repeat-x;
    }
-        
-   #sky {
+
+   .layer-1, .layer-2 { 
     width: 100%;
     height: 100%;
-    display: table;
+    display: block !important;
     float: left;
-    background: url('http://static.tumblr.com/7swizo5/e2Pmlhyt8/parallaxsky2.jpg') repeat-x;
     position: fixed;
-    z-index: -4;
+    bottom: 0;
    }
+ 
 
    /*USER CUSTOM CSS*/
    
+   
    {CustomCSS}
+   
         
    </style>
         
@@ -593,9 +617,9 @@ SOLI DEO GLORIA
 
   <!--begin Stellar.js (parallax) elements-->
   
-  <div id="sky" data-stellar-background-ratio="0.9"></div>
-  <div id="houses" data-stellar-background-ratio="0.8"></div>
-  <div id="antenna" data-stellar-ratio="0.08"></div>
+  <div class="layer-1" data-stellar-background-ratio="0.8"></div> 
+  <div class="layer-2" data-stellar-background-ratio="0.9"></div>
+  
   
   <!--end Stellar.js (parallax) elements-->
  
@@ -605,7 +629,7 @@ SOLI DEO GLORIA
   
    <h1><a href="/" title="Home">{Title}</a></h1>
    
-    <nav id="main">    			
+    <nav id="main">            	
             
      <ul>
       {block:HasPages}
@@ -667,10 +691,20 @@ SOLI DEO GLORIA
    <section id="page-wrap"> 
 
    <article id="intro">
-     
+    
+    {block:IfShowBlogPortrait}
     <a href="/" title="Home">
      <div id="blog-portrait" style="background-image: url({PortraitURL-128});"></div>
     </a>
+    {/block:IfShowBlogPortrait}
+    
+    {block:IfNotShowBlogPortrait}
+    {block:IfCustomBlogLogo}
+    <a href="/" title="Home">
+     <div id="blog-portrait" style="background-image: url({image:Custom Blog Logo});"></div>
+    </a>
+    {block:IfCustomBlogLogo}
+    {/block:IfNotShowBlogPortrait}
       
     {block:Description}
      <p>{Description}</p>
