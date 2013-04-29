@@ -21,6 +21,7 @@ See the theme alive and kicking at http://nightgazr.tumblr.com _(note: actual de
 * Basic [wiki documentation](http://github.com/tsdiokno/NightGazr/wiki).
 * Clean code.
 * User-customizable CSS.
+* Charityware.
 
 ## Why "NightGazr!"?
 
