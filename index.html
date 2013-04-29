@@ -76,6 +76,8 @@ SOLI DEO GLORIA
   <meta name="text:Custom Footer Text" content=""/>
   <meta name="text:Site Color Opacity" content=".3"/>
   <meta name="text:Site Color Hover Opacity" content=".7"/>
+  <meta name="text:BG Layer 1 Order" content="0"/>
+  <meta name="text:BG Layer 2 Order" content="0"/>
   
   <meta name="font:Global" content="Arial, sans-serif"/>
   <meta name="font:Header" content="Arial, sans-serif"/>
@@ -140,7 +142,7 @@ SOLI DEO GLORIA
      percentWidth:'100%'
      });
      
-    $('#page-wrap tr td').transify({
+    $('.post').transify({
      opacityOrig:{text:Site Color Opacity},
      opacityNew:{text:Site Color Hover Opacity}
      });
@@ -219,6 +221,13 @@ SOLI DEO GLORIA
     top: 0 !important;
     {block:IfShowSearchBox} right: 13% !important; {/block:IfShowSearchBox}
     position: fixed !important;
+   }
+   
+   /*Transify backgrounds shall never fall short.*/
+   
+   .transify {
+    height: 100% !important;
+    width: 100% !important;
    }
   
    #page-wrap tr td, #pagination a {
@@ -362,12 +371,19 @@ SOLI DEO GLORIA
         
    #page-wrap tr td {
     vertical-align: top;
-    padding: 1.8em;
-    background: {color:Main Site Color}; 
    }
         
    .post {
-    width: 37.500em;
+    width: 41em;
+    padding: 1.8em;
+    background: {color:Main Site Color}; 
+    zoom: 1;
+   }
+   
+   .post:after {
+    content: '';
+    display: block;
+    clear: both;
    }
         
    .post .content {
@@ -468,9 +484,28 @@ SOLI DEO GLORIA
   
    /*TEXT*/
    
-   .text content ul, aside .caption ul, 
-   .text content ol, aside .caption ol{
+   .text .content ul, aside .caption ul, 
+   .text .content ol, aside .caption ol{
     margin-right: 1.5em;
+   }
+   
+   .text .content img {
+    width: 100%;
+   }
+   
+   /*PHOTO*/
+   
+   .photo .content img {
+    width: 100%;
+   }
+   
+   /*LINK*/
+   
+   .link-box {
+    text-decoration: none;
+    border: solid 3px;
+    padding: 1.2em;
+    display: block;
    }
   
   
@@ -573,16 +608,32 @@ SOLI DEO GLORIA
     float: right;
    }
    
+   #sdg {
+    padding: .6em;
+    border: 2px solid;
+    display: inline-block;
+   }
+   
    {/block:IfShowSiteFooter}
 
    /*PARALLAX*/
+   
+   /*
+   
+   Z-indices vary from site to site. The default z-index for the official Tumblr development site/live preview is zero.
+   
+   Play with the z-indeces until everything is at their respective stack order.
+   
+   */
 
    .layer-1 {
     background: url('{image:BG Layer 1}') bottom repeat-x;
+    z-index: {text:BG Layer 1 Order};
    }
         
    .layer-2 {
     background: url('{image:BG Layer 2}') bottom repeat-x;
+    z-index: {text:BG Layer 2 Order};
    }
 
    .layer-1, .layer-2 { 
@@ -998,12 +1049,12 @@ SOLI DEO GLORIA
       
      <article class="post link">
      <div class="content">
-     
-      <h2><a href="{URL}" title="{URL}">{Name}</a></h2>
       
-      {block:Source}{Source}{/block:Source}
-      
-      &rarr; {URL}
+      <a class="link-box" href="{URL}" title="{URL}">
+       <h2>{Name}</h2>
+       {block:Source}{Source}{/block:Source}
+       &rarr; {URL}
+      </a>
       
       <div class="body">
       {block:Description} 
@@ -1346,11 +1397,11 @@ SOLI DEO GLORIA
     <p>{text:Custom Footer Text}</p>
      
     {block:IfShowThemeCredits}
-     <p>Theme handcrafted in Quezon City, Philippines by <a href="htti://timmystream.tumblr.com/">Timothy Diokno.</a></p>
+     <p>Theme handcrafted in <strong>Quezon City, Philippines</strong> by <a href="htti://timmystream.tumblr.com/"><strong>Timothy Diokno</strong></a>.</p>
     {/block:IfShowThemeCredits}
      
     {block:IfSoliDeoGloria}
-     <p><strong>Soli Deo Gloria</strong></p>
+     <p id="sdg"><strong>Soli Deo Gloria</strong></p>
     {/block:IfSoliDeoGloria}
      
    </footer>
