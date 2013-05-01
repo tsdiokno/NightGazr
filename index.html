@@ -63,6 +63,7 @@ SOLI DEO GLORIA
   <meta name="if:Show Search Box" content="1"/>
   <meta name="if:Show Blog Portrait" content="1"/>
   <meta name="if:Custom Blog Logo" content="0"/>
+  <meta name="if:Social Media Sharing" content="0"/>
   
   <meta name="if:Full Width Content on Static Pages" content="0"/>
   <meta name="text:Unique Static Page ShortURL" content=""/>
@@ -80,7 +81,7 @@ SOLI DEO GLORIA
   <meta name="text:BG Layer 2 Order" content="-1"/>
   
   <meta name="font:Global" content="Arial, sans-serif"/>
-  <meta name="font:Header" content="Arial, sans-serif"/>
+  <meta name="font:Header" content="Impact, sans-serif"/>
   
   <meta name="color:Links" content="#ffffff"/>
   <meta name="color:Hover" content="#ffffff"/>
@@ -314,8 +315,8 @@ SOLI DEO GLORIA
    }
         
    nav#main ul li a:hover {
-    background-color: rgba(255,255,255,0.8);
-    color: #000000;
+    background-color: {color:Text};
+    color: {color:Main Site Color};
     top: -1em;
    }
         
@@ -439,6 +440,24 @@ SOLI DEO GLORIA
     margin-bottom: 10px;
     border-bottom: dotted #ffffff 1px;
    }
+   
+   /*TAGS*/
+   
+   .tags a {
+    line-height: 2.4em;
+    font-size: .8em;
+    background-color: {color:Text};
+    color: {color:Main Site Color};
+    padding: .3em;
+    text-transform: uppercase;
+    text-decoration: none;
+    opacity: .8;
+    white-space: nowrap;
+   }
+   
+   .tags a:hover {
+    opacity: 1.0;
+   }
   
    /*AUDIO*/
    
@@ -507,6 +526,7 @@ SOLI DEO GLORIA
    .link-box {
     text-decoration: none;
     border: solid 3px;
+    word-wrap: break-word;
     padding: 1.2em;
     display: block;
    }
@@ -807,15 +827,34 @@ SOLI DEO GLORIA
        
        {block:IfShowPostDate}
        {block:Date}
-       <li>{ShortMonth}. {DayOfMonth}{DayOfMonthSuffix}, {Year}</li>
+       <li><a href="{Permalink}" title="Permalink To This Post"><a href="{Permalink}" title="Permalink To This Post">{ShortMonth}. {DayOfMonth}{DayOfMonthSuffix}, {Year}</a></a></li>
        {/block:Date}
        {/block:IfShowPostDate}
        
        {block:NoteCount} 
        <li>{NoteCountWithLabel}</li>
        {/block:NoteCount}
+
+       {block:HasTags}
+       <li class="tags">
+        {block:Tags}<a href="{TagURL}" title="{Tag}">{Tag}</a>  {/block:Tags}
+       </li>
+       {/block:HasTags}
        
       </ul>
+      
+      {block:IfSocialMediaSharing}
+      <!-- AddThis Button BEGIN -->
+      <div class="addthis_toolbox addthis_default_style addthis_16x16_style">
+      <a class="addthis_button_facebook"></a>
+      <a class="addthis_button_twitter"></a>
+      <a class="addthis_button_google_plusone_share"></a>
+      <a class="addthis_button_compact"></a><a class="addthis_counter addthis_bubble_style"></a>
+      </div>
+      <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=xa-518120b653e962bd"></script>
+      <!-- AddThis Button END -->
+      {/block:IfSocialMediaSharing}
+      
      </aside> 
     </div>
     {/block:IfShowPostInfo}
@@ -865,15 +904,33 @@ SOLI DEO GLORIA
       
        {block:IfShowPostDate}
        {block:Date}
-       <li>{ShortMonth}. {DayOfMonth}{DayOfMonthSuffix}, {Year}</li>
+       <li><a href="{Permalink}" title="Permalink To This Post">{ShortMonth}. {DayOfMonth}{DayOfMonthSuffix}, {Year}</a></li>
        {/block:Date}
        {/block:IfShowPostDate}
 
       {block:NoteCount} 
       <li>{NoteCountWithLabel}</li>
       {/block:NoteCount}
+      
+      {block:HasTags}
+      <li class="tags">
+       {block:Tags}<a href="{TagURL}" title="{Tag}">{Tag}</a>  {/block:Tags}
+      </li>
+      {/block:HasTags}
 
      </ul>
+     
+     {block:IfSocialMediaSharing}
+     <!-- AddThis Button BEGIN -->
+     <div class="addthis_toolbox addthis_default_style addthis_16x16_style">
+     <a class="addthis_button_facebook"></a>
+     <a class="addthis_button_twitter"></a>
+     <a class="addthis_button_google_plusone_share"></a>
+     <a class="addthis_button_compact"></a><a class="addthis_counter addthis_bubble_style"></a>
+     </div>
+     <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=xa-518120b653e962bd"></script>
+     <!-- AddThis Button END -->
+     {/block:IfSocialMediaSharing}
 
     </aside>
     {/block:IfShowPostInfo}
@@ -923,7 +980,7 @@ SOLI DEO GLORIA
        
        {block:IfShowPostDate}
        {block:Date}
-       <li>{ShortMonth}. {DayOfMonth}{DayOfMonthSuffix}, {Year}</li>
+       <li><a href="{Permalink}" title="Permalink To This Post">{ShortMonth}. {DayOfMonth}{DayOfMonthSuffix}, {Year}</a></li>
        {/block:Date}
        {/block:IfShowPostDate}
        
@@ -931,7 +988,25 @@ SOLI DEO GLORIA
        <li>{NoteCountWithLabel}</li>
        {/block:NoteCount}
        
+       {block:HasTags}
+       <li class="tags">
+        {block:Tags}<a href="{TagURL}" title="{Tag}">{Tag}</a>  {/block:Tags}
+       </li>
+       {/block:HasTags}
+       
       </ul>
+      
+     {block:IfSocialMediaSharing}
+     <!-- AddThis Button BEGIN -->
+     <div class="addthis_toolbox addthis_default_style addthis_16x16_style">
+     <a class="addthis_button_facebook"></a>
+     <a class="addthis_button_twitter"></a>
+     <a class="addthis_button_google_plusone_share"></a>
+     <a class="addthis_button_compact"></a><a class="addthis_counter addthis_bubble_style"></a>
+     </div>
+     <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=xa-518120b653e962bd"></script>
+     <!-- AddThis Button END -->
+     {/block:IfSocialMediaSharing}
       
      </aside>
      {/block:IfShowPostInfo}
@@ -978,7 +1053,7 @@ SOLI DEO GLORIA
        
        {block:IfShowPostDate}
        {block:Date}
-       <li>{ShortMonth}. {DayOfMonth}{DayOfMonthSuffix}, {Year}</li>
+       <li><a href="{Permalink}" title="Permalink To This Post">{ShortMonth}. {DayOfMonth}{DayOfMonthSuffix}, {Year}</a></li>
        {/block:Date}
        {/block:IfShowPostDate}
        
@@ -986,7 +1061,25 @@ SOLI DEO GLORIA
        <li>{NoteCountWithLabel}</li>
        {/block:NoteCount}
        
+       {block:HasTags}
+       <li class="tags">
+        {block:Tags}<a href="{TagURL}" title="{Tag}">{Tag}</a>  {/block:Tags}
+       </li>
+       {/block:HasTags}
+       
       </ul>
+      
+     {block:IfSocialMediaSharing}
+     <!-- AddThis Button BEGIN -->
+     <div class="addthis_toolbox addthis_default_style addthis_16x16_style">
+     <a class="addthis_button_facebook"></a>
+     <a class="addthis_button_twitter"></a>
+     <a class="addthis_button_google_plusone_share"></a>
+     <a class="addthis_button_compact"></a><a class="addthis_counter addthis_bubble_style"></a>
+     </div>
+     <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=xa-518120b653e962bd"></script>
+     <!-- AddThis Button END -->
+     {/block:IfSocialMediaSharing}
       
      </aside>
      {/block:IfShowPostInfo}
@@ -1030,7 +1123,7 @@ SOLI DEO GLORIA
        
        {block:IfShowPostDate}
        {block:Date}
-       <li>{ShortMonth}. {DayOfMonth}{DayOfMonthSuffix}, {Year}</li>
+       <li><a href="{Permalink}" title="Permalink To This Post">{ShortMonth}. {DayOfMonth}{DayOfMonthSuffix}, {Year}</a></li>
        {/block:Date}
        {/block:IfShowPostDate}
        
@@ -1038,7 +1131,26 @@ SOLI DEO GLORIA
        <li>{NoteCountWithLabel}</li>
        {/block:NoteCount}
        
+       {block:HasTags}
+       <li class="tags">
+        {block:Tags}<a href="{TagURL}" title="{Tag}">{Tag}</a>  {/block:Tags}
+       </li>
+       {/block:HasTags}
+       
       </ul>
+      
+     {block:IfSocialMediaSharing}
+     <!-- AddThis Button BEGIN -->
+     <div class="addthis_toolbox addthis_default_style addthis_16x16_style">
+     <a class="addthis_button_facebook"></a>
+     <a class="addthis_button_twitter"></a>
+     <a class="addthis_button_google_plusone_share"></a>
+     <a class="addthis_button_compact"></a><a class="addthis_counter addthis_bubble_style"></a>
+     </div>
+     <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=xa-518120b653e962bd"></script>
+     <!-- AddThis Button END -->
+     {/block:IfSocialMediaSharing}
+      
      </aside>
      {/block:IfShowPostInfo}
      
@@ -1089,7 +1201,7 @@ SOLI DEO GLORIA
        
        {block:IfShowPostDate}
        {block:Date}
-       <li>{ShortMonth}. {DayOfMonth}{DayOfMonthSuffix}, {Year}</li>
+       <li><a href="{Permalink}" title="Permalink To This Post">{ShortMonth}. {DayOfMonth}{DayOfMonthSuffix}, {Year}</a></li>
        {/block:Date}
        {/block:IfShowPostDate}
        
@@ -1097,7 +1209,25 @@ SOLI DEO GLORIA
        <li>{NoteCountWithLabel}</li>
        {/block:NoteCount}
        
+       {block:HasTags}
+       <li class="tags">
+        {block:Tags}<a href="{TagURL}" title="{Tag}">{Tag}</a>  {/block:Tags}
+       </li>
+       {/block:HasTags}
+       
       </ul>
+      
+     {block:IfSocialMediaSharing}
+     <!-- AddThis Button BEGIN -->
+     <div class="addthis_toolbox addthis_default_style addthis_16x16_style">
+     <a class="addthis_button_facebook"></a>
+     <a class="addthis_button_twitter"></a>
+     <a class="addthis_button_google_plusone_share"></a>
+     <a class="addthis_button_compact"></a><a class="addthis_counter addthis_bubble_style"></a>
+     </div>
+     <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=xa-518120b653e962bd"></script>
+     <!-- AddThis Button END -->
+     {/block:IfSocialMediaSharing}
       
      </aside>
      {/block:IfShowPostInfo}
@@ -1149,7 +1279,7 @@ SOLI DEO GLORIA
         
         {block:IfShowPostDate}
         {block:Date}
-        <li>{ShortMonth}. {DayOfMonth}{DayOfMonthSuffix}, {Year}</li>
+        <li><a href="{Permalink}" title="Permalink To This Post">{ShortMonth}. {DayOfMonth}{DayOfMonthSuffix}, {Year}</a></li>
         {/block:Date}
         {/block:IfShowPostDate}
         
@@ -1157,7 +1287,26 @@ SOLI DEO GLORIA
         <li>{NoteCountWithLabel}</li>
         {/block:NoteCount}
         
+        {block:HasTags}
+        <li class="tags">
+         {block:Tags}<a href="{TagURL}" title="{Tag}">{Tag}</a>  {/block:Tags}
+        </li>
+        {/block:HasTags}
+        
        </ul>
+       
+      {block:IfSocialMediaSharing}
+      <!-- AddThis Button BEGIN -->
+      <div class="addthis_toolbox addthis_default_style addthis_16x16_style">
+      <a class="addthis_button_facebook"></a>
+      <a class="addthis_button_twitter"></a>
+      <a class="addthis_button_google_plusone_share"></a>
+      <a class="addthis_button_compact"></a><a class="addthis_counter addthis_bubble_style"></a>
+      </div>
+      <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=xa-518120b653e962bd"></script>
+      <!-- AddThis Button END -->
+      {/block:IfSocialMediaSharing}
+       
       </aside>
       {/block:IfShowPostInfo}
       
@@ -1203,7 +1352,7 @@ SOLI DEO GLORIA
         
         {block:IfShowPostDate}
         {block:Date}
-        <li>{ShortMonth}. {DayOfMonth}{DayOfMonthSuffix}, {Year}</li>
+        <li><a href="{Permalink}" title="Permalink To This Post">{ShortMonth}. {DayOfMonth}{DayOfMonthSuffix}, {Year}</a></li>
         {/block:Date}
         {/block:IfShowPostDate}
         
@@ -1211,7 +1360,25 @@ SOLI DEO GLORIA
         <li>{NoteCountWithLabel}</li>
         {/block:NoteCount}
         
+        {block:HasTags}
+        <li class="tags">
+         {block:Tags}<a href="{TagURL}" title="{Tag}">{Tag}</a>  {/block:Tags}
+        </li>
+        {/block:HasTags}
+        
        </ul>
+       
+       {block:IfSocialMediaSharing}
+       <!-- AddThis Button BEGIN -->
+       <div class="addthis_toolbox addthis_default_style addthis_16x16_style">
+       <a class="addthis_button_facebook"></a>
+       <a class="addthis_button_twitter"></a>
+       <a class="addthis_button_google_plusone_share"></a>
+       <a class="addthis_button_compact"></a><a class="addthis_counter addthis_bubble_style"></a>
+       </div>
+       <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=xa-518120b653e962bd"></script>
+       <!-- AddThis Button END -->
+       {/block:IfSocialMediaSharing}
        
       </aside>
       {/block:IfShowPostInfo}
@@ -1273,7 +1440,7 @@ SOLI DEO GLORIA
         
         {block:IfShowPostDate}
         {block:Date}
-        <li>{ShortMonth}. {DayOfMonth}{DayOfMonthSuffix}, {Year}</li>
+        <li><a href="{Permalink}" title="Permalink To This Post">{ShortMonth}. {DayOfMonth}{DayOfMonthSuffix}, {Year}</a></li>
         {/block:Date}
         {/block:IfShowPostDate}
         
@@ -1293,7 +1460,25 @@ SOLI DEO GLORIA
         <li>{NoteCountWithLabel}</li>
         {/block:NoteCount}
         
+        {block:HasTags}
+        <li class="tags">
+         {block:Tags}<a href="{TagURL}" title="{Tag}">{Tag}</a>  {/block:Tags}
+        </li>
+        {/block:HasTags}
+        
        </ul>
+       
+       {block:IfSocialMediaSharing}
+       <!-- AddThis Button BEGIN -->
+       <div class="addthis_toolbox addthis_default_style addthis_16x16_style">
+       <a class="addthis_button_facebook"></a>
+       <a class="addthis_button_twitter"></a>
+       <a class="addthis_button_google_plusone_share"></a>
+       <a class="addthis_button_compact"></a><a class="addthis_counter addthis_bubble_style"></a>
+       </div>
+       <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=xa-518120b653e962bd"></script>
+       <!-- AddThis Button END -->
+       {/block:IfSocialMediaSharing}
        
       </aside>
       {block:IfShowPostInfo}
@@ -1328,7 +1513,7 @@ SOLI DEO GLORIA
         
         {block:IfShowPostDate}
         {block:Date}
-        <li>{ShortMonth}. {DayOfMonth}{DayOfMonthSuffix}, {Year}</li>
+        <li><a href="{Permalink}" title="Permalink To This Post">{ShortMonth}. {DayOfMonth}{DayOfMonthSuffix}, {Year}</a></li>
         {/block:Date}
         {/block:IfShowPostDate}
         
@@ -1339,10 +1524,25 @@ SOLI DEO GLORIA
         <li>{NoteCountWithLabel}</li>
         {/block:NoteCount}
         
+        {block:HasTags}
+        <li class="tags">
+         {block:Tags}<a href="{TagURL}" title="{Tag}">{Tag}</a>  {/block:Tags}
+        </li>
+        {/block:HasTags}
+        
        </ul>
-       {block:Caption}
-       <div class="caption">{Caption}</div>
-       {/block:Caption}
+       
+       {block:IfSocialMediaSharing}
+       <!-- AddThis Button BEGIN -->
+       <div class="addthis_toolbox addthis_default_style addthis_16x16_style">
+       <a class="addthis_button_facebook"></a>
+       <a class="addthis_button_twitter"></a>
+       <a class="addthis_button_google_plusone_share"></a>
+       <a class="addthis_button_compact"></a><a class="addthis_counter addthis_bubble_style"></a>
+       </div>
+       <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=xa-518120b653e962bd"></script>
+       <!-- AddThis Button END -->
+       {/block:IfSocialMediaSharing}
        
       </aside>
       {block:IfShowPostInfo}
