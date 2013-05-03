@@ -64,14 +64,13 @@ SOLI DEO GLORIA
   <meta name="if:Show Blog Portrait" content="1"/>
   <meta name="if:Custom Blog Logo" content="0"/>
   <meta name="if:Social Media Sharing" content="0"/>
+  <meta name="if:Bold Headings" content="1"/>
+  <meta name="if:Fixed Footer" content="1"/>
   
   <meta name="if:Full Width Content on Static Pages" content="0"/>
   <meta name="text:Unique Static Page ShortURL" content=""/>
   
-  <meta name="if:Enable Custom Ask Label" content="0"/>
   <meta name="text:Custom Ask Label" content=""/>
-  
-  <meta name="if:Enable Custom Submit Label" content="0"/>
   <meta name="text:Custom Submit Label" content=""/>
   
   <meta name="text:Custom Footer Text" content=""/>
@@ -79,6 +78,15 @@ SOLI DEO GLORIA
   <meta name="text:Site Color Hover Opacity" content=".7"/>
   <meta name="text:BG Layer 1 Order" content="0"/>
   <meta name="text:BG Layer 2 Order" content="-1"/>
+  <meta name="text:Description Font Size" content="1"/>
+  <meta name="text:Headings Font Size" content="2"/>
+  
+  <meta name="text:Twitter URL" content=""/>
+  <meta name="text:Facebook URL" content=""/>
+  <meta name="text:Google Plus URL" content=""/>
+  <meta name="text:LinkedIn URL" content=""/>
+  <meta name="text:Pinterest URL" content=""/>
+  <meta name="text:GitHub URL" content=""/>
   
   <meta name="font:Global" content="Arial, sans-serif"/>
   <meta name="font:Header" content="Impact, sans-serif"/>
@@ -120,10 +128,12 @@ SOLI DEO GLORIA
     $.stellar({ /* stellar.js */
      verticalScrolling: false
      }); 
-    
+     
+    {block:IfFixedFooter} 
     $("footer").click(function () {
      $(this).toggleClass("show");
      });
+    {/block:IfFixedFooter}
     
     /* transify.js */
     
@@ -161,6 +171,8 @@ SOLI DEO GLORIA
    <!--[if lt IE 9]>
    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
    <![endif]-->
+   
+   <link href="//netdna.bootstrapcdn.com/font-awesome/3.0.2/css/font-awesome.css" rel="stylesheet">
         
    <style type='text/css'>
         
@@ -172,6 +184,10 @@ SOLI DEO GLORIA
    -webkit-box-sizing: border-box;
       -moz-box-sizing: border-box;
            box-sizing: border-box;
+      -moz-transition: opacity 0.5s;
+   -webkit-transition: opacity 0.5s;
+        -o-transition: opacity 0.5s;
+           transition: opacity 0.5s;
    }
   
    /* HTML5 display-role reset for older browsers */
@@ -199,18 +215,13 @@ SOLI DEO GLORIA
         
    a {
     color: {color:Links};
-    text-style: underline;
+    text-decoration: underline;
    }
   
    a:hover {
     color: {color:Hover};
    }
-        
-   em {
-    font-style: normal;
-    font-weight: bold;
-   }
-        
+          
    .clear {
     clear: both;
    }
@@ -233,6 +244,19 @@ SOLI DEO GLORIA
   
    #page-wrap tr td, #pagination a {
     z-index: 0 !important; /* Transify.js places a z-index value of 10 for some reason. It would block the header bar. This fixes that. */
+   }
+   
+   /*GRAY THOSE ADDTHIS ICONS*/
+   
+   .addthis_toolbox {
+    filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale"); /* Firefox 10+, Firefox on Android */
+     filter: gray; /* IE6-9 */
+     -webkit-filter: grayscale(100%); /* Chrome 19+, Safari 6+, Safari 6+ iOS */
+   }
+   
+   .addthis_toolbox:hover {
+    filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'1 0 0 0 0, 0 1 0 0 0, 0 0 1 0 0, 0 0 0 1 0\'/></filter></svg>#grayscale");
+    -webkit-filter: grayscale(0%);
    }
    
   
@@ -278,10 +302,6 @@ SOLI DEO GLORIA
     position: fixed;
     right: .8%;
     width: 11%;
-       -moz-transition: all 0.5s;
-    -webkit-transition: all 0.5s;
-         -o-transition: all 0.5s;
-            transition: all 0.5s;
    }
    
    {/block:IfShowSearchBox}
@@ -324,16 +344,41 @@ SOLI DEO GLORIA
    /*CONTENT SECTION*/
         
    #intro {
-    width: 10em;
+    width: 12em;
     text-align: center;
     padding-right: 2.375em;
     margin-top: 2em;
-    font-size: 1.5em;
+    font-size: {text:Description Font Size}em;
     line-height: 1em;
     font-family: {font:Global};
     font-weight: bold;
     position: relative;
     text-transform: uppercase;
+   }
+   
+   .social-buttons ul {
+    list-style: none;
+    margin: 0;
+    font-size: 1.2em;
+   }
+   
+   .social-buttons ul li {
+    display: inline;
+    margin: 0 -0.2em;
+   }
+   
+   .social-buttons ul li a {
+    color: {color:Text} !important;
+    opacity: .8;
+   }
+   
+   .social-buttons ul li a span {
+    display: none;
+   }
+   
+   .social-buttons ul li a:hover {
+   color: {color:Text} !important;
+    opacity: 1.0;
    }
   
    {block:IfShowBlogPortrait}
@@ -405,13 +450,20 @@ SOLI DEO GLORIA
    .post .content p {
     line-height: 1.3em;
    }
+   
+   .post .content .body blockquote {
+    border-left: solid 3px;
+    padding-left: 1em;
+   }
         
    .post h2 {
-    font-size: 180%;
-    font-weight: 400;
-    font-family: {font:Header};
     text-transform: uppercase;
     margin-bottom: 10px;
+    font-size: {text:Headings Font Size}em;
+    font-family: {font:Header};
+    {block:IfBoldHeadings}
+    font-weight: bold !important;
+    {/block:IfBoldHeadings}
    }
   
   
@@ -419,15 +471,45 @@ SOLI DEO GLORIA
     text-decoration: none;
    }
   
-  
    .post .content .body {
     margin-top: 1em;
+   }
+   
+   .post .content .body img {
+    width: 100%;
    }
         
    .post aside {
     width: 170px;
     float: right;
-    font-size: .8em;
+    font-size: .7em;
+    opacity: 0.4;
+   }
+   
+   .post aside:hover {
+    opacity: 1.0;
+   }
+   
+   a.post-author {
+    height: 100px;
+    vertical-align: middle;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: block;
+    font-size: 1em;
+    background-size: 100%;
+    position: relative;
+    text-transform: uppercase;
+   }
+   
+   a.post-author span {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    display: block;
+    padding: .4em;
+    background-color: {color:Main Site Color};
+    opacity: .7;
    }
         
    .post aside ul {
@@ -511,10 +593,6 @@ SOLI DEO GLORIA
     margin-right: 1.5em;
    }
    
-   .text .content img {
-    width: 100%;
-   }
-   
    /*PHOTO*/
    
    .photo .content img {
@@ -578,11 +656,19 @@ SOLI DEO GLORIA
   
    footer {
     text-transform: uppercase;
+    {block:IfFixedFooter}
     position: fixed !important; /* ... becase transify.js messes with positions if it isn't "important" */
+    {/block:IfFixedFooter}
+    {block:IfNotFixedFooter}
+    position: absolute;
+    {/block:IfNotFixedFooter}
+    overflow: hidden;
     background-color: {color:Main Site Color};
     width: 100%;
     bottom: 0;
+    {block:IfFixedFooter}
     height: 3em;
+    {/block:IfFixedFooter}
     font-size: 60%;
     padding: 0.625em 0.625em;
        -moz-transition: all 0.5s;
@@ -594,10 +680,12 @@ SOLI DEO GLORIA
    footer .transify {
     height: 100% !important;
    }
-        
+
+   {block:IfFixedFooter}
    footer.show {
     height: 45% !important;
    }
+   {/block:IfFixedFooter}
    
    footer.show .transify {
     height: 100% !important;
@@ -703,7 +791,7 @@ SOLI DEO GLORIA
   
    <h1><a href="/" title="Home">{Title}</a></h1>
    
-    <nav id="main">            	
+    <nav id="main">                
             
      <ul>
       {block:HasPages}
@@ -716,13 +804,13 @@ SOLI DEO GLORIA
        <li>
         <a href="/ask" title="{AskLabel}">
         
-        {block:IfEnableCustomAskLabel}
+        {block:IfCustomAskLabel}
          {text:Custom Ask Label}
-        {/block:IfEnableCustomAskLabel}
+        {/block:IfCustomAskLabel}
         
-        {block:IfNotEnableCustomAskLabel}
+        {block:IfNotCustomAskLabel}
          {AskLabel}
-        {/block:IfNotEnableCustomAskLabel}
+        {/block:IfNotCustomAskLabel}
         
         </a>
        </li>
@@ -732,13 +820,13 @@ SOLI DEO GLORIA
        <li>
         <a href="/submit" title="{SubmitLabel}">
         
-         {block:IfEnableCustomSubmitLabel}
-         {text:Custom Submit Label}
-         {/block:IfEnableCustomSubmitLabel}
+         {block:IfCustomSubmitLabel}
+          {text:Custom Submit Label}
+         {/block:IfCustomSubmitLabel}
           
-         {block:IfNotEnableCustomSubmitLabel}
+         {block:IfNotCustomSubmitLabel}
           {SubmitLabel}
-         {block:IfNotEnableCustomSubmitLabel}
+         {block:IfNotCustomSubmitLabel}
         
         </a>
        </li>
@@ -786,13 +874,43 @@ SOLI DEO GLORIA
      
     <div class="clear"></div>
     
+    <div class="social-buttons">
+     <ul>
+     
+      {block:IfTwitterURL}
+      <li><a href="{text:Twitter URL}" title="Twitter" class="icon-twitter"><span>Twitter</span></a></li>
+      {/block:IfTwitterURL}
+      
+      {block:IfFacebookURL}
+      <li><a href="{text:Facebook URL}" title="Facebook" class="icon-facebook-sign"><span>Facebook</span></a></li>
+      {/block:IfFacebookURL}
+      
+      {block:IfGooglePlusURL}
+      <li><a href="{text:Google Plus URL}" title="Google Plus" class="icon-google-plus-sign"><span>Google Plus</span></a></li>
+      {/block:IfGooglePlusURL}
+      
+      {block:IfLinkedInURL}
+      <li><a href="{text:LinkedIn URL}" title="LinkedIn" class="icon-linkedin-sign"><span>LinkedIn</span></a></li>
+      {/block:IfLinkedInURL}
+      
+      {block:IfPinterestURL}
+      <li><a href="{text:Pinterest URL}" title="Pinterest" class="icon-pinterest"><span>Pinterest</span></a></li>
+      {/block:IfPinterestURL}
+      
+      {block:IfGitHubURL}
+      <li><a href="{text:GitHub URL}" title="GitHub" class="icon-github"><span>GitHub</span></a></li>
+      {/block:IfGitHubURL}
+      
+     </ul>
+    </div>
+    
    </article>
 
    {block:Posts}
 
    {block:Text} <!--BEGIN TEXT POSTS-->
 
-   <article class="post text">
+   <article class="post text {TagsAsClasses}">
     <div class="{ShortURL}">
      <div class="content">
       {block:Title}
@@ -810,7 +928,7 @@ SOLI DEO GLORIA
       <ul>
 
        {block:IfShowPostAuthor}
-       <li>By <a href="{PostAuthorURL}" title="{PostAuthorTitle}"><em>{PostAuthorName}</em></a></li>
+       <li><a href="{PostAuthorURL}" title="{PostAuthorTitle}" class="post-author" style="background-image: url({PostAuthorPortraitURL-128});"><span> A <strong>{PostType}</strong> by <strong>{PostAuthorName}</strong></span></a></li>
        {/block:IfShowPostAuthor}
 
        {block:ContentSource}
@@ -867,7 +985,7 @@ SOLI DEO GLORIA
    
    {block:Photo} <!--BEGIN PHOTO POSTS-->
       
-   <article class="post photo">
+   <article class="post photo {TagsAsClasses}">
     <div class="content">
      
      <a href ="{LinkURL}" title="{PhotoAlt}">
@@ -887,7 +1005,7 @@ SOLI DEO GLORIA
      <ul>
       
       {block:IfShowPostAuthor}
-      <li>By <a href="{PostAuthorURL}" title="{PostAuthorTitle}"><em>{PostAuthorName}</em></a></li>
+      <li><a href="{PostAuthorURL}" title="{PostAuthorTitle}" class="post-author" style="background-image: url({PostAuthorPortraitURL-128});"><span> A <strong>{PostType}</strong> by <strong>{PostAuthorName}</strong></span></a></li>
       {/block:IfShowPostAuthor}
       
       {block:ContentSource}
@@ -943,7 +1061,7 @@ SOLI DEO GLORIA
 
    {block:Panorama} <!--BEGIN PANORAMA POSTS-->
 
-   <article class="post panorama">
+   <article class="post panorama {TagsAsClasses}">
     <div class="content">
 
     {LinkOpenTag}
@@ -963,7 +1081,7 @@ SOLI DEO GLORIA
      <ul>
 
        {block:IfShowPostAuthor}
-       <li>By <a href="{PostAuthorURL}" title="{PostAuthorTitle}"><em>{PostAuthorName}</em></a></li>
+       <li><a href="{PostAuthorURL}" title="{PostAuthorTitle}" class="post-author" style="background-image: url({PostAuthorPortraitURL-128});"><span> A <strong>{PostType}</strong> by <strong>{PostAuthorName}</strong></span></a></li>
        {/block:IfShowPostAuthor}
 
        {block:ContentSource}
@@ -1018,7 +1136,7 @@ SOLI DEO GLORIA
       
      {block:Photoset}<!--BEGIN PHOTOSET POSTS-->
       
-     <article class="post photoset">
+     <article class="post photoset {TagsAsClasses}">
      <div class="content">
      
       {Photoset-400}
@@ -1036,7 +1154,7 @@ SOLI DEO GLORIA
       <ul>
       
        {block:IfShowPostAuthor}
-       <li>By <a href="{PostAuthorURL}" title="{PostAuthorTitle}"><em>{PostAuthorName}</em></a></li>
+       <li><a href="{PostAuthorURL}" title="{PostAuthorTitle}" class="post-author" style="background-image: url({PostAuthorPortraitURL-128});"><span> A <strong>{PostType}</strong> by <strong>{PostAuthorName}</strong></span></a></li>
        {/block:IfShowPostAuthor}
        
        {block:ContentSource}
@@ -1091,7 +1209,7 @@ SOLI DEO GLORIA
       
      {block:Quote}<!--BEGIN QUOTE POSTS-->
       
-     <article class="post quote">
+     <article class="post quote {TagsAsClasses}">
      <div class="content">
      
       <blockquote class="{Length}">{Quote}</blockquote>
@@ -1106,7 +1224,7 @@ SOLI DEO GLORIA
       <ul>
       
        {block:IfShowPostAuthor}
-       <li>By <a href="{PostAuthorURL}" title="{PostAuthorTitle}"><em>{PostAuthorName}</em></a></li>
+       <li><a href="{PostAuthorURL}" title="{PostAuthorTitle}" class="post-author" style="background-image: url({PostAuthorPortraitURL-128});"><span> A <strong>{PostType}</strong> by <strong>{PostAuthorName}</strong></span></a></li>
        {/block:IfShowPostAuthor}
       
        {block:ContentSource}
@@ -1162,7 +1280,7 @@ SOLI DEO GLORIA
       
      {block:Link}<!--BEGIN LINK POSTS-->
       
-     <article class="post link">
+     <article class="post link {TagsAsClasses}">
      <div class="content">
       
       <a class="link-box" href="{URL}" title="{URL}">
@@ -1184,7 +1302,7 @@ SOLI DEO GLORIA
       <ul>
       
        {block:IfShowPostAuthor}
-       <li>By <a href="{PostAuthorURL}" title="{PostAuthorTitle}"><em>{PostAuthorName}</em></a></li>
+       <li><a href="{PostAuthorURL}" title="{PostAuthorTitle}" class="post-author" style="background-image: url({PostAuthorPortraitURL-128});"><span> A <strong>{PostType}</strong> by <strong>{PostAuthorName}</strong></span></a></li>
        {/block:IfShowPostAuthor}
        
        {block:ContentSource}
@@ -1239,7 +1357,7 @@ SOLI DEO GLORIA
       
      {block:Chat}<!--BEGIN CHAT POSTS-->
       
-     <article class="post chat">
+     <article class="post chat {TagsAsClasses}">
       <div class="content">
       
        {block:Title}
@@ -1262,7 +1380,7 @@ SOLI DEO GLORIA
        <ul>
        
         {block:IfShowPostAuthor}
-        <li>By <a href="{PostAuthorURL}" title="{PostAuthorTitle}"><em>{PostAuthorName}</em></a></li>
+        <li><a href="{PostAuthorURL}" title="{PostAuthorTitle}" class="post-author" style="background-image: url({PostAuthorPortraitURL-128});"><span> A <strong>{PostType}</strong> by <strong>{PostAuthorName}</strong></span></a></li>
         {/block:IfShowPostAuthor}
         
         {block:ContentSource}
@@ -1317,7 +1435,7 @@ SOLI DEO GLORIA
       
      {block:Video}<!--BEGIN VIDEO POSTS-->
       
-     <article class="post video">
+     <article class="post video {TagsAsClasses}">
       <div class="content">
        
        {VideoEmbed-400}
@@ -1335,7 +1453,7 @@ SOLI DEO GLORIA
        <ul>
        
         {block:IfShowPostAuthor}
-        <li>By <a href="{PostAuthorURL}" title="{PostAuthorTitle}"><em>{PostAuthorName}</em></a></li>
+        <li><a href="{PostAuthorURL}" title="{PostAuthorTitle}" class="post-author" style="background-image: url({PostAuthorPortraitURL-128});"><span> A <strong>{PostType}</strong> by <strong>{PostAuthorName}</strong></span></a></li>
         {/block:IfShowPostAuthor}
         
         {block:ContentSource}
@@ -1390,7 +1508,7 @@ SOLI DEO GLORIA
       
      {block:Audio}<!--BEGIN AUDIO POSTS-->
       
-     <article class="post audio">
+     <article class="post audio {TagsAsClasses}">
       <div class="content">
       
       {block:TrackName}
@@ -1423,7 +1541,7 @@ SOLI DEO GLORIA
        <ul>
        
         {block:IfShowPostAuthor}
-        <li>By <a href="{PostAuthorURL}" title="{PostAuthorTitle}"><em>{PostAuthorName}</em></a></li>
+        <li><a href="{PostAuthorURL}" title="{PostAuthorTitle}" class="post-author" style="background-image: url({PostAuthorPortraitURL-128});"><span> A <strong>{PostType}</strong> by <strong>{PostAuthorName}</strong></span></a></li>
         {/block:IfShowPostAuthor}
         
         {block:ContentSource}
@@ -1490,7 +1608,7 @@ SOLI DEO GLORIA
       
      {block:Answer}<!--BEGIN ANSWER POSTS-->
       
-     <article class="post answer">
+     <article class="post answer {TagsAsClasses}">
       <div class="content">
       
       <h2>{Question}</h2>
@@ -1508,7 +1626,7 @@ SOLI DEO GLORIA
        <ul>
        
         {block:IfShowPostAuthor}
-        <li>By <a href="{PostAuthorURL}" title="{PostAuthorTitle}"><em>{PostAuthorName}</em></a></li>
+        <li><a href="{PostAuthorURL}" title="{PostAuthorTitle}" class="post-author" style="background-image: url({PostAuthorPortraitURL-128});"><span> An <strong>{PostType}</strong> by <strong>{PostAuthorName}</strong></span></a></li>
         {/block:IfShowPostAuthor}
         
         {block:IfShowPostDate}
@@ -1554,6 +1672,9 @@ SOLI DEO GLORIA
 
      {/block:Posts}
 
+     
+    <!--PAGINATION-->
+    
     <nav id="pagination">
      <ul>
       {block:Pagination}
@@ -1567,10 +1688,23 @@ SOLI DEO GLORIA
        {/block:PreviousPage}
       
       {/block:Pagination}
-       
+
+      {block:PermalinkPagination}
+      
+      {block:NextPost}
+       <li><a href="{NextPost}" title="Go To Next Post">Next Post</a></li>
+      {/block:NextPost}
+      
+      {block:PreviousPost}
+       <li><a href="{PreviousPost}" title="Go To Previous Post">Previous Post</a></li>      
+      {/block:PreviousPost}
+      
       {block:IfRandomLinkAtEndOfPosts}
        <li><a href="/random" title="Jump To A Random Post!">Random Post</a></li>
       {/block:IfRandomLinkAtEndOfPosts}
+      
+      {/block:PermalinkPagination}
+      
       
      </ul>
     </nav>
@@ -1589,15 +1723,17 @@ SOLI DEO GLORIA
 
     {block:IfShowCopyrightNotice}
      <p id="left">&copy; {CopyrightYears}, <strong>{Title}</strong> unless otherwise stated or implied.</p>
-      {/block:IfShowCopyrightNotice}
+    {/block:IfShowCopyrightNotice}
       
-      {block:IfShowFooterTumblrLink}
+    {block:IfShowFooterTumblrLink}
      <span>Powered by <a href="http://tumblr.com">Tumblr</a></span>
-      {/block:IfShowFooterTumblrLink}
+    {/block:IfShowFooterTumblrLink}
       
     </div>
-      
+     
+    {block:IfCustomFooterText} 
     <p>{text:Custom Footer Text}</p>
+    {/block:IfCustomFooterText} 
      
     {block:IfShowThemeCredits}
      <p>NightGazr! (v.1.0) is handcrafted in <strong>Quezon City, Philippines</strong> by <a href="htti://timmystream.tumblr.com/"><strong>Timothy Diokno</strong></a>.</p>
