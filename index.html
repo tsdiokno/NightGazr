@@ -81,6 +81,7 @@ SOLI DEO GLORIA
   <meta name="text:BG Layer 2 Order" content="-1"/>
   <meta name="text:Description Font Size" content="1"/>
   <meta name="text:Headings Font Size" content="2"/>
+  <meta name="text:Featured Post Text" content="Featured"/>
   
   <meta name="text:Twitter URL" content=""/>
   <meta name="text:Facebook URL" content=""/>
@@ -465,6 +466,7 @@ SOLI DEO GLORIA
     {block:IfBoldHeadings}
     font-weight: bold !important;
     {/block:IfBoldHeadings}
+    line-height: 1em;
    }
   
   
@@ -521,7 +523,7 @@ SOLI DEO GLORIA
    .post aside ul li {
     padding-bottom: 10px;
     margin-bottom: 10px;
-    border-bottom: dotted #ffffff 1px;
+    border-bottom: dotted 1px;
    }
    
    /*TAGS*/
@@ -540,6 +542,30 @@ SOLI DEO GLORIA
    
    .tags a:hover {
     opacity: 1.0;
+   }
+   
+   /*FEATURED*/
+   
+   .featured:before {
+    display: block;
+    top: 0;
+    font-size: .6em;
+    content: 'Featured';
+    color: {color:Main Site Color};
+    overflow: hidden;
+    text-transform: uppercase;
+    font-weight: bold;
+    padding: .3em .6em;
+    background-color: {color:Links};
+    position: absolute;
+   }
+   
+   .featured {
+    border: solid {color:Links} 3px !important;
+   }
+   
+   .featured  .transify {
+    border: none !important;
    }
   
    /*AUDIO*/
