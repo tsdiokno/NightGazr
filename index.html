@@ -139,30 +139,11 @@ SOLI DEO GLORIA
     
     /* transify.js */
     
-    {block:IfShowSiteFooter}
     
-    $('footer').transify({
+    $('header, footer, .post, nav#pagination ul li a').transify({
      opacityOrig:{text:Site Color Opacity},
      opacityNew:{text:Site Color Hover Opacity},
      percentWidth:'100%'
-     });
-     
-    {/block:IfShowSiteFooter}
-     
-    $('header').transify({
-     opacityOrig:{text:Site Color Opacity},
-     opacityNew:{text:Site Color Hover Opacity},
-     percentWidth:'100%'
-     });
-     
-    $('.post').transify({
-     opacityOrig:{text:Site Color Opacity},
-     opacityNew:{text:Site Color Hover Opacity}
-     });
-     
-    $('nav#pagination ul li a').transify({
-     opacityOrig:{text:Site Color Opacity},
-     opacityNew:{text:Site Color Hover Opacity}
      });
     
    });
@@ -473,14 +454,21 @@ SOLI DEO GLORIA
    .post h2 a {
     text-decoration: none;
    }
+   
+   .post .body {
+    margin-top: .8em;
+   }
   
-   .post .content .body {
-    margin-top: 1em;
+   .post .content {
+    word-wrap: break-word;
+    text-overflow: ellipsis;
+    overflow-hidden;
    }
    
-   .post .content .body img {
+   .post .content img {
     width: 100%;
    }
+   
         
    .post aside {
     width: 170px;
@@ -524,6 +512,7 @@ SOLI DEO GLORIA
     padding-bottom: 10px;
     margin-bottom: 10px;
     border-bottom: dotted 1px;
+    
    }
    
    /*TAGS*/
@@ -570,13 +559,37 @@ SOLI DEO GLORIA
   
    /*AUDIO*/
    
-   .player iframe {
+   .audio .mbox iframe {
     width: 100%;
    }
    
-   .audio .content img {
+   .audio .mbox img {
     width: 100%;
     height: auto;
+    border: solid {color:Links} 3px;
+    border-bottom: none;
+   }
+   
+   .mbox {
+    position: relative;
+    overflow: hidden; 
+    color: {color:Links};
+   }
+   
+   .mbox-info  {
+    padding: 1em;
+    font-size: .8em;
+    width: 100%;
+    border: solid {color:Links} 3px;
+   }
+   
+   .mbox-info h2 {
+    font-size: 1.5em;
+    margin: .5em 0;
+   }
+   
+   .mbox-info span {
+    display: block;
    }
 
    
@@ -618,6 +631,7 @@ SOLI DEO GLORIA
    .text .content ol, aside .caption ol{
     margin-right: 1.5em;
    }
+   
    
    /*PHOTO*/
    
@@ -860,7 +874,7 @@ SOLI DEO GLORIA
        {/block:SubmissionsEnabled}
         
        {block:IfShowLinkToArchive}
-        <li><a href="/archive">Archive</a></li>
+        <li><a href="/archive">{lang:Archive}</a></li>
        {/block:IfShowLinkToArchive}
 
      </ul>
@@ -869,7 +883,7 @@ SOLI DEO GLORIA
     
    {block:IfShowSearchBox}    
     <form method="get" id="search-form" action="/search">
-     <input type="text" name="s" id="s" value"{SearchQuery}" placeholder="Search">
+     <input type="text" name="s" id="s" value"{SearchQuery}" placeholder="{lang:Search}">
     </form>
    {block:IfShowSearchBox}  
     
@@ -882,14 +896,14 @@ SOLI DEO GLORIA
    <article id="intro">
     
     {block:IfShowBlogPortrait}
-    <a href="/" title="Home">
+    <a href="/" title="{lang:Home}">
      <div id="blog-portrait" style="background-image: url({PortraitURL-128});"></div>
     </a>
     {/block:IfShowBlogPortrait}
     
     {block:IfNotShowBlogPortrait}
     {block:IfCustomBlogLogo}
-    <a href="/" title="Home">
+    <a href="/" title="{lang:Home}">
      <div id="blog-portrait" style="background-image: url({image:Custom Blog Logo});"></div>
     </a>
     {block:IfCustomBlogLogo}
@@ -947,65 +961,7 @@ SOLI DEO GLORIA
       {Body}
 
      </div>
-    </div>
-    
-    {block:IfShowPostInfo}
-    <div class="{ShortURL}">
-     <aside>
-      <ul>
-
-       {block:IfShowPostAuthor}
-       <li><a href="{PostAuthorURL}" title="{PostAuthorTitle}" class="post-author" style="background-image: url({PostAuthorPortraitURL-128});"><span> A <strong>{PostType}</strong> by <strong>{PostAuthorName}</strong></span></a></li>
-       {/block:IfShowPostAuthor}
-
-       {block:ContentSource}
-       
-        {block:SourceLogo}
-        <li>Thanks to <a href="{SourceURL}" title="{SourceTitle}"><img src="{BlackLogoURL}" height="{LogoHeight}" width="{LogoWidth}" alt="{SourceTitle}" /></a></li>
-        {/block:SourceLogo}
-       
-        {block:NoSourceLogo}
-        <li>Thanks to <a href="{SourceURL}" title="{SourceTitle}"><strong>{SourceTitle}</strong></a></li>
-        {/block:NoSourceLogo}
-        
-       {/block:ContentSource}
-       
-       {block:IfShowPostDate}
-       {block:Date}
-       <li><a href="{Permalink}" title="Permalink To This Post"><a href="{Permalink}" title="Permalink To This Post">{ShortMonth}. {DayOfMonth}{DayOfMonthSuffix}, {Year}</a></a></li>
-       {/block:Date}
-       {/block:IfShowPostDate}
-       
-       {block:NoteCount} 
-       <li>{NoteCountWithLabel}</li>
-       {/block:NoteCount}
-
-       {block:IfShowTags}{block:HasTags}
-       <li class="tags">
-        {block:Tags}<a href="{TagURL}" title="{Tag}">{Tag}</a>  {/block:Tags}
-       </li>
-       {/block:HasTags}{/block:IfShowTags}
-       
-      </ul>
-      
-      {block:IfSocialMediaSharing}
-      <!-- AddThis Button BEGIN -->
-      <div class="addthis_toolbox addthis_default_style addthis_16x16_style">
-      <a class="addthis_button_facebook"></a>
-      <a class="addthis_button_twitter"></a>
-      <a class="addthis_button_google_plusone_share"></a>
-      <a class="addthis_button_compact"></a><a class="addthis_counter addthis_bubble_style"></a>
-      </div>
-      <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=xa-518120b653e962bd"></script>
-      <!-- AddThis Button END -->
-      {/block:IfSocialMediaSharing}
-      
-     </aside> 
-    </div>
-    {/block:IfShowPostInfo}
-    
-    <div class="clear"></div>
-   </article>
+    </div><!--.content-->
       
    <!--END TEXT POSTS--> {/block:Text}
 
@@ -1025,63 +981,7 @@ SOLI DEO GLORIA
       {/block:Caption}
      </div>
      
-    </div>
-    
-   {block:IfShowPostInfo}    
-    <aside>
-     <ul>
-      
-      {block:IfShowPostAuthor}
-      <li><a href="{PostAuthorURL}" title="{PostAuthorTitle}" class="post-author" style="background-image: url({PostAuthorPortraitURL-128});"><span> A <strong>{PostType}</strong> by <strong>{PostAuthorName}</strong></span></a></li>
-      {/block:IfShowPostAuthor}
-      
-      {block:ContentSource}
-      
-       {block:SourceLogo}
-       <li>Thanks to <a href="{SourceURL}" title="{SourceTitle}"><img src="{BlackLogoURL}" height="{LogoHeight}" width="{LogoWidth}" alt="{SourceTitle}" /></a></li>
-       {/block:SourceLogo}
-      
-       {block:NoSourceLogo}
-       <li>Thanks to <a href="{SourceURL}" title="{SourceTitle}"><strong>{SourceTitle}</strong></a></li>
-       {/block:NoSourceLogo}
-
-      {/block:ContentSource}
-      
-       {block:IfShowPostDate}
-       {block:Date}
-       <li><a href="{Permalink}" title="Permalink To This Post">{ShortMonth}. {DayOfMonth}{DayOfMonthSuffix}, {Year}</a></li>
-       {/block:Date}
-       {/block:IfShowPostDate}
-
-      {block:NoteCount} 
-      <li>{NoteCountWithLabel}</li>
-      {/block:NoteCount}
-      
-      {block:IfShowTags}{block:HasTags}
-      <li class="tags">
-       {block:Tags}<a href="{TagURL}" title="{Tag}">{Tag}</a>  {/block:Tags}
-      </li>
-      {/block:HasTags}{/block:IfShowTags}
-
-     </ul>
-     
-     {block:IfSocialMediaSharing}
-     <!-- AddThis Button BEGIN -->
-     <div class="addthis_toolbox addthis_default_style addthis_16x16_style">
-     <a class="addthis_button_facebook"></a>
-     <a class="addthis_button_twitter"></a>
-     <a class="addthis_button_google_plusone_share"></a>
-     <a class="addthis_button_compact"></a><a class="addthis_counter addthis_bubble_style"></a>
-     </div>
-     <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=xa-518120b653e962bd"></script>
-     <!-- AddThis Button END -->
-     {/block:IfSocialMediaSharing}
-
-    </aside>
-    {/block:IfShowPostInfo}
-
-    <div class="clear"></div>
-   </article>
+    </div><!--.content-->
 
    <!--END PHOTO POSTS--> {/block:Photo}
    
@@ -1101,138 +1001,26 @@ SOLI DEO GLORIA
      {/block:Caption}
     </div>
 
-    </div>
-
-    {block:IfShowPostInfo}
-    <aside>
-     <ul>
-
-       {block:IfShowPostAuthor}
-       <li><a href="{PostAuthorURL}" title="{PostAuthorTitle}" class="post-author" style="background-image: url({PostAuthorPortraitURL-128});"><span> A <strong>{PostType}</strong> by <strong>{PostAuthorName}</strong></span></a></li>
-       {/block:IfShowPostAuthor}
-
-       {block:ContentSource}
-
-        {block:SourceLogo}
-        <li>Thanks to <a href="{SourceURL}" title="{SourceTitle}"><img src="{BlackLogoURL}" height="{LogoHeight}" width="{LogoWidth}" alt="{SourceTitle}" /></a></li>
-        {/block:SourceLogo}
-       
-        {block:NoSourceLogo}
-        <li>Thanks to <a href="{SourceURL}" title="{SourceTitle}"><strong>{SourceTitle}</strong></a></li>
-        {/block:NoSourceLogo}
-        
-       {/block:ContentSource}	
-       
-       {block:IfShowPostDate}
-       {block:Date}
-       <li><a href="{Permalink}" title="Permalink To This Post">{ShortMonth}. {DayOfMonth}{DayOfMonthSuffix}, {Year}</a></li>
-       {/block:Date}
-       {/block:IfShowPostDate}
-       
-       {block:NoteCount} 
-       <li>{NoteCountWithLabel}</li>
-       {/block:NoteCount}
-       
-       {block:IfShowTags}{block:HasTags}
-       <li class="tags">
-        {block:Tags}<a href="{TagURL}" title="{Tag}">{Tag}</a>  {/block:Tags}
-       </li>
-       {/block:HasTags}{/block:IfShowTags}
-       
-      </ul>
-      
-     {block:IfSocialMediaSharing}
-     <!-- AddThis Button BEGIN -->
-     <div class="addthis_toolbox addthis_default_style addthis_16x16_style">
-     <a class="addthis_button_facebook"></a>
-     <a class="addthis_button_twitter"></a>
-     <a class="addthis_button_google_plusone_share"></a>
-     <a class="addthis_button_compact"></a><a class="addthis_counter addthis_bubble_style"></a>
-     </div>
-     <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=xa-518120b653e962bd"></script>
-     <!-- AddThis Button END -->
-     {/block:IfSocialMediaSharing}
-      
-     </aside>
-     {/block:IfShowPostInfo}
-     
-     <div class="clear"></div>
-     </article>
+    </div><!--.content-->
       
    <!--END PANORAMA POSTS-->{/block:Panorama}
       
-     {block:Photoset}<!--BEGIN PHOTOSET POSTS-->
-      
-     <article class="post photoset {TagsAsClasses}">
-     <div class="content">
-     
-      {Photoset-400}
-      
-      <div class="body">
-      {block:Caption}
-      {Caption}
-      {/block:Caption}
-      </div>
-     
-     </div>
-     
-     {block:IfShowPostInfo}
-     <aside>
-      <ul>
-      
-       {block:IfShowPostAuthor}
-       <li><a href="{PostAuthorURL}" title="{PostAuthorTitle}" class="post-author" style="background-image: url({PostAuthorPortraitURL-128});"><span> A <strong>{PostType}</strong> by <strong>{PostAuthorName}</strong></span></a></li>
-       {/block:IfShowPostAuthor}
-       
-       {block:ContentSource}
-
-        {block:SourceLogo}
-        <li>Thanks to <a href="{SourceURL}" title="{SourceTitle}"><img src="{BlackLogoURL}" height="{LogoHeight}" width="{LogoWidth}" alt="{SourceTitle}" /></a></li>
-        {/block:SourceLogo}
-       
-        {block:NoSourceLogo}
-        <li>Thanks to <a href="{SourceURL}" title="{SourceTitle}"><strong>{SourceTitle}</strong></a></li>
-        {/block:NoSourceLogo}
-        
-       {/block:ContentSource}
-       
-       {block:IfShowPostDate}
-       {block:Date}
-       <li><a href="{Permalink}" title="Permalink To This Post">{ShortMonth}. {DayOfMonth}{DayOfMonthSuffix}, {Year}</a></li>
-       {/block:Date}
-       {/block:IfShowPostDate}
-       
-       {block:NoteCount} 
-       <li>{NoteCountWithLabel}</li>
-       {/block:NoteCount}
-       
-       {block:IfShowTags}{block:HasTags}
-       <li class="tags">
-        {block:Tags}<a href="{TagURL}" title="{Tag}">{Tag}</a>  {/block:Tags}
-       </li>
-       {/block:HasTags}{/block:IfShowTags}
-       
-      </ul>
-      
-     {block:IfSocialMediaSharing}
-     <!-- AddThis Button BEGIN -->
-     <div class="addthis_toolbox addthis_default_style addthis_16x16_style">
-     <a class="addthis_button_facebook"></a>
-     <a class="addthis_button_twitter"></a>
-     <a class="addthis_button_google_plusone_share"></a>
-     <a class="addthis_button_compact"></a><a class="addthis_counter addthis_bubble_style"></a>
-     </div>
-     <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=xa-518120b653e962bd"></script>
-     <!-- AddThis Button END -->
-     {/block:IfSocialMediaSharing}
-      
-     </aside>
-     {/block:IfShowPostInfo}
-     
-     <div class="clear"></div>
-     </article>
-      
-     <!--END PHOTOSET POSTS-->{/block:Photoset}
+   {block:Photoset}<!--BEGIN PHOTOSET POSTS-->
+    
+   <article class="post photoset {TagsAsClasses}">
+   <div class="content">
+   
+    {Photoset-400}
+    
+    <div class="body">
+    {block:Caption}
+    {Caption}
+    {/block:Caption}
+    </div>
+   
+   </div><!--.content-->
+    
+   <!--END PHOTOSET POSTS-->{/block:Photoset}
       
      {block:Quote}<!--BEGIN QUOTE POSTS-->
       
@@ -1243,64 +1031,7 @@ SOLI DEO GLORIA
       
       {block:Source}{Source}{/block:Source}
      
-     </div>
-     
-     
-     {block:IfShowPostInfo}
-     <aside>
-      <ul>
-      
-       {block:IfShowPostAuthor}
-       <li><a href="{PostAuthorURL}" title="{PostAuthorTitle}" class="post-author" style="background-image: url({PostAuthorPortraitURL-128});"><span> A <strong>{PostType}</strong> by <strong>{PostAuthorName}</strong></span></a></li>
-       {/block:IfShowPostAuthor}
-      
-       {block:ContentSource}
-       
-        {block:SourceLogo}
-        <li>Thanks to <a href="{SourceURL}" title="{SourceTitle}"><img src="{BlackLogoURL}" height="{LogoHeight}" width="{LogoWidth}" alt="{SourceTitle}" /></a></li>
-        {/block:SourceLogo}
-       
-        {block:NoSourceLogo}
-        <li>Thanks to <a href="{SourceURL}" title="{SourceTitle}"><strong>{SourceTitle}</strong></a></li>
-        {/block:NoSourceLogo}
-        
-       {/block:ContentSource}
-       
-       {block:IfShowPostDate}
-       {block:Date}
-       <li><a href="{Permalink}" title="Permalink To This Post">{ShortMonth}. {DayOfMonth}{DayOfMonthSuffix}, {Year}</a></li>
-       {/block:Date}
-       {/block:IfShowPostDate}
-       
-       {block:NoteCount} 
-       <li>{NoteCountWithLabel}</li>
-       {/block:NoteCount}
-       
-       {block:IfShowTags}{block:HasTags}
-       <li class="tags">
-        {block:Tags}<a href="{TagURL}" title="{Tag}">{Tag}</a>  {/block:Tags}
-       </li>
-       {/block:HasTags}{/block:IfShowTags}
-       
-      </ul>
-      
-     {block:IfSocialMediaSharing}
-     <!-- AddThis Button BEGIN -->
-     <div class="addthis_toolbox addthis_default_style addthis_16x16_style">
-     <a class="addthis_button_facebook"></a>
-     <a class="addthis_button_twitter"></a>
-     <a class="addthis_button_google_plusone_share"></a>
-     <a class="addthis_button_compact"></a><a class="addthis_counter addthis_bubble_style"></a>
-     </div>
-     <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=xa-518120b653e962bd"></script>
-     <!-- AddThis Button END -->
-     {/block:IfSocialMediaSharing}
-      
-     </aside>
-     {/block:IfShowPostInfo}
-     
-     <div class="clear"></div>
-     </article>
+     </div><!--.content-->
       
      <!--END QUOTE POSTS-->{/block:Quote}
       
@@ -1322,65 +1053,10 @@ SOLI DEO GLORIA
       {/block:Description}
       </div>
      
-     </div>
-     
-     {block:IfShowPostInfo}
-     <aside>
-      <ul>
-      
-       {block:IfShowPostAuthor}
-       <li><a href="{PostAuthorURL}" title="{PostAuthorTitle}" class="post-author" style="background-image: url({PostAuthorPortraitURL-128});"><span> A <strong>{PostType}</strong> by <strong>{PostAuthorName}</strong></span></a></li>
-       {/block:IfShowPostAuthor}
-       
-       {block:ContentSource}
-       
-        {block:SourceLogo}
-        <li>Thanks to <a href="{SourceURL}" title="{SourceTitle}"><img src="{BlackLogoURL}" height="{LogoHeight}" width="{LogoWidth}" alt="{SourceTitle}" /></a></li>
-        {/block:SourceLogo}
-       
-        {block:NoSourceLogo}
-        <li>Thanks to <a href="{SourceURL}" title="{SourceTitle}"><strong>{SourceTitle}</strong></a></li>
-        {/block:NoSourceLogo}
-        
-       {/block:ContentSource}
-       
-       {block:IfShowPostDate}
-       {block:Date}
-       <li><a href="{Permalink}" title="Permalink To This Post">{ShortMonth}. {DayOfMonth}{DayOfMonthSuffix}, {Year}</a></li>
-       {/block:Date}
-       {/block:IfShowPostDate}
-       
-       {block:NoteCount} 
-       <li>{NoteCountWithLabel}</li>
-       {/block:NoteCount}
-       
-       {block:IfShowTags}{block:HasTags}
-       <li class="tags">
-        {block:Tags}<a href="{TagURL}" title="{Tag}">{Tag}</a>  {/block:Tags}
-       </li>
-       {/block:HasTags}{/block:IfShowTags}
-       
-      </ul>
-      
-     {block:IfSocialMediaSharing}
-     <!-- AddThis Button BEGIN -->
-     <div class="addthis_toolbox addthis_default_style addthis_16x16_style">
-     <a class="addthis_button_facebook"></a>
-     <a class="addthis_button_twitter"></a>
-     <a class="addthis_button_google_plusone_share"></a>
-     <a class="addthis_button_compact"></a><a class="addthis_counter addthis_bubble_style"></a>
-     </div>
-     <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=xa-518120b653e962bd"></script>
-     <!-- AddThis Button END -->
-     {/block:IfSocialMediaSharing}
-      
-     </aside>
-     {/block:IfShowPostInfo}
-     
-     <div class="clear"></div>
-     </article>
+     </div><!--.content-->
       
      <!--END LINK POSTS-->{/block:Link}
+     
       
      {block:Chat}<!--BEGIN CHAT POSTS-->
       
@@ -1400,63 +1076,7 @@ SOLI DEO GLORIA
         {/block:Lines}
        </ul>
       
-      </div>
-      
-      {block:IfShowPostInfo}
-      <aside>
-       <ul>
-       
-        {block:IfShowPostAuthor}
-        <li><a href="{PostAuthorURL}" title="{PostAuthorTitle}" class="post-author" style="background-image: url({PostAuthorPortraitURL-128});"><span> A <strong>{PostType}</strong> by <strong>{PostAuthorName}</strong></span></a></li>
-        {/block:IfShowPostAuthor}
-        
-        {block:ContentSource}
-       
-         {block:SourceLogo}
-         <li>Thanks to <a href="{SourceURL}" title="{SourceTitle}"><img src="{BlackLogoURL}" height="{LogoHeight}" width="{LogoWidth}" alt="{SourceTitle}" /></a></li>
-         {/block:SourceLogo}
-        
-         {block:NoSourceLogo}
-         <li>Thanks to <a href="{SourceURL}" title="{SourceTitle}"><strong>{SourceTitle}</strong></a></li>
-         {/block:NoSourceLogo}
-        
-        {/block:ContentSource}
-        
-        {block:IfShowPostDate}
-        {block:Date}
-        <li><a href="{Permalink}" title="Permalink To This Post">{ShortMonth}. {DayOfMonth}{DayOfMonthSuffix}, {Year}</a></li>
-        {/block:Date}
-        {/block:IfShowPostDate}
-        
-        {block:NoteCount} 
-        <li>{NoteCountWithLabel}</li>
-        {/block:NoteCount}
-        
-        {block:IfShowTags}{block:HasTags}
-        <li class="tags">
-         {block:Tags}<a href="{TagURL}" title="{Tag}">{Tag}</a>  {/block:Tags}
-        </li>
-        {/block:HasTags}{/block:IfShowTags}
-        
-       </ul>
-       
-      {block:IfSocialMediaSharing}
-      <!-- AddThis Button BEGIN -->
-      <div class="addthis_toolbox addthis_default_style addthis_16x16_style">
-      <a class="addthis_button_facebook"></a>
-      <a class="addthis_button_twitter"></a>
-      <a class="addthis_button_google_plusone_share"></a>
-      <a class="addthis_button_compact"></a><a class="addthis_counter addthis_bubble_style"></a>
-      </div>
-      <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=xa-518120b653e962bd"></script>
-      <!-- AddThis Button END -->
-      {/block:IfSocialMediaSharing}
-       
-      </aside>
-      {/block:IfShowPostInfo}
-      
-      <div class="clear"></div>
-     </article>
+      </div><!--.content-->
       
      <!--END CHAT POSTS-->{/block:Chat}
       
@@ -1473,63 +1093,7 @@ SOLI DEO GLORIA
        {/block:Caption}
        </div>
       
-      </div>
-      
-      {block:IfShowPostInfo}
-      <aside>
-       <ul>
-       
-        {block:IfShowPostAuthor}
-        <li><a href="{PostAuthorURL}" title="{PostAuthorTitle}" class="post-author" style="background-image: url({PostAuthorPortraitURL-128});"><span> A <strong>{PostType}</strong> by <strong>{PostAuthorName}</strong></span></a></li>
-        {/block:IfShowPostAuthor}
-        
-        {block:ContentSource}
-       
-         {block:SourceLogo}
-         <li>Thanks to <a href="{SourceURL}" title="{SourceTitle}"><img src="{BlackLogoURL}" height="{LogoHeight}" width="{LogoWidth}" alt="{SourceTitle}" /></a></li>
-         {/block:SourceLogo}
-        
-         {block:NoSourceLogo}
-         <li>Thanks to <a href="{SourceURL}" title="{SourceTitle}"><strong>{SourceTitle}</strong></a></li>
-         {/block:NoSourceLogo}
-        
-        {/block:ContentSource}	
-        
-        {block:IfShowPostDate}
-        {block:Date}
-        <li><a href="{Permalink}" title="Permalink To This Post">{ShortMonth}. {DayOfMonth}{DayOfMonthSuffix}, {Year}</a></li>
-        {/block:Date}
-        {/block:IfShowPostDate}
-        
-        {block:NoteCount} 
-        <li>{NoteCountWithLabel}</li>
-        {/block:NoteCount}
-        
-        {block:IfShowTags}{block:HasTags}
-        <li class="tags">
-         {block:Tags}<a href="{TagURL}" title="{Tag}">{Tag}</a>  {/block:Tags}
-        </li>
-        {/block:HasTags}{/block:IfShowTags}
-        
-       </ul>
-       
-       {block:IfSocialMediaSharing}
-       <!-- AddThis Button BEGIN -->
-       <div class="addthis_toolbox addthis_default_style addthis_16x16_style">
-       <a class="addthis_button_facebook"></a>
-       <a class="addthis_button_twitter"></a>
-       <a class="addthis_button_google_plusone_share"></a>
-       <a class="addthis_button_compact"></a><a class="addthis_counter addthis_bubble_style"></a>
-       </div>
-       <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=xa-518120b653e962bd"></script>
-       <!-- AddThis Button END -->
-       {/block:IfSocialMediaSharing}
-       
-      </aside>
-      {/block:IfShowPostInfo}
-      
-      <div class="clear"></div>
-     </article>
+      </div><!--.content-->
        
      <!--END VIDEO POSTS-->{/block:Video}
       
@@ -1538,22 +1102,41 @@ SOLI DEO GLORIA
      <article class="post audio {TagsAsClasses}">
       <div class="content">
       
+      <div class="mbox">
+      
+      {block:AlbumArt}<img src="{AlbumArtURL}" {block:Album}alt="{Album}"{/block:Album} />{/block:AlbumArt}
+      
+      <div class="mbox-info">
+      
+      {block:AudioPlayer}
+      <span class="audio-player">{AudioPlayerGrey}</span>
+      {/block:AudioPlayer}
+      
+      {block:AudioEmbed} 
+      <span class="audio-embed">{AudioEmbed-500}</span>
+      {/block:AudioEmbed}
+      
       {block:TrackName}
       <h2>{TrackName}</h2>
-      {/block:TrackName}
+      {/block:TrackName}      
       
-       
-       {block:AudioPlayer}
-       <div class="player">{AudioPlayerGrey}</div>
-       {/block:AudioPlayer}
-       
-       {block:AudioEmbed} 
-       <div class="player">{AudioEmbed-500}</div>
-       {/block:AudioEmbed}
+      {block:Artist}
+      <span>Artist: <strong>{Artist}</strong></span>
+      {/block:Artist}
       
-       {block:AlbumArt}
-       <div class="album-art"><img src="{AlbumArtURL}" {block:Album}alt="{Album}"{/block:Album} /></div>
-       {/block:AlbumArt}
+      {block:Album}
+      <span>Album: <strong>{Album}</strong></span>
+      {/block:Album}
+      
+      {block:PlayCount}
+      <span>{PlayCountWithLabel}</span>
+      {/block:PlayCount}
+      
+      </div>
+      
+      </div><!--.mbox-info-->
+       
+       
         
        <div class="body">	
         {block:Caption}
@@ -1561,77 +1144,10 @@ SOLI DEO GLORIA
         {/block:Caption}
        </div>
        
-      </div>
-      
-      {block:IfShowPostInfo}
-      <aside>
-       <ul>
-       
-        {block:IfShowPostAuthor}
-        <li><a href="{PostAuthorURL}" title="{PostAuthorTitle}" class="post-author" style="background-image: url({PostAuthorPortraitURL-128});"><span> A <strong>{PostType}</strong> by <strong>{PostAuthorName}</strong></span></a></li>
-        {/block:IfShowPostAuthor}
-        
-        {block:ContentSource}
-       
-         {block:SourceLogo}
-         <li>Thanks to <a href="{SourceURL}" title="{SourceTitle}"><img src="{BlackLogoURL}" height="{LogoHeight}" width="{LogoWidth}" alt="{SourceTitle}" /></a></li>
-         {/block:SourceLogo}
-        
-         {block:NoSourceLogo}
-         <li>Thanks to <a href="{SourceURL}" title="{SourceTitle}"><strong>{SourceTitle}</strong></a></li>
-         {/block:NoSourceLogo}
-        
-        {/block:ContentSource}
-        
-        {block:IfShowPostDate}
-        {block:Date}
-        <li><a href="{Permalink}" title="Permalink To This Post">{ShortMonth}. {DayOfMonth}{DayOfMonthSuffix}, {Year}</a></li>
-        {/block:Date}
-        {/block:IfShowPostDate}
-        
-        {block:PlayCount}
-        <li>{PlayCountWithLabel}</li>
-        {/block:PlayCount}
-        
-        {block:Artist}
-        <li>Artist: <strong>{Artist}</strong></li>
-        {/block:Artist}
-        
-        {block:Album}
-        <li>Album: <strong>{Album}</strong></li>
-        {/block:Album}
-        
-        {block:NoteCount} 
-        <li>{NoteCountWithLabel}</li>
-        {/block:NoteCount}
-        
-        {block:IfShowTags}{block:HasTags}
-        <li class="tags">
-         {block:Tags}<a href="{TagURL}" title="{Tag}">{Tag}</a>  {/block:Tags}
-        </li>
-        {/block:HasTags}{/block:IfShowTags}
-        
-       </ul>
-       
-       {block:IfSocialMediaSharing}
-       <!-- AddThis Button BEGIN -->
-       <div class="addthis_toolbox addthis_default_style addthis_16x16_style">
-       <a class="addthis_button_facebook"></a>
-       <a class="addthis_button_twitter"></a>
-       <a class="addthis_button_google_plusone_share"></a>
-       <a class="addthis_button_compact"></a><a class="addthis_counter addthis_bubble_style"></a>
-       </div>
-       <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=xa-518120b653e962bd"></script>
-       <!-- AddThis Button END -->
-       {/block:IfSocialMediaSharing}
-       
-      </aside>
-      {block:IfShowPostInfo}
-      
-      <div class="clear"></div>
-     </article>
-      
+      </div><!--.content-->
+
      <!--END AUDIO POSTS-->{/block:Audio}
+     
       
      {block:Answer}<!--BEGIN ANSWER POSTS-->
       
@@ -1646,15 +1162,30 @@ SOLI DEO GLORIA
        
        </div>
       
-      </div>
+      </div><!--.content-->
+      
+      <!--END ANSWER POSTS--> {/block:Answer}
+      
       
       {block:IfShowPostInfo}
       <aside>
        <ul>
        
         {block:IfShowPostAuthor}
-        <li><a href="{PostAuthorURL}" title="{PostAuthorTitle}" class="post-author" style="background-image: url({PostAuthorPortraitURL-128});"><span> An <strong>{PostType}</strong> by <strong>{PostAuthorName}</strong></span></a></li>
+        <li><a href="{PostAuthorURL}" title="{PostAuthorTitle}" class="post-author" style="background-image: url({PostAuthorPortraitURL-128});"><span><strong>{PostType}</strong> by <strong>{PostAuthorName}</strong></span></a></li>
         {/block:IfShowPostAuthor}
+        
+        {block:ContentSource}
+       
+        {block:SourceLogo}
+        <li>Thanks to <a href="{SourceURL}" title="{SourceTitle}"><img src="{BlackLogoURL}" height="{LogoHeight}" width="{LogoWidth}" alt="{SourceTitle}" /></a></li>
+        {/block:SourceLogo}
+       
+        {block:NoSourceLogo}
+        <li>Thanks to <a href="{SourceURL}" title="{SourceTitle}"><strong>{SourceTitle}</strong></a></li>
+        {/block:NoSourceLogo}
+        
+       {/block:ContentSource}
         
         {block:IfShowPostDate}
         {block:Date}
@@ -1662,8 +1193,6 @@ SOLI DEO GLORIA
         {/block:Date}
         {/block:IfShowPostDate}
         
-        
-        <li>Asked by <strong>{Asker}</strong></li>
         
         {block:NoteCount} 
         <li>{NoteCountWithLabel}</li>
@@ -1693,9 +1222,9 @@ SOLI DEO GLORIA
       {block:IfShowPostInfo}
       
       <div class="clear"></div>
+      
      </article>
-
-      <!--END ANSWER POSTS--> {/block:Answer}
+      
 
      {/block:Posts}
 
@@ -1707,11 +1236,11 @@ SOLI DEO GLORIA
       {block:Pagination}
       
        {block:NextPage}
-       <li><a href="{NextPage}" title="Go To Next Page">Next Page</a></li>
+       <li><a href="{NextPage}" title="{lang:Next page}">{lang:Next page}</a></li>
        {/block:NextPage}
       
        {block:PreviousPage}
-       <li><a href="{PreviousPage}" title="Go To Previous Page">Previous Page</a></li>
+       <li><a href="{PreviousPage}" title="{lang:Previous page}">{lang:Previous page}</a></li>
        {/block:PreviousPage}
       
       {/block:Pagination}
@@ -1719,11 +1248,11 @@ SOLI DEO GLORIA
       {block:PermalinkPagination}
       
       {block:NextPost}
-       <li><a href="{NextPost}" title="Go To Next Post">Next Post</a></li>
+       <li><a href="{NextPost}" title="{lang:Next post}">{lang:Next post}</a></li>
       {/block:NextPost}
       
       {block:PreviousPost}
-       <li><a href="{PreviousPost}" title="Go To Previous Post">Previous Post</a></li>      
+       <li><a href="{PreviousPost}" title="{lang:Previous post}">{lang:Previous post}</a></li>      
       {/block:PreviousPost}
       
       {block:IfRandomLinkAtEndOfPosts}
