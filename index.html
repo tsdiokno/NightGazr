@@ -98,6 +98,9 @@ SOLI DEO GLORIA
   <meta name="color:Links" content="#ffffff"/>
   <meta name="color:Hover" content="#ffffff"/>
   <meta name="color:Text" content="#ffffff"/>
+  <meta name="color:Description" content="#ffffff"/>
+  <meta name="color:Site Header" content="#000000"/>
+  <meta name="color:Site Footer" content="#000000"/>
   <meta name="color:Main Site Color" content="#000000"/>
   
   <meta name="image:BG Layer 1" content="http://static.tumblr.com/7swizo5/yRTmm09yg/parallaxhouses2des.png"/>
@@ -169,10 +172,10 @@ SOLI DEO GLORIA
    -webkit-box-sizing: border-box;
       -moz-box-sizing: border-box;
            box-sizing: border-box;
-      -moz-transition: opacity 0.5s;
-   -webkit-transition: opacity 0.5s;
-        -o-transition: opacity 0.5s;
-           transition: opacity 0.5s;
+      -moz-transition: opacity 0.5s, color 0.5s;
+   -webkit-transition: opacity 0.5s, color 0.5s;
+        -o-transition: opacity 0.5s, color 0.5s;
+           transition: opacity 0.5s, color 0.5s;
    }
   
    /* HTML5 display-role reset for older browsers */
@@ -248,7 +251,7 @@ SOLI DEO GLORIA
    /*HEADER SECTION*/
         
    header {
-    background: {color:Main Site Color};
+    background: {color:Site Header};
     font-size: .8em;
     padding: 1em;
     text-transform: uppercase;
@@ -339,6 +342,7 @@ SOLI DEO GLORIA
     font-weight: bold;
     position: relative;
     text-transform: uppercase;
+    color: {color:Description};
    }
    
    .social-buttons ul {
@@ -353,7 +357,7 @@ SOLI DEO GLORIA
    }
    
    .social-buttons ul li a {
-    color: {color:Text} !important;
+    color: {color:Description} !important;
     opacity: .8;
    }
    
@@ -362,7 +366,7 @@ SOLI DEO GLORIA
    }
    
    .social-buttons ul li a:hover {
-   color: {color:Text} !important;
+   color: {color:Description} !important;
     opacity: 1.0;
    }
   
@@ -437,7 +441,7 @@ SOLI DEO GLORIA
    }
    
    .post .content blockquote, 
-   .post .content .body blockquote {
+   .post .content .caption blockquote {
     border-left: solid 3px;
     padding-left: 1em;
    }
@@ -458,7 +462,7 @@ SOLI DEO GLORIA
     text-decoration: none;
    }
    
-   .post .body {
+   .post .caption {
     margin-top: .8em;
    }
   
@@ -736,13 +740,13 @@ SOLI DEO GLORIA
    footer {
     text-transform: uppercase;
     {block:IfFixedFooter}
-    position: fixed !important; /* ... becase transify.js messes with positions if it isn't "important" */
+    position: fixed !important; /*transify*/
     {/block:IfFixedFooter}
     {block:IfNotFixedFooter}
     position: absolute;
     {/block:IfNotFixedFooter}
     overflow: hidden;
-    background-color: {color:Main Site Color};
+    background-color: {color:Site Footer};
     width: 100%;
     bottom: 0;
     {block:IfFixedFooter}
@@ -750,10 +754,10 @@ SOLI DEO GLORIA
     {/block:IfFixedFooter}
     font-size: 60%;
     padding: 0.625em 0.625em;
-       -moz-transition: all 0.5s;
-    -webkit-transition: all 0.5s;
-         -o-transition: all 0.5s;
-            transition: all 0.5s;
+       -moz-transition: height 0.5s;
+    -webkit-transition: height 0.5s;
+         -o-transition: height 0.5s;
+            transition: height 0.5s;
     text-align: center;
    }
    
@@ -932,7 +936,7 @@ SOLI DEO GLORIA
 
    <section id="page-wrap"> 
 
-   <article id="intro">
+   <div id="intro">
     
     {block:IfShowBlogPortrait}
     <a href="/" title="{lang:Home}">
@@ -984,7 +988,7 @@ SOLI DEO GLORIA
      </ul>
     </div>
     
-   </article>
+   </div><!--intro-->
 
    {block:Posts}
 
@@ -1014,7 +1018,7 @@ SOLI DEO GLORIA
       <img src="{PhotoURL-400}" alt="{PhotoAlt}" />
      </a>
       
-     <div class="body">
+     <div class="caption">
       {block:Caption}
       {Caption}
       {/block:Caption}
@@ -1034,7 +1038,7 @@ SOLI DEO GLORIA
      <img src="{PhotoURL-Panorama}" alt="{PhotoAlt}" />
     {LinkCloseTag}
 
-    <div class="body">
+    <div class="caption">
      {block:Caption}
       {Caption}
      {/block:Caption}
@@ -1051,7 +1055,7 @@ SOLI DEO GLORIA
    
     {Photoset-400}
     
-    <div class="body">
+    <div class="caption">
     {block:Caption}
     {Caption}
     {/block:Caption}
@@ -1086,7 +1090,7 @@ SOLI DEO GLORIA
        &rarr; {URL}
       </a>
       
-      <div class="body">
+      <div class="caption">
       {block:Description} 
       {Description}
       {/block:Description}
@@ -1126,7 +1130,7 @@ SOLI DEO GLORIA
        
        {VideoEmbed-400}
        
-       <div class="body">
+       <div class="caption">
        {block:Caption}
        {Caption}
        {/block:Caption}
@@ -1177,7 +1181,7 @@ SOLI DEO GLORIA
        
        
         
-       <div class="body">	
+       <div class="caption">	
         {block:Caption}
         {Caption}
         {/block:Caption}
@@ -1195,7 +1199,7 @@ SOLI DEO GLORIA
       
       <div class="question"><blockquote>{Question}</blockquote></div>
       
-       <div class="body">
+       <div class="caption">
        
         {Answer}
        
@@ -1271,7 +1275,8 @@ SOLI DEO GLORIA
        <a class="addthis_button_facebook"></a>
        <a class="addthis_button_twitter"></a>
        <a class="addthis_button_google_plusone_share"></a>
-       <a class="addthis_button_compact"></a><a class="addthis_counter addthis_bubble_style"></a>
+       <a class="addthis_button_compact"></a>
+       <a class="addthis_counter addthis_bubble_style"></a>
        </div>
        <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=xa-518120b653e962bd"></script>
        <!-- AddThis Button END -->
@@ -1326,6 +1331,7 @@ SOLI DEO GLORIA
     
     <nav id="pagination">
      <ul>
+     
       {block:Pagination}
       
        {block:NextPage}
@@ -1340,17 +1346,17 @@ SOLI DEO GLORIA
 
       {block:PermalinkPagination}
       
-      {block:NextPost}
-       <li><a href="{NextPost}" title="{lang:Next post}">{lang:Next post}</a></li>
-      {/block:NextPost}
-      
-      {block:PreviousPost}
-       <li><a href="{PreviousPost}" title="{lang:Previous post}">{lang:Previous post}</a></li>      
-      {/block:PreviousPost}
-      
-      {block:IfRandomLinkAtEndOfPosts}
-       <li><a href="/random" title="Jump To A Random Post!">Random Post</a></li>
-      {/block:IfRandomLinkAtEndOfPosts}
+       {block:NextPost}
+        <li><a href="{NextPost}" title="{lang:Next post}">{lang:Next post}</a></li>
+       {/block:NextPost}
+       
+       {block:PreviousPost}
+        <li><a href="{PreviousPost}" title="{lang:Previous post}">{lang:Previous post}</a></li>      
+       {/block:PreviousPost}
+       
+       {block:IfRandomLinkAtEndOfPosts}
+        <li><a href="/random" title="Jump To A Random Post!">Random Post</a></li>
+       {/block:IfRandomLinkAtEndOfPosts}
       
       {/block:PermalinkPagination}
       
@@ -1378,7 +1384,7 @@ SOLI DEO GLORIA
      <span>Powered by <a href="http://tumblr.com">Tumblr</a></span>
     {/block:IfShowFooterTumblrLink}
       
-    </div>
+    </div> <!--first-line-->
      
     {block:IfCustomFooterText} 
     <p>{text:Custom Footer Text}</p>
