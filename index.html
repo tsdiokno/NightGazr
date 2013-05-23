@@ -93,14 +93,24 @@ SOLI DEO GLORIA
   <meta name='text:Disqus Shortname' content="" />
   
   <meta name="font:Global" content="Arial, sans-serif"/>
-  <meta name="font:Header" content="Impact, sans-serif"/>
+  <meta name="font:Headings" content="Impact, sans-serif"/>
   
   <meta name="color:Links" content="#ffffff"/>
   <meta name="color:Hover" content="#ffffff"/>
   <meta name="color:Text" content="#ffffff"/>
+  
   <meta name="color:Description" content="#ffffff"/>
+  
   <meta name="color:Site Header" content="#000000"/>
+  
+  <meta name="color:Header Link" content="#ffffff"/>
+  <meta name="color:Header Link Hover" content="#ffffff"/>
+  
   <meta name="color:Site Footer" content="#000000"/>
+  <meta name="color:Footer Text" content="#ffffff"/>
+  <meta name="color:Footer Link" content="#ffffff"/>
+  <meta name="color:Footer Link Hover" content="#ffffff"/>
+  
   <meta name="color:Main Site Color" content="#000000"/>
   
   <meta name="image:BG Layer 1" content="http://static.tumblr.com/7swizo5/yRTmm09yg/parallaxhouses2des.png"/>
@@ -172,10 +182,6 @@ SOLI DEO GLORIA
    -webkit-box-sizing: border-box;
       -moz-box-sizing: border-box;
            box-sizing: border-box;
-      -moz-transition: opacity 0.5s, color 0.5s;
-   -webkit-transition: opacity 0.5s, color 0.5s;
-        -o-transition: opacity 0.5s, color 0.5s;
-           transition: opacity 0.5s, color 0.5s;
    }
   
    /* HTML5 display-role reset for older browsers */
@@ -267,6 +273,14 @@ SOLI DEO GLORIA
     top: -1.8em;
     position: relative;
    }
+   
+   header h1 a {
+    color: {color:Header Link};
+   }
+   
+   header h1 a:hover {
+    color: {color:Header Link Hover};
+   }
   
    header h1 a {
     text-decoration: none;
@@ -320,11 +334,12 @@ SOLI DEO GLORIA
     -webkit-transition: all 0.5s;
          -o-transition: all 0.5s;
             transition: all 0.5s;
+    color: {color:Header Link};
    }
         
    nav#main ul li a:hover {
-    background-color: {color:Text};
-    color: {color:Main Site Color};
+    background-color: {color:Header Link};
+    color: {color:Site Header};
     top: -1em;
    }
         
@@ -450,7 +465,7 @@ SOLI DEO GLORIA
     text-transform: uppercase;
     margin-bottom: 10px;
     font-size: {text:Headings Font Size}em;
-    font-family: {font:Header};
+    font-family: {font:Headings};
     {block:IfBoldHeadings}
     font-weight: bold !important;
     {/block:IfBoldHeadings}
@@ -759,6 +774,15 @@ SOLI DEO GLORIA
          -o-transition: height 0.5s;
             transition: height 0.5s;
     text-align: center;
+    color: {color:Footer Text}; 
+   }
+   
+   footer a {
+    color: {color:Footer Link};
+   }
+   
+   footer a:hover {
+    color: {color:Footer Link Hover};
    }
    
    footer .transify {
@@ -768,14 +792,12 @@ SOLI DEO GLORIA
    {block:IfFixedFooter}
    footer.show {
     height: 45% !important;
+    width: 100% !important;
    }
    {/block:IfFixedFooter}
    
    footer.show .transify {
     height: 100% !important;
-   }
-  
-   footer:hover {
    }
   
    /*Stop the next lines of text from peeking out when the copyright notice and the Tumblr link isn't visible.*/
