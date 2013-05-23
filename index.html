@@ -111,7 +111,6 @@ SOLI DEO GLORIA
   
   <script src="http://static.tumblr.com/7swizo5/fRUmlhyvk/jquery.js"></script>
   <script src="http://static.tumblr.com/7swizo5/e7fmlhzeq/jquery.stellar"></script>
-  <script src="http://static.tumblr.com/7swizo5/K4Qmli085/mousewheel.js"></script>
   <script src="http://static.tumblr.com/7swizo5/zsJmlwmu9/transify.js"></script>
     
   <script>
@@ -120,13 +119,6 @@ SOLI DEO GLORIA
    
     $("#page-wrap").wrapInner("<table cellspacing='30'><tr>");
     $(".post, .social").wrap("<td></td>");
-    
-    /* mousewheel.js */
-    
-    $("body").mousewheel(function(event, delta) {
-     this.scrollLeft -= (delta * 30);
-     event.preventDefault();
-     });
 
     
     $.stellar({ /* stellar.js */
